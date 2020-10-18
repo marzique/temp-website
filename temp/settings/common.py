@@ -38,18 +38,26 @@ sys.path.append(normpath(join(PROJECT_ROOT, 'apps')))
 # ##### APPLICATION CONFIGURATION #########################
 
 
-INSTALLED_APPS = [
-    # defaul apps
+# these are the apps
+DEFAULT_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+INSTALLED_APPS = DEFAULT_APPS
+
+INSTALLED_APPS += [
     # libs
+    'django_extensions',
+    'django_countries',
 
     # custom apps
     'comingsoon',
+    'squad',
 ]
 
 # Middlewares

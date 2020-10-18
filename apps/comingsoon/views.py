@@ -4,6 +4,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db.utils import IntegrityError
 
 
-def index(request):
+def comingsoon(request):
     context = {}
     return render(request, 'comingsoon/index.html', context)
+
+

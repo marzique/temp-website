@@ -1,0 +1,11 @@
+<h1>Players:</h1>
+<div class="players-list">
+    {% for player in object_list %}
+        <div class="player">
+            {{ player.number }} {{ player.full_name }} [{{ player.position }}]
+            <img src="{{player.nationality.flag}}" alt="flag-{{player.nationality.name}}">
+        </div>
+    {% empty %}
+        No players yet.
+    {% endfor %}
+</div>

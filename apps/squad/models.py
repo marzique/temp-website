@@ -23,7 +23,7 @@ class Player(models.Model):
     first_name = models.CharField(max_length=100, null=False, blank=False)
     middle_name = models.CharField(max_length=100, null=True, blank=True)
     last_name = models.CharField(max_length=100, null=False, blank=False)
-    number = models.PositiveIntegerField(choices=NUMBER_CHOICES, db_index=True, null=True, blank=True)
+    number = models.PositiveIntegerField(choices=NUMBER_CHOICES, db_index=True, null=True, blank=True, unique=True)
     position = models.CharField(choices=POSITION_CHOICES, max_length=200, null=False, blank=False)
     date_of_birth = models.DateField(null=False, blank=False)
     photo = models.ImageField(upload_to='squad/')
@@ -46,3 +46,14 @@ class Player(models.Model):
 
     class Meta:
         ordering = ['number']
+
+    @property
+    def position_ukranian(self):
+        positions = {
+            'goalkeeper': 'Вр',
+            'defender': 'Зх',
+            'midfielder': 'Цп',
+            'striker': 'Нп',
+            'manager': 'Тр'
+        }
+        return positions[self.position]

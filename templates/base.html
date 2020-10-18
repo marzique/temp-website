@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}base.html{% endblock %}</title>
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+
+    <!-- custom css/js -->
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <script src="{% static 'js/common.js' %}"></script>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    {% include "header.html" %}
+
+    {% block content %}
+        base.html
+    {% endblock %}
+
+    {% include "footer.html" %}
+
+</body>
+</html>

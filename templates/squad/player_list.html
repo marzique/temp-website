@@ -1,11 +1,27 @@
-<h1>Players:</h1>
-<div class="players-list">
-    {% for player in object_list %}
-        <div class="player">
-            {{ player.number }} {{ player.full_name }} [{{ player.position }}]
-            <img src="{{player.nationality.flag}}" alt="flag-{{player.nationality.name}}">
+{% extends 'base.html' %}
+
+{% block title %}Players list{% endblock %}
+
+{% block content %}
+    
+    <div class="container title">
+        <h1>Players:</h1>
+    </div>
+    <div class="container mtb20" id="player-container">
+        {% for player in object_list %}
+        <div class="card shadow">
+            <div class="photo" style="background-image: url({{ player.photo.url }});">
+                <div class="nationality" style="background-image: url(https://www.countryflags.io/{{player.nationality.code}}/flat/64.png);">
+                </div>
+            </div>
+            <div class="name">
+                {{ player.first_name }} {{ player.last_name }}
+            </div>
+            <p class="number">{{ player.number }}</p>
         </div>
-    {% empty %}
-        No players yet.
-    {% endfor %}
-</div>
+            
+        {% empty %}
+            No players yet.
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -15,6 +15,10 @@ ul{
     list-style-type: none;
 }
 
+a{
+    text-decoration: none;
+}
+
 html{
     overflow-x: hidden;
     font-size: 1vw;
@@ -40,6 +44,41 @@ header{
     height: 100px;
     transition: all .5s ease-in-out;
     z-index: 200;
+    overflow: hidden;
+}
+
+header a{
+    color: whitesmoke;
+}
+
+header .wrapper{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .wrapper ul{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 100%;
+}
+
+header .wrapper ul li{
+    margin: 0 10px;
+}
+
+header .menu{
+    display: flex;
+}
+
+header .logo{
+    width: 96px;
+    height: 96px;
 }
 
 header.sticky{
@@ -63,7 +102,7 @@ header.hide{
 }
 
 .container-full{
-
+    width: 100%;
 }
 
 .container{
@@ -96,6 +135,11 @@ footer{
 }
 
 /* /Header */
+
+
+/* Main Page */
+/* /Main Page */
+
 
 /* Players List */
 
@@ -168,4 +212,3 @@ footer{
 
 
 /* /Players List */
-

@@ -1,7 +1,29 @@
 {% load static %}
 <header class="fixed">
     <div class="container">
-        FIXED
+        <div class="wrapper">
+            <div class="part">
+                <a href="/">
+                    <img src="{% static 'img/temp_logo.png' %}" class="logo">
+                </a>
+            </div>
+            <div class="part menu">
+                <ul>
+                    <li><a href="{% url 'player-list' %}">Team</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="{% url 'scoreboard' %}">Scoreboard</a></li>
+                </ul>
+            </div>
+            <div class="part auth">
+                {% if user.is_authenticated %}
+                    {{ user }}
+                    <a href="{% url 'core_logout' %}">logout</a>
+                {% else %}
+                    <a href="{% url 'core_login' %}">login</a>
+                {% endif %}
+            </div>
+        </div>
+        
     </div>
 </header>
 <header class="sticky hide">

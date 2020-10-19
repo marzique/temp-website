@@ -51,7 +51,9 @@ INSTALLED_APPS = [
 
     # custom apps
     'comingsoon',
+    'main',
     'squad',
+    'scoreboard',
 ]
 
 # Middlewares
@@ -120,6 +122,9 @@ MEDIA_URL = '/media/'
 # ##### DEBUG CONFIGURATION ###############################
 DEBUG = False
 
+
+# ENV VARIABLES temporary
+HFL_SCOREBOARD_URL = 'https://diamondliga.join.football/tournament/1008633/tables'
 
 # finally grab the SECRET KEY
 try:

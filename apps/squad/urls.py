@@ -2,5 +2,5 @@ from django.urls import path
 from squad.views import PlayerListView
 
 urlpatterns = [
-    path('', PlayerListView.as_view(), name='players-list'),
+    path('', PlayerListView.as_view(), name='player-list'),
 ]

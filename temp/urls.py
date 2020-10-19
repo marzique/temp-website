@@ -8,9 +8,16 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     # comings soon TEMPORARY main page
-    path('', include('comingsoon.urls')),
+    # path('', include('comingsoon.urls')),
 
+    # Main page
+    path('', include('main.urls')),
+    
+    # Team
     path('squad/', include('squad.urls')),
+
+    # Scoreboard
+    path('scoreboard/', include('scoreboard.urls')),
 
     # provide the most basic login/logout functionality
     path('login/', auth_views.LoginView.as_view(template_name='auth/core/login.html'),

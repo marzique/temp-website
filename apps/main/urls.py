@@ -1,6 +1,7 @@
 from django.urls import path
-from main.views import AboutView
+from main.views import MainPageView, RefreshScoreboardView
 
 urlpatterns = [
-    path('', AboutView.as_view(), name='index'),
+    path('', MainPageView.as_view(), name='index'),
+    path('refresh-scoreboard', RefreshScoreboardView.as_view(), name='refresh-scoreboard'),
 ]

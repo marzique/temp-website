@@ -1,7 +1,126 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Main Page{% endblock %}
+{% block title %}Головна{% endblock %}
 
 {% block content %}
-<h1>main page</h1>
+<section id="post-big">
+    <div class="container">
+        <a href="https://youtu.be/i3UUQ3sUwv0?t=2445" target="_blank">
+            <div class="wrapper shadow">
+                    <div class="title">
+                        <h2>ХФЛ</h2>
+                        <h1>ТЕМП ЗНОВУ РОБИТЬ КАМБЕК</h1>
+                    </div>
+                    <div class="image" style="background-image: url({% static 'img/lastpost.png' %})">
+                        <img src="{% static 'img/temp_logo.png' %}" class="overlay-logo">
+                    </div>
+            </div>
+        </a>
+    </div>
+</section>
+
+<section id="posts">
+    <div class="container">
+        <div class="wrapper">
+            <a href="https://youtu.be/i3UUQ3sUwv0?t=2445" target="_blank">
+                <div class="post shadow">
+                    <div class="image" style="background-image: url({% static 'img/lastpost.png' %})">
+
+                    </div>
+                    <div class="title">
+                        <h2>ХФЛ</h2>
+                        <h1>ТЕМП ЗНОВУ РОБИТЬ КАМБЕК</h1>
+                        <p>26.08.1995</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://youtu.be/i3UUQ3sUwv0?t=2445" target="_blank">
+                <div class="post shadow">
+                    <div class="image" style="background-image: url(https://static.ukrinform.com/photos/2018_06/thumb_files/630_360_1528970776-1131.jpg)">
+
+                    </div>
+                    <div class="title">
+                        <h2>ТРАНСФЕРИ</h2>
+                        <h1>ТЕМП ПІДПИСАВ ДВОХ ГРАВЦІВ</h1>
+                        <p>13.08.2020</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://youtu.be/i3UUQ3sUwv0?t=2445" target="_blank">
+                <div class="post shadow">
+                    <div class="image" style="background-image: url(https://lh3.googleusercontent.com/proxy/QWTfYRzYYeyZL6EKLNsAchQbu9hND2cwTxcmeemlutzIhGVyBeWYV41q2ilSpMxz6bjjxk5rQuUInAX-ASe6QEV4FdC4vArhRu_D4QyJHY9ibkFnv8zMEY-_CZLs0cJtJA)">
+
+                    </div>
+                    <div class="title">
+                        <h2>ФК АРСЕНАЛ</h2>
+                        <h1>ПЕРЕБИВАННЯ ПЕНАЛЬТІ</h1>
+                        <p>01.05.2020</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="info-tables">
+    <div class="container">
+        <div class="wrapper">
+            {% include 'scoreboard/table.html' %}
+            <div class="fixtures">
+                <div class="match next-match shadow">
+                    <p class="type">НАСТУПНИЙ МАТЧ</p>
+                    <div class="info">
+                        <p class="date">18.10.2020</p>
+                        <p class="competiotion"><b>HFL</b></p>
+                    </div>
+                    <div class="sides">
+                        <div class="team">
+                            <img src="https://i.pinimg.com/originals/98/32/8b/98328b1d64c5f93ef5eceea7586430d1.png">
+                            <p class="name">Арсенал</p>
+                        </div>
+                        <div class="score time">
+                            <p>TBA</p>
+                        </div>
+                        <div class="team">
+                            <img src="{% static 'img/temp_logo.png' %}">
+                            <p class="name">ТЕМП</p>
+                        </div>
+                    </div>
+                    <a href="https://diamondliga.join.football/match/1753991">
+                        <div class="link">
+                            <p>ПРОТОКОЛ</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="match prev-match shadow">
+                    <p class="type">ОСТАННІЙ РЕЗУЛЬТАТ</p>
+                    <div class="info">
+                        <p class="date">18.10.2020</p>
+                        <p class="competiotion"><b>HFL</b></p>
+                    </div>
+                    <div class="sides">
+                        <div class="team">
+                            <img src="{% static 'img/temp_logo.png' %}">
+                            <p class="name">ТЕМП</p>
+                        </div>
+                        <div class="score">
+                            <p>3:2</p>
+                        </div>
+                        <div class="team">
+                            <img src="{% static 'img/arsenalna.jpg' %}">
+                            <p class="name">АСЕНАЛЬНА</p>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="link">
+                            <p>ПРОТОКОЛ</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
 {% endblock %}

@@ -5,7 +5,6 @@ from django.views.generic.detail import DetailView
 from squad.models import Player
 
 class PlayerListView(ListView):
-
     model = Player
     ordering = ['position', 'number', ]
 

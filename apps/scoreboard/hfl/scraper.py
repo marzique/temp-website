@@ -27,13 +27,16 @@ class HFLScoreBoardParser:
         teams = []
         for row in rows:
             place = row.find(class_='table__cell--number').get_text().strip()
-            logo = row.find(class_='table__team-img').get('src')
+            logo_url = row.find(class_='table__team-img').get('src')
             name = row.find(class_='table__team-name').get_text().strip()
             games = row.find(class_='table__cell--games-number').get_text().strip()
             wins = row.find(class_='table__cell--wins').get_text().strip()
             draws = row.find(class_='table__cell--draws').get_text().strip()
             losses = row.find(class_='table__cell--losses').get_text().strip()
-            goals = row.find(class_='table__cell--goals-scored_goals-missed').get_text().strip()
+
+            goals_strings = row.find(class_='table__cell--goals-scored_goals-missed').get_text().strip()
+            goals_scored, goals_conceded = [int(goals.strip()) for goals in goals_strings.split('-')]
+
             points = row.find(class_='table__cell--points').get_text().strip()
             
             last_matches = row.find_all(class_='form-results-item')
@@ -49,16 +52,17 @@ class HFLScoreBoardParser:
                     results.append('D')
 
             teams.append({
-                'place': place,
-                'logo': logo,
+                'place': int(place),
+                'logo_url': logo_url,
                 'name': name,
-                'games': games,
-                'wins': wins,
-                'draws': draws,
-                'losses': losses,
-                'goals': goals,
-                'points': points,
-                'results': results
+                'games': int(games),
+                'wins': int(wins),
+                'draws': int(draws),
+                'losses': int(losses),
+                'goals_scored': goals_scored,
+                'goals_conceded': goals_conceded,
+                'points': int(''.join(i for i in points if i.isdigit())),
+                # 'results': results
             })
         return teams
              

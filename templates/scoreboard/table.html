@@ -1,0 +1,35 @@
+{% load static %}
+<div class="scoreboard shadow">
+    {% if user.is_staff %}
+        <div class="refresh-scoreboard">
+            refresher
+        </div>
+    {% endif %}
+    <div class="heading">
+        <p class="place">#</p>
+        <p class="team-name">Команда</p>
+        <p class="games">І</p>
+        <p class="wins">В</p>
+        <p class="draws">Н</p>
+        <p class="losses">П</p>
+        <p class="goals">МЗ - МП</p>
+        <p class="points">О</p>
+    </div>
+    <div class="table">
+        {% for team in scoreboard %}
+        <div class="team {% if team.name.lower == 'темп' %}dymer{% endif %}">
+            <p class="place">{{ team.place }}</p>
+            <div class="team-name">
+                <img src="{{ team.logo_url }}" >
+                <p>{{ team.name }}</p>
+            </div>
+            <p class="games">{{ team.games }}</p>
+            <p class="wins">{{ team.wins }}</p>
+            <p class="draws">{{ team.draws }}</p>
+            <p class="losses">{{ team.losses }}</p>
+            <p class="goals">{{ team.goals_scored }} - {{ team.goals_conceded }}</p>
+            <p class="points">{{ team.points }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>

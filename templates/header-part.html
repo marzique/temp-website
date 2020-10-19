@@ -17,7 +17,7 @@
         </div>
         <div class="part auth">
             {% if user.is_authenticated %}
-                {{ user }}
+                <p class="username">{{ user }}</p>
                 <a href="{% url 'core_logout' %}">вийти</a>
             {% else %}
                 <a href="{% url 'core_login' %}">увійти</a>

@@ -4,24 +4,32 @@
 
 {% block content %}
     
-    <div class="container title">
-        <h1>Players:</h1>
-    </div>
-    <div class="container mtb20" id="player-container">
-        {% for player in object_list %}
-        <div class="card shadow">
-            <div class="photo" style="background-image: url({{ player.photo.url }});">
-                <div class="nationality" style="background-image: url(https://www.countryflags.io/{{player.nationality.code}}/flat/64.png);">
-                </div>
+    {% regroup object_list by position as positions_list %}
+        {% for position in positions_list %}
+            <div class="container title">
+                <h1>{{ position.grouper }}</h1>
             </div>
-            <div class="name">
-                {{ player.first_name }} {{ player.last_name }}
+            <div class="container mtb20" id="player-container">
+                {% for player in position.list %}
+                    <a href="{% url 'player-detail' name_slug=player.name_slug %}">
+                        <div class="card shadow">
+                            <div class="photo" style="background-image: url({{ player.photo.url }});">
+                                <div class="nationality" style="background-image: url(https://www.countryflags.io/{{player.nationality.code}}/flat/64.png);">
+                                </div>
+                            </div>
+                            <div class="name">
+                                <h2>
+                                    {{ player.first_name }} <br>{{ player.last_name }}
+                                </h2>
+                            </div>
+                            {% if player.number %}
+                                <p class="number">
+                                    {{ player.number }}
+                                </p>
+                            {% endif %}
+                        </div>
+                    </a>
+                {% endfor %}
             </div>
-            <p class="number">{{ player.number }}</p>
-        </div>
-            
-        {% empty %}
-            No players yet.
         {% endfor %}
-    </div>
 {% endblock %}

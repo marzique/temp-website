@@ -12,6 +12,7 @@ django-countries = "*"
 pillow = "*"
 requests = "*"
 beautifulsoup4 = "*"
+python-slugify = "*"
 
 [requires]
 python_version = "3.8"

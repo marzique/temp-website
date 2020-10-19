@@ -34,17 +34,20 @@ body{
     width: 100%;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    background: #FAF9F9;
     color: #0d2e52;
     font-family: 'Open Sans', sans-serif;
 }
 
 header{
-    background-color: #145aa7;
+    background-color: #0d2e52;
     height: 100px;
     transition: all .5s ease-in-out;
     z-index: 200;
     overflow: hidden;
+}
+
+header .container{
+    height: 100%;
 }
 
 header a{
@@ -76,9 +79,18 @@ header .menu{
     display: flex;
 }
 
-header .logo{
+header .part.logo{
     width: 96px;
-    height: 96px;
+}
+
+header .part.logo h1{
+    font-weight: 900;
+    white-space: nowrap;
+    font-size: 32px;
+}
+
+header img.logo{
+    width: 100%;
 }
 
 header.sticky{
@@ -91,6 +103,15 @@ header.sticky{
 header.hide{
     height: 0;
     overflow: hidden;
+}
+
+header.fixed h1{
+    display: none;
+}
+
+
+header.sticky img.logo{
+    display: none;
 }
 
 .container, .container-full {
@@ -129,12 +150,17 @@ header.hide{
     margin-bottom: 20px;
 }
 
-footer{
-    background-color: #145aa7;
-    height: 300px;
-}
+
 
 /* /Header */
+
+
+/* Footer */
+footer{
+    background-color: #0d2e52;
+    height: 300px;
+}
+/* Footer */
 
 
 /* Main Page */
@@ -152,7 +178,7 @@ footer{
 
 .card{
     width: 229px;
-    height: 264px;
+    height: 300px;
     margin-right: 36px;
     margin-bottom: 36px;
     position: relative;
@@ -164,7 +190,7 @@ footer{
     margin-right: 0;
 }
 
-.photo{
+.card .photo{
     display: flex;
     position: relative;
     width: 100%;
@@ -173,41 +199,52 @@ footer{
     background-size: cover;
 }
 
+.card .name{
+    height: 71px;
+    align-self: center;
+    padding-left: 15px;
+    line-height: 180%;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+.card .name h2{
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
 .card .nationality{
-    height: 48px;
-    width: 48px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
     background-size: 200%;
     background-position: center;
     box-shadow: 0 2px 5px 0 rgba(0,40,94,.6);
     position: absolute;
     bottom: 10px;
-    transform: translate(-50%, 0);
+    left: 10px;
     transition: all .3s ease-in-out;
 }
 
 .card .number{
     position: absolute;
-    top: 0;
-    font-size: 110px;
+    top: -5px;
+    right: -15px;
+    font-size: 80px;
     font-weight: 800;
     color: #145aa7;
-    line-height: 100%;
-    transform: translate(160%, 0);
-    width: 125px;
+    opacity: .6;
+    line-height: 75%;
     transition: all .3s ease-in-out;
 
 }
 
 .card:hover .number{
-    transform: translate(100%, 0);
-    font-size: 160px;
+    opacity: 1;
 }
 
 .card:hover .nationality{
-    transform: translate(0, 0);
-    width: 64px;
-    height: 64px;
 }
 
 

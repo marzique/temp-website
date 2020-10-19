@@ -1,0 +1,27 @@
+{% load static %}
+<div class="container">
+    <div class="wrapper">
+        <div class="part logo">
+            <a href="/">
+                <img src="{% static 'img/temp_logo.png' %}" class="logo">
+                <h1>ФК ТЕМП</h1>
+            </a>
+        </div>
+        <div class="part menu">
+            <ul>
+                <li><a href="{% url 'player-list' %}">Гравці</a></li>
+                <li><a href="{% url 'scoreboard' %}">Таблиця</a></li>
+                <li><a href="#">Новини</a></li>
+                <li><a href="#">Магазин</a></li>
+            </ul>
+        </div>
+        <div class="part auth">
+            {% if user.is_authenticated %}
+                {{ user }}
+                <a href="{% url 'core_logout' %}">вийти</a>
+            {% else %}
+                <a href="{% url 'core_login' %}">увійти</a>
+            {% endif %}
+        </div>
+    </div>
+</div>

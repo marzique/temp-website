@@ -1,6 +1,8 @@
 from django.db import models
+from slugify import slugify
 
 from django_countries.fields import CountryField
+
 
 
 class Player(models.Model):
@@ -29,12 +31,20 @@ class Player(models.Model):
     photo = models.ImageField(upload_to='squad/')
     captain = models.BooleanField(default=None, unique=True, null=True)
     nationality = CountryField()
+    name_slug = models.SlugField(max_length=200, unique=True, null=True)
 
     def __str__(self):
         
         return f'{self.number}. {self.first_name} {self.last_name}'
 
     def save(self, *args, **kwargs):
+        # make slug from first and last names
+        self.name_slug = '-'.join((slugify(self.first_name), slugify(self.last_name)))
+        if str(self.number).isdigit():
+            self.name_slug += f'-{self.number}'
+        else:
+            self.name_slug += f'-{self.pk}'
+
         # make captain bool True only for one Player
         if self.captain is False:
             self.captain = None

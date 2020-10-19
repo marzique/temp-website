@@ -162,7 +162,22 @@ header.sticky img.logo{
 /* Footer */
 footer{
     background-color: #0d2e52;
+}
+
+footer .wrapper{
+    position: relative;
+    display: flex;
+    height: 100%;
+    width: 100%;
     height: 300px;
+}
+
+footer .copyright{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+    font-weight: 300;
 }
 /* Footer */
 
@@ -359,7 +374,7 @@ footer{
 .scoreboard .team-name img{
     width: 32px;
     height: 32px;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 #info-tables .sides{
@@ -442,6 +457,17 @@ footer{
     height: 48px;
     transition: all .3s ease-in-out;
     font-size: 12px;
+    text-align: center;
+    transform: skewX(-15deg);
+}
+
+.scoreboard .team p,
+.scoreboard .team img{
+    transform: skewX(15deg);
+}
+
+.scoreboard .team p{
+    font-weight: 600;
 }
 
 .scoreboard .team .place{
@@ -462,8 +488,12 @@ footer{
 .scoreboard .team:hover{
     background-color: #145aa7;
     color: white;
-    transform: scale(1.02);
+    transform: scale(1.02) skewX(-15deg);;
     cursor: pointer;
+}
+
+.scoreboard .team.dymer:hover{
+    background-color: violet;
 }
 
 .refresh-scoreboard{
@@ -471,6 +501,37 @@ footer{
     top: 0;
     background: red;
     transform: translate(-120%, 0);
+}
+
+#sponsors{
+    position: relative;
+    padding: 50px 7%;
+}
+
+#sponsors::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: .5;
+    background-size: 5px 5px;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAPUlEQVQYlWMsevn/PwMDA0OvGAMjAx7AhE8SGTD+hxiIExS/YvhPkokshEyCuZ18E9FNggHSTcRlEskmAgD7MBJvQ1V/KQAAAABJRU5ErkJggg==");
+}
+
+#sponsors .wrapper{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#sponsors .wrapper img{
+    width: 80px;
+    filter: grayscale(100%);
+    height: 80px;
+    object-fit: contain;
 }
 
 /* /Main Page */

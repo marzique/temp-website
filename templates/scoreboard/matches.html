@@ -1,0 +1,65 @@
+{% load static %}
+<div class="fixtures">
+
+    {% if next_match %}
+        <div class="match next-match shadow">
+            <p class="type">НАСТУПНИЙ МАТЧ</p>
+            <div class="info">
+                <p class="date" data-date="{{ next_match.date }}">{{ next_match.date|date:"d/m/Y" }}</p>
+                <p class="competition"><b>{{ next_match.league }}</b></p>
+            </div>
+            <div class="sides">
+                <div class="team">
+                    <img src="{{ next_match.home.logo_url }}">
+                    <p class="name">{{ next_match.home }}</p>
+                </div>
+                <div class="score time">
+                    <p>-</p>
+                </div>
+                <div class="team">
+                    <img src="{{ next_match.guest.logo_url }}">
+                    <p class="name">{{ next_match.guest }}</p>
+                </div>
+            </div>
+            <a href="{{ next_match.link }}">
+                <div class="link">
+                    <p>ПРОТОКОЛ</p>
+                </div>
+            </a>
+        </div>
+    {% else %}
+        
+    {% endif %}
+
+    
+
+    {% if prev_match %}
+        <div class="match prev-match shadow">
+            <p class="type">ОСТАННІЙ РЕЗУЛЬТАТ</p>
+            <div class="info">
+                <p class="date" data-date="{{ prev_match.date }}">{{ prev_match.date|date:"d/m/Y" }}</p>
+                <p class="competition"><b>{{ prev_match.league }}</b></p>
+            </div>
+            <div class="sides">
+                <div class="team">
+                    <img src="{{ prev_match.home.logo_url }}">
+                    <p class="name">{{ prev_match.home }}</p>
+                </div>
+                <div class="score time">
+                    <p>-</p>
+                </div>
+                <div class="team">
+                    <img src="{{ prev_match.guest.logo_url }}">
+                    <p class="name">{{ prev_match.guest }}</p>
+                </div>
+            </div>
+            <a href="{{ prev_match.link }}">
+                <div class="link">
+                    <p>ПРОТОКОЛ</p>
+                </div>
+            </a>
+        </div>
+    {% else %}
+        
+    {% endif %}
+</div>

@@ -67,58 +67,7 @@
     <div class="container">
         <div class="wrapper">
             {% include 'scoreboard/table.html' %}
-            <div class="fixtures">
-                <div class="match next-match shadow">
-                    <p class="type">НАСТУПНИЙ МАТЧ</p>
-                    <div class="info">
-                        <p class="date">18.10.2020</p>
-                        <p class="competiotion"><b>HFL</b></p>
-                    </div>
-                    <div class="sides">
-                        <div class="team">
-                            <img src="https://i.pinimg.com/originals/98/32/8b/98328b1d64c5f93ef5eceea7586430d1.png">
-                            <p class="name">Арсенал</p>
-                        </div>
-                        <div class="score time">
-                            <p>TBA</p>
-                        </div>
-                        <div class="team">
-                            <img src="{% static 'img/temp_logo.png' %}">
-                            <p class="name">ТЕМП</p>
-                        </div>
-                    </div>
-                    <a href="https://diamondliga.join.football/match/1753991">
-                        <div class="link">
-                            <p>ПРОТОКОЛ</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="match prev-match shadow">
-                    <p class="type">ОСТАННІЙ РЕЗУЛЬТАТ</p>
-                    <div class="info">
-                        <p class="date">18.10.2020</p>
-                        <p class="competiotion"><b>HFL</b></p>
-                    </div>
-                    <div class="sides">
-                        <div class="team">
-                            <img src="{% static 'img/temp_logo.png' %}">
-                            <p class="name">ТЕМП</p>
-                        </div>
-                        <div class="score">
-                            <p>3:2</p>
-                        </div>
-                        <div class="team">
-                            <img src="{% static 'img/arsenalna.jpg' %}">
-                            <p class="name">АСЕНАЛЬНА</p>
-                        </div>
-                    </div>
-                    <a href="#">
-                        <div class="link">
-                            <p>ПРОТОКОЛ</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            {% include 'scoreboard/matches.html' %}
         </div>
     </div>
 

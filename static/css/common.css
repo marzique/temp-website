@@ -403,6 +403,10 @@ footer .part .hfl_logo{
     /* height: 40px; */
 }
 
+#info-tables .fixtures .score{
+    min-width: 80px;
+}
+
 .scoreboard .team-name{
     display: flex;
     height: 100%;

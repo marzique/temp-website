@@ -11,7 +11,7 @@ from django.shortcuts import redirect
 
 from aboutconfig.models import Config
 
-from scoreboard.models import Team
+from scoreboard.models import Team, Match
 from scoreboard.hfl import HFLScoreBoardParser
 
 
@@ -25,6 +25,8 @@ class MainPageView(TemplateView):
 
         # self.refresh_scoreboard()
         context['scoreboard'] = Team.objects.all()
+        context['next_match'] = Match.objects.filter(next=True).first()
+        context['prev_match'] = Match.objects.filter(prev=True).first()
         return context
 
     @transaction.atomic
@@ -45,9 +47,34 @@ class MainPageView(TemplateView):
         last_updated = Config.objects.get(key='scoreboard.updated_at')
         last_updated.value = timezone.localtime(timezone.now()).strftime("%Y-%m-%d %H:%M:%S")
         last_updated.save()
-
+    
+    @transaction.atomic
     def post(self, request, *args, **kwargs):
         if not request.user.is_staff:
             return HttpResponseForbidden()
         self.refresh_scoreboard()
+        self.update_matches()
         return HttpResponseRedirect(reverse('index'))
+
+    @transaction.atomic
+    def update_matches(self):
+        future_matches = Match.objects.filter(date__gte=timezone.localtime(timezone.now()))
+        tba_matches = Match.objects.filter(date__isnull=True)
+        next_match = None
+        if future_matches.exists():
+            next_match = future_matches.latest('date')
+        elif tba_matches.exists():
+            next_match = tba_matches.latest('id')
+
+        prev_matches = Match.objects.filter(date__lt=timezone.localtime(timezone.now()))
+        prev_match = None
+        if prev_matches.exists():
+            prev_match = prev_matches.latest('date')
+        
+        if next_match:
+            next_match.next = True
+            next_match.save()
+        if prev_match:
+            prev_match.prev = True
+            prev_match.save()
+

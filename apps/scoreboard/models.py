@@ -22,3 +22,39 @@ class Team(models.Model):
         self.name = self.name.lower()
         super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.name
+
+
+class Match(models.Model):
+    home = models.ForeignKey(
+        Team, 
+        on_delete=models.CASCADE, 
+        blank=False, 
+        null=False,
+        related_name='home_matches'
+    )
+    guest = models.ForeignKey(
+        Team, 
+        on_delete=models.CASCADE, 
+        blank=False, 
+        null=False,
+        related_name='away_matches'
+    )
+    score = models.CharField(max_length=6, default='-')
+    link = models.CharField(max_length=200, blank=True, null=True)
+    date = models.DateTimeField(null=True, blank=True)
+    league = models.CharField(max_length=20, default='HFL')
+    next = models.BooleanField(default=None, unique=True, null=True)
+    prev = models.BooleanField(default=None, unique=True, null=True)
+
+    def __str__(self):
+        return f'{self.home.name} {self.score} {self.guest.name}' 
+
+    def save(self, *args, **kwargs):
+        # make bools next & prev True only for one Match
+        if self.next is False:
+            self.next = None
+        if self.prev is False:
+            self.prev = None
+        super().save(*args, **kwargs)

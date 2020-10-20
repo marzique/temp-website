@@ -5,7 +5,6 @@ from .development import *
 DEBUG = True
 
 # You will have to determine, which hostnames should be served by Django
-ALLOWED_HOSTS = ['tempfc.club', '109.86.43.127']
 
 DATABASES = {
     'default': {
@@ -24,6 +23,11 @@ DATABASES = {
 # TODO: Evaluate the following settings, before uncommenting them
 # # redirects all requests to https
 SECURE_SSL_REDIRECT = True
+
+
+PREPEND_WWW = True
+BASE_URL = "https://tempfc.club/"
+ALLOWED_HOSTS = ['www.tempfc.club', 'tempfc.club']
 # # session cookies will only be set, if https is used
 # SESSION_COOKIE_SECURE = True
 # # how long is a session cookie valid?

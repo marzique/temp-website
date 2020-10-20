@@ -5,7 +5,7 @@ from .development import *
 DEBUG = True
 
 # You will have to determine, which hostnames should be served by Django
-ALLOWED_HOSTS = ['tempfc.club', 'http://109.86.43.127:8000/']
+ALLOWED_HOSTS = ['tempfc.club', '109.86.43.127:8000']
 
 DATABASES = {
     'default': {

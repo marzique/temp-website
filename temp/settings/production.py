@@ -22,11 +22,6 @@ DATABASES = {
 # TODO: Make sure, that sensitive information uses https
 # TODO: Evaluate the following settings, before uncommenting them
 # # redirects all requests to https
-SECURE_SSL_REDIRECT = True
-
-
-PREPEND_WWW = True
-BASE_URL = "https://tempfc.club/"
 ALLOWED_HOSTS = ['www.tempfc.club', 'tempfc.club']
 # # session cookies will only be set, if https is used
 # SESSION_COOKIE_SECURE = True

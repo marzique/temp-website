@@ -2,10 +2,21 @@
 from .development import *
 
 # turn off all debugging
-DEBUG = False
+DEBUG = True
 
 # You will have to determine, which hostnames should be served by Django
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tempfc.club',]
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'tempfc',
+        'USER': 'tempfcuser',
+        'PASSWORD': 'Gp>kw6w/S])k%?[Q',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
 
 # ##### SECURITY CONFIGURATION ############################
 

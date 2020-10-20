@@ -1,3 +1,4 @@
+import re
 from django.db import models
 
 
@@ -24,6 +25,22 @@ class Team(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def alias(self):
+        """Return team name alias:
+        1) abbreviation - if more than 2 words OR
+        2) strip everything except name inside quotes
+        """
+        
+        words = self.name.split()
+        if len(words) > 2:
+            return ''.join([word[0] for word in words])
+        elif '"' in self.name:
+            quoted = re.compile('"[^"]*"')
+            return quoted.findall(self.name)[0][1:-1]
+        return self.name
+
 
 
 class Match(models.Model):

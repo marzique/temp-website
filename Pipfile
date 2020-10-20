@@ -14,6 +14,10 @@ requests = "*"
 beautifulsoup4 = "*"
 python-slugify = "*"
 django-aboutconfig = "*"
+postgresql = "*"
+postgresql-contrib = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.8"

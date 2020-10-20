@@ -23,7 +23,11 @@ LOGOUT_REDIRECT_URL = 'core_login'
 # ##### DATABASE CONFIGURATION ############################
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': join(PROJECT_ROOT, 'run', 'dev.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'tempfc',
+        'USER': 'tempfcuser',
+        'PASSWORD': 'Gp>kw6w/S])k%?[Q',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }

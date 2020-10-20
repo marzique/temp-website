@@ -13,6 +13,7 @@ pillow = "*"
 requests = "*"
 beautifulsoup4 = "*"
 python-slugify = "*"
+django-aboutconfig = "*"
 
 [requires]
 python_version = "3.8"

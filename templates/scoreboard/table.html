@@ -1,10 +1,14 @@
 {% load static %}
+{% load config %}
 <div class="scoreboard shadow">
     {% if user.is_staff %}
-        <div class="refresh-scoreboard">
-            refresher
-        </div>
+        <form action="{% url 'index' %}" id="refresh-scoreboard" method="POST">
+            <input type="submit" value="ОНОВИТИ">
+        </form>
     {% endif %}
+    <div class="stamp">
+        Останнє оновлення: {{ 'scoreboard.updated_at'|get_config }}
+    </div>
     <div class="heading">
         <p class="place">#</p>
         <p class="team-name">Команда</p>

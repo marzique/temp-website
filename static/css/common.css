@@ -536,11 +536,36 @@ footer .part .hfl_logo{
     background-color: #c34483;
 }
 
-.refresh-scoreboard{
+#refresh-scoreboard{
+    height: 0;
+    margin-bottom: 10px;
+    transition: all .3s ease-in-out;
+}
+
+.scoreboard .stamp{
     position: absolute;
-    top: 0;
-    background: red;
-    transform: translate(-120%, 0);
+    left: 50%;
+    top: 4px;
+    transform: translate(-50%, 0);
+    font-size: 12px;
+}
+
+.scoreboard:hover #refresh-scoreboard{
+    margin-bottom: 68px;
+    z-index: 20;
+}
+
+#refresh-scoreboard input{
+    background-color: transparent;
+    outline: none;
+    background-color: #44c379;
+    color: white;
+    border: none;
+    height: 48px;
+    padding: 0 10px;
+    margin: 10px 0;
+    transform: skewX(-15deg);
+    cursor: pointer;
 }
 
 #sponsors{

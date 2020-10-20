@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # libs
     'django_extensions',
+    'aboutconfig',
 
     # custom apps
     'comingsoon',
@@ -88,7 +89,9 @@ TEMPLATES = [
 ]
 
 # Internationalization
-USE_I18N = False
+# USE_I18N = False
+USE_TZ = True
+TIME_ZONE = 'Europe/Kiev'
 
 
 # ##### SECURITY CONFIGURATION ############################

@@ -5,7 +5,7 @@ from scoreboard.models import Team, Match
 
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ('place', 'name', 'points')
+    list_display = ('name', 'place', 'points')
 
 
 @admin.register(Match)

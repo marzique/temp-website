@@ -18,3 +18,9 @@ class PlayerDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['extra'] = 'test'
         return context
+
+
+class LineupGeneratorView(ListView):
+    model = Player
+    ordering = ['position', 'number', ]
+    template_name = 'squad/lineup.html'

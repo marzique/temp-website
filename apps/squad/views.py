@@ -27,7 +27,7 @@ class PlayerDetailView(DetailView):
 
 class LineupGeneratorView(ListView):
     model = Player
-    ordering = ['position', 'number', ]
+    ordering = ['number']
     template_name = 'squad/lineup.html'
 
 

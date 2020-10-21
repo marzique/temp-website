@@ -44,4 +44,11 @@ $(function() {
         return false;
       })
 
+    // SHEME
+    $('input[type=radio][name=scheme]').change(function() {
+        $('.field').removeClass('s442 s451')
+        $('.field').addClass(this.value)
+        console.log(this.value);
+    });
+
 });

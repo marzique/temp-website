@@ -628,7 +628,7 @@ form.btn{
 
 /* Lineup */
 .field{
-    height: calc(100vh - 100px);
+    height: 800px;
     position: relative;
 }
 

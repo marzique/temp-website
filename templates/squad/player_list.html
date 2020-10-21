@@ -9,10 +9,10 @@
             <a href="{% url 'lineup' %}">СТВОРИТИ СТАРТОВИЙ СКЛАД</a>
         {% endif %}
     </div>
-    {% regroup object_list by position as positions_list %}
+    {% regroup object_list by get_position_display as positions_list %}
         {% for position in positions_list %}
             <div class="container title">
-                <h1>{{ position.grouper }}</h1>
+                <h1>{{ position.grouper }}{% if position.grouper == 'Воротар' %}і{% else %}и{% endif %}</h1>
             </div>
             <div class="container mtb20" id="player-container">
                 {% for player in position.list %}

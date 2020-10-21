@@ -9,24 +9,24 @@ class Player(models.Model):
  
     NUMBER_CHOICES = zip(range(1, 100), range(1, 100)) # 1-99
 
-    GK = 'goalkeeper'
-    DF = 'defender'
-    MF = 'midfielder'
-    ST = 'striker'
-    MG = 'manager'
+    GK = 1
+    DF = 2
+    MF = 3
+    ST = 4
+    MG = 5
     POSITION_CHOICES = (
-        (GK, 'Goalkeeper'),
-        (DF, 'Defender'),
-        (MF, 'Midfielder'),
-        (ST, 'Striker'),
-        (MG, 'Manager')
+        (GK, 'Воротар'),
+        (DF, 'Захисник'),
+        (MF, 'Півзахисник'),
+        (ST, 'Нападник'),
+        (MG, 'Тренер')
     )
 
     first_name = models.CharField(max_length=100, null=False, blank=False)
     middle_name = models.CharField(max_length=100, null=True, blank=True)
     last_name = models.CharField(max_length=100, null=False, blank=False)
     number = models.PositiveIntegerField(choices=NUMBER_CHOICES, db_index=True, null=True, blank=True, unique=True)
-    position = models.CharField(choices=POSITION_CHOICES, max_length=200, null=False, blank=False)
+    position = models.PositiveIntegerField(choices=POSITION_CHOICES, null=False, blank=False)
     date_of_birth = models.DateField(null=False, blank=False)
     photo = models.ImageField(upload_to='squad/')
     captain = models.BooleanField(default=None, unique=True, null=True)

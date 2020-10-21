@@ -44,7 +44,7 @@ $(function() {
         return false;
       })
 
-    // SHEME
+    // SCHEME
     $('input[type=radio][name=scheme]').change(function() {
         $('.field').removeClass('s442 s451')
         $('.field').addClass(this.value)

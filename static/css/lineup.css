@@ -83,7 +83,51 @@
     bottom: 300px;
 }
 
+/* 4-3-3 */
+.field.s433 .player:nth-of-type(n+2):nth-of-type(-n+5){
+    bottom: 200px;
+}
 
+.field.s433 .player:nth-of-type(n+6):nth-of-type(-n+8){
+    bottom: 400px;
+}
+
+.field.s433 .player:nth-of-type(n+9):nth-of-type(-n+11){
+    bottom: 600px;
+}
+
+.field.s433 .player:nth-of-type(6),
+.field.s433 .player:nth-of-type(9){
+    left: 260px;
+}
+
+.field.s433 .player:nth-of-type(8),
+.field.s433 .player:nth-of-type(11){
+    right: 260px;
+}
+
+
+.field.s433 .player:nth-of-type(2){
+    left: 260px;
+}
+
+.field.s433 .player:nth-of-type(3){
+    left: 380px;
+}
+
+.field.s433 .player:nth-of-type(4){
+    right: 380px;
+}
+
+.field.s433 .player:nth-of-type(5){
+    right: 260px;
+}
+
+.field.s433 .player:nth-of-type(10),
+.field.s433 .player:nth-of-type(7){
+    left: 50%;
+    transform: translate(-50%, 0);
+}
 
 /* Selectric */
 .selectric-wrapper{

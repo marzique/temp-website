@@ -1,0 +1,45 @@
+/* SCHEMES */
+.field.s442 .player:nth-of-type(n+2):nth-of-type(-n+5){
+    bottom: 200px;
+}
+
+.field.s442 .player:nth-of-type(n+6):nth-of-type(-n+9){
+    bottom: 400px;
+}
+
+.field.s442 .player:nth-of-type(n+10):nth-of-type(-n+11){
+    bottom: 600px;
+}
+
+.field.s442 .player:nth-of-type(2),
+.field.s442 .player:nth-of-type(6){
+    left: 260px;
+}
+
+.field.s442 .player:nth-of-type(3),
+.field.s442 .player:nth-of-type(7),
+.field.s442 .player:nth-of-type(10){
+    left: 380px;
+}
+
+.field.s442 .player:nth-of-type(4),
+.field.s442 .player:nth-of-type(8),
+.field.s442 .player:nth-of-type(11){
+    right: 380px;
+}
+
+.field.s442 .player:nth-of-type(5),
+.field.s442 .player:nth-of-type(9){
+    right: 260px;
+}
+
+/* Selectric */
+.selectric-wrapper{
+    width: 300px;
+    position: absolute;
+    z-index: 1;
+}
+
+.selectric-wrapper:not(.selectric-open){
+    visibility: hidden;
+}

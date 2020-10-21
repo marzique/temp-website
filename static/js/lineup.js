@@ -22,4 +22,26 @@ $(function() {
         },
     });
 
+    $('#download').on('click', function() {
+        console.log('downloading lineup')
+    });
+
+    $('#download-lineup').on("submit", function(event){
+        // Prevent default posting of form - put here to work in case of errors
+        event.preventDefault();
+
+        var table_html = $('.field').html()
+
+         // Fire off the request to /form.php
+        request = $.ajax({
+            url: "/squad/lineup/download/",
+            type: "post",
+            data: {
+                'table_html': table_html
+            }
+        });
+
+        return false;
+      })
+
 });

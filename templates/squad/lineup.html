@@ -9,55 +9,7 @@
 <script src="{% static 'js/jquery.selectric.js' %}"></script>
 
 <script src="{% static 'js/lineup.js' %}"></script>
-
-<style>
-
-    /* SCHEMES */
-    .field.s442 .player:nth-of-type(n+2):nth-of-type(-n+5){
-        bottom: 200px;
-    }
-
-    .field.s442 .player:nth-of-type(n+6):nth-of-type(-n+9){
-        bottom: 400px;
-    }
-
-    .field.s442 .player:nth-of-type(n+10):nth-of-type(-n+11){
-        bottom: 600px;
-    }
-
-    .field.s442 .player:nth-of-type(2),
-    .field.s442 .player:nth-of-type(6){
-        left: 260px;
-    }
-
-    .field.s442 .player:nth-of-type(3),
-    .field.s442 .player:nth-of-type(7),
-    .field.s442 .player:nth-of-type(10){
-        left: 380px;
-    }
-
-    .field.s442 .player:nth-of-type(4),
-    .field.s442 .player:nth-of-type(8),
-    .field.s442 .player:nth-of-type(11){
-        right: 380px;
-    }
-
-    .field.s442 .player:nth-of-type(5),
-    .field.s442 .player:nth-of-type(9){
-        right: 260px;
-    }
-
-    /* Selectric */
-    .selectric-wrapper{
-        width: 300px;
-        position: absolute;
-        z-index: 1;
-    }
-
-    .selectric-wrapper:not(.selectric-open){
-        visibility: hidden;
-    }
-</style>
+<link rel="stylesheet" href="{% static 'css/lineup.css' %}">
 {% endblock%}
 
 {% block content %}
@@ -68,8 +20,15 @@
                 <option value="{{ player.number }}" data-surname="{{ player.last_name }}">({{ player.number }}) {{ player.last_name }}</option>
             {% endfor %}
         </select>
+        
         <div class="field s442">
             <img src="{% static 'img/pitch.svg' %}" class="pitch stripes">
+            
+            <!-- TODO -->
+            <!-- <form action="{% url 'lineup-download' %}" id="download-lineup" class="btn" method="POST">
+                <input type="submit" value="ЗАВАНТАЖИТИ">
+            </form> -->
+            
 
             <!-- 11 players -->
 
@@ -145,7 +104,7 @@
 
             <div class="player">
                 <div class="wrapper">
-                    <h2>18</h2>
+                    <h2>11</h2>
                     <h3></h3>
                 </div>
             </div>

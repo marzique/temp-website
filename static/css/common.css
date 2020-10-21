@@ -221,6 +221,21 @@ footer .part .hfl_logo{
     border: 3px solid #0d2e52;
     transform: rotate(15deg);
 }
+
+footer .socials{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer .socials a{
+    color: white;
+}
+
+footer .socials img{
+    width: 24px;
+    height: 24px;
+}
 /* Footer */
 
 
@@ -581,7 +596,8 @@ form.btn{
     transition: all .3s ease-in-out;
 }
 
-.btn input{
+.btn input,
+.skew-btn{
     background-color: transparent;
     outline: none;
     background-color: #44c379;
@@ -592,6 +608,9 @@ form.btn{
     margin: 10px 0;
     transform: skewX(-15deg);
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #sponsors{
@@ -701,7 +720,12 @@ form.btn{
 
 /* Players List */
 
-#player-container{
+#create-squad{
+    width: 200px;
+    margin: 0 auto;
+}
+
+.player-container{
     position: relative;
     padding: 24px 0;
     display: flex;

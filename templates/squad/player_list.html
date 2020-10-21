@@ -6,7 +6,11 @@
     
     <div class="container">
         {% if user.is_staff %}
-            <a href="{% url 'lineup' %}">СТВОРИТИ СТАРТОВИЙ СКЛАД</a>
+            <div class="skew-btn" id="create-squad">
+                <a href="{% url 'lineup' %}" class="link-btn">
+                    СТВОРИТИ СКЛАД
+                </a>
+            </div>
         {% endif %}
     </div>
     {% regroup object_list by get_position_display as positions_list %}
@@ -14,7 +18,7 @@
             <div class="container title">
                 <h1>{{ position.grouper }}{% if position.grouper == 'Воротар' %}і{% else %}и{% endif %}</h1>
             </div>
-            <div class="container mtb20" id="player-container">
+            <div class="container mtb20 player-container">
                 {% for player in position.list %}
                     <a href="{% url 'player-detail' name_slug=player.name_slug %}">
                         <div class="card shadow">

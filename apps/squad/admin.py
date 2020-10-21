@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-from squad.models import Player
-
+from squad.models import Player, Squad
 
 @admin.register(Player)
 class PlayerAdmin(admin.ModelAdmin):
@@ -9,3 +8,8 @@ class PlayerAdmin(admin.ModelAdmin):
 
     def name(self, obj):
         return f'{obj.first_name} {obj.last_name}'
+
+
+@admin.register(Squad)
+class SquadAdmin(admin.ModelAdmin):
+    pass

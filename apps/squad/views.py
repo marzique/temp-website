@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseForbidden, FileResponse, HttpResponse
 from django.db import transaction
 
-from squad.models import Player
+from squad.models import Player, Squad
 
 class PlayerListView(ListView):
     model = Player
@@ -28,7 +28,7 @@ class PlayerDetailView(DetailView):
 class LineupGeneratorView(ListView):
     model = Player
     ordering = ['number']
-    template_name = 'squad/lineup.html'
+    template_name = 'squad/lineup-generator.html'
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -43,3 +43,8 @@ class LineupDownloadView(View):
         
         return HttpResponse('test')
 
+
+class SquadDetailView(DetailView):
+    model = Squad
+    template_name = "squad/lineup.html"
+    

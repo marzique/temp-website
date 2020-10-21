@@ -1,6 +1,8 @@
 from django.db import models
-from slugify import slugify
+from django.utils.crypto import get_random_string
+from django.contrib.auth.models import User
 
+from slugify import slugify
 from django_countries.fields import CountryField
 
 
@@ -67,3 +69,23 @@ class Player(models.Model):
             'manager': 'Тр'
         }
         return positions[self.position]
+
+
+class Squad(models.Model):
+    pitch_html = models.TextField()
+    slug = models.SlugField(max_length=30, blank=True)
+    author = models.ForeignKey(
+        User, 
+        on_delete=models.SET_NULL, 
+        blank=False, 
+        null=True
+    )
+    created_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        try:
+            self.slug = get_random_string(30)
+            super().save(*args, **kwargs)
+        except IntegrityError:
+            self.save(*args, **kwargs)

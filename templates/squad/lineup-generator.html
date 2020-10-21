@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Створити схему{% endblock %}
+
+{% block head %}
+<!-- Selectric -->
+<link rel="stylesheet" href="{% static 'css/selectric.css' %}">
+<script src="{% static 'js/jquery.selectric.js' %}"></script>
+
+<script src="{% static 'js/lineup.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/lineup.css' %}">
+{% endblock%}
+
+{% block content %}
+    <div class="container">
+        <select name="players" id="players">
+                <option value="" disabled selected>Гравець</option>
+            {% for player in object_list %}
+                <option value="{% if player.number %}{{ player.number }}{% endif %}" data-surname="{{ player.last_name }}">({{ player.number }}) {{ player.last_name }}</option>
+            {% endfor %}
+        </select>
+        
+        <div id="scheme">
+            <h2>Схема:</h2>
+            <label><input type="radio" name="scheme" value="s442" checked>4 - 4 - 2</label>
+            <label><input type="radio" name="scheme" value="s451">4 - 5 - 1</label>
+            <label><input type="radio" name="scheme" value="s433">4 - 3 - 3</label>
+        </div>
+
+        <div class="field s442">
+            <img src="{% static 'img/pitch.svg' %}" class="pitch stripes">
+            
+            <!-- TODO -->
+            <!-- <form action="{% url 'lineup-download' %}" id="download-lineup" class="btn" method="POST">
+                <input type="submit" value="ЗАВАНТАЖИТИ">
+            </form> -->
+            
+
+            <!-- 11 players -->
+
+            <div class="player gk">
+                <div class="wrapper">
+                    <h2>23</h2>
+                    <h3>Батеха</h3>
+                </div>
+            </div>
+
+            <div class="player">
+                <div class="wrapper">
+                    <h2>2</h2>
+                    <h3></h3>
+                </div>
+            </div>
+
+            <div class="player">
+                <div class="wrapper">
+                    <h2>3</h2>
+                    <h3></h3>
+                </div>
+            </div>
+
+            <div class="player">
+                <div class="wrapper">
+                    <h2>4</h2>
+                    <h3></h3>
+                </div>
+            </div>
+
+            <div class="player">
+                <div class="wrapper">
+                    <h2>5</h2>
+                    <h3></h3>
+                </div>
+            </div>
+
+            <div class="player">
+                <div class="wrapper">
+                    <h2>6</h2>
+                    <h3></h3>
+                </div>
+            </div>
+
+            <div class="player">
+                <div class="wrapper">
+                    <h2>7</h2>
+                    <h3></h3>
+                </div>
+            </div>
+
+            <div class="player">
+                <div class="wrapper">
+                    <h2>8</h2>
+                    <h3></h3>
+                </div>
+            </div>
+
+            <div class="player">
+                <div class="wrapper">
+                    <h2>9</h2>
+                    <h3></h3>
+                </div>
+            </div>
+
+            <div class="player">
+                <div class="wrapper">
+                    <h2>10</h2>
+                    <h3></h3>
+                </div>
+            </div>
+
+            <div class="player">
+                <div class="wrapper">
+                    <h2>11</h2>
+                    <h3></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

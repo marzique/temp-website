@@ -449,6 +449,7 @@ footer .part .hfl_logo{
     text-align: center;
     font-weight: 700;
     margin-bottom: 20px;
+    white-space: nowrap;
 }
 
 #info-tables .link{

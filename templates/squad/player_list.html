@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Гравці{% endblock %}
 
@@ -21,7 +22,13 @@
             <div class="container mtb20 player-container">
                 {% for player in position.list %}
                     <a href="{% url 'player-detail' name_slug=player.name_slug %}">
-                        <div class="card shadow">
+                        {% if player.legend %}
+                            <img src="{% static 'img/crown.svg' %}" class="crown">
+                        {% endif %}
+                        {% if player.captain%}
+                            <img src="https://static.thenounproject.com/png/1963245-200.png" class="crown">
+                        {% endif %}
+                        <div class="card shadow {% if player.legend %}legend{% endif %}">
                             <div class="photo" style="background-image: url({{ player.photo.url }});">
                                 <div class="nationality" style="background-image: url(https://www.countryflags.io/{{player.nationality.code}}/flat/64.png);">
                                 </div>

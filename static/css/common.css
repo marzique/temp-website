@@ -729,7 +729,16 @@ form.btn{
     flex-wrap: wrap;
 }
 
-.card{
+.player-container .crown{
+    position: absolute;
+    width: 90px;
+    z-index: 10;
+    transform: rotate(-45deg);
+    top: -14px;
+    left: -37px;
+}
+
+.player-container .card{
     width: 229px;
     height: 300px;
     margin-right: 27px;
@@ -737,6 +746,10 @@ form.btn{
     position: relative;
     overflow: hidden;
 
+}
+
+.player-container .card.legend{
+    filter: brightness(0.4);
 }
 
 .card:nth-of-type(4n+4) {

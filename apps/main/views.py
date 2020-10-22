@@ -23,7 +23,6 @@ class MainPageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # self.refresh_scoreboard()
         context['scoreboard'] = Team.objects.all()
         context['next_match'] = Match.objects.filter(next=True).first()
         context['prev_match'] = Match.objects.filter(prev=True).first()

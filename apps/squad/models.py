@@ -34,9 +34,9 @@ class Player(models.Model):
     captain = models.BooleanField(default=None, unique=True, null=True)
     nationality = CountryField()
     name_slug = models.SlugField(max_length=200, unique=True, null=True)
+    legend = models.BooleanField(default=False, null=False, blank=False)
 
     def __str__(self):
-        
         return f'{self.number}. {self.first_name} {self.last_name}'
 
     def save(self, *args, **kwargs):

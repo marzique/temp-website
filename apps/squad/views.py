@@ -26,9 +26,12 @@ class PlayerDetailView(DetailView):
 
 
 class LineupGeneratorView(ListView):
-    model = Player
+    # model = Player
     ordering = ['number']
     template_name = 'squad/lineup-generator.html'
+
+    # only players needed for starting 11
+    queryset = Player.objects.exclude(position=Player.MG)
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -38,7 +41,6 @@ class LineupDownloadView(View):
     def post(self, request, *args, **kwargs):
         if not request.user.is_staff:
             return HttpResponseForbidden()
-        # return FileResponse(open('myfile.png', 'rb'))
         table = request.POST.get('table_html')
         
         return HttpResponse('test')

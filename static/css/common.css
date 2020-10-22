@@ -979,4 +979,33 @@ form.btn{
     footer .part.mid {
         display: none;
     }
+
+    .card {
+        width: 42vw;
+        height: unset;
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+
+    .card:nth-of-type(4n+4) {
+        margin-right: initial;
+    }
+
+    .card .photo {
+        height: 50vw;
+    }
+
+    .player-container a:nth-of-type(even) .card{
+        margin: 0;
+    }
+
+    .card .name h2 {
+        font-size: 5vw;
+        line-height: 5.5vw;
+    }
+
+    .container.title h1 {
+        font-size: 10vw;
+        font-weight: 800;
+    }
 }

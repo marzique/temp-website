@@ -13,7 +13,7 @@ from aboutconfig.models import Config
 
 from scoreboard.models import Team, Match
 from scoreboard.hfl import HFLScoreBoardParser
-
+from blog.models import Blog
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -26,6 +26,7 @@ class MainPageView(TemplateView):
         context['scoreboard'] = Team.objects.all()
         context['next_match'] = Match.objects.filter(next=True).first()
         context['prev_match'] = Match.objects.filter(prev=True).first()
+        context['last_posts'] = Blog.objects.order_by('-posted')[:3]
         return context
 
     @transaction.atomic

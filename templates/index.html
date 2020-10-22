@@ -9,10 +9,10 @@
         <a href="https://youtu.be/i3UUQ3sUwv0?t=2445" target="_blank">
             <div class="wrapper shadow">
                     <div class="title">
-                        <h2>ХФЛ</h2>
-                        <h1>ТЕМП ЗНОВУ РОБИТЬ КАМБЕК</h1>
+                        <h2>{{ last_posts.0.category.name }}</h2>
+                        <h1>{{ last_posts.0.title }}</h1>
                     </div>
-                    <div class="image" style="background-image: url({% static 'img/lastpost.png' %})">
+                    <div class="image" style="background-image: url({{ last_posts.0.image.url }})">
                         <img src="{% static 'img/temp_logo.png' %}" class="overlay-logo">
                     </div>
             </div>
@@ -23,42 +23,22 @@
 <section id="posts">
     <div class="container">
         <div class="wrapper">
+            
+            {% for post in last_posts %}
             <a href="https://youtu.be/i3UUQ3sUwv0?t=2445" target="_blank">
                 <div class="post shadow">
-                    <div class="image" style="background-image: url({% static 'img/lastpost.png' %})">
+                    <div class="image" style="background-image: url({{ post.image.url }})">
 
                     </div>
                     <div class="title">
-                        <h2>ХФЛ</h2>
-                        <h1>ТЕМП ЗНОВУ РОБИТЬ КАМБЕК</h1>
-                        <p>26.08.1995</p>
+                        <h2>{{ post.category.name }}</h2>
+                        <h1>{{ post.title }}</h1>
+                        <p>{{ post.posted|date:"d/m/Y G:i" }}</p>
                     </div>
                 </div>
             </a>
-            <a href="https://youtu.be/i3UUQ3sUwv0?t=2445" target="_blank">
-                <div class="post shadow">
-                    <div class="image" style="background-image: url(https://static.ukrinform.com/photos/2018_06/thumb_files/630_360_1528970776-1131.jpg)">
+            {% endfor %}
 
-                    </div>
-                    <div class="title">
-                        <h2>ТРАНСФЕРИ</h2>
-                        <h1>ТЕМП ПІДПИСАВ ДВОХ ГРАВЦІВ</h1>
-                        <p>13.08.2020</p>
-                    </div>
-                </div>
-            </a>
-            <a href="https://youtu.be/i3UUQ3sUwv0?t=2445" target="_blank">
-                <div class="post shadow">
-                    <div class="image" style="background-image: url(https://openkyiv.info/storage/news/rusanivets.jpg)">
-
-                    </div>
-                    <div class="title">
-                        <h2>ФК АРСЕНАЛ</h2>
-                        <h1>ПЕРЕБИВАННЯ ПЕНАЛЬТІ</h1>
-                        <p>01.05.2020</p>
-                    </div>
-                </div>
-            </a>
         </div>
     </div>
 </section>

@@ -2,46 +2,46 @@
 
 /* 4-4-2 */
 .field.s442 .player:nth-of-type(n+2):nth-of-type(-n+5){
-    bottom: 200px;
+    bottom: 25%;
 }
 
 .field.s442 .player:nth-of-type(n+6):nth-of-type(-n+9){
-    bottom: 400px;
+    bottom: 50%;
 }
 
 .field.s442 .player:nth-of-type(n+10):nth-of-type(-n+11){
-    bottom: 600px;
+    bottom: 70%;
 }
 
 .field.s442 .player:nth-of-type(2),
 .field.s442 .player:nth-of-type(6){
-    left: 260px;
+    left: 26%;
 }
 
 .field.s442 .player:nth-of-type(3),
 .field.s442 .player:nth-of-type(7),
 .field.s442 .player:nth-of-type(10){
-    left: 380px;
+    left: 40%;
 }
 
 .field.s442 .player:nth-of-type(4),
 .field.s442 .player:nth-of-type(8),
 .field.s442 .player:nth-of-type(11){
-    right: 380px;
+    right: 40%;
 }
 
 .field.s442 .player:nth-of-type(5),
 .field.s442 .player:nth-of-type(9){
-    right: 260px;
+    right: 26%;
 }
 
 /* 4-5-1 */
 .field.s451 .player:nth-of-type(n+2):nth-of-type(-n+5){
-    bottom: 200px;
+    bottom: 25%;
 }
 
 .field.s451 .player:nth-of-type(11){
-    bottom: 600px;
+    bottom: 70%;
     left: 50%;
     transform: translate(-50%, 0);
 }
@@ -49,78 +49,78 @@
 
 .field.s451 .player:nth-of-type(7),
 .field.s451 .player:nth-of-type(9){
-    bottom: 400px;
+    bottom: 50%;
 }
 
 .field.s451 .player:nth-of-type(6),
 .field.s451 .player:nth-of-type(10){
-    bottom: 450px;
+    bottom: 55%;
 }
 
 .field.s451 .player:nth-of-type(2),
 .field.s451 .player:nth-of-type(6){
-    left: 260px;
+    left: 26%;
 }
 
 .field.s451 .player:nth-of-type(5),
 .field.s451 .player:nth-of-type(10){
-    right: 260px;
+    right: 26%;
 }
 
 .field.s451 .player:nth-of-type(3),
 .field.s451 .player:nth-of-type(7){
-    left: 380px;
+    left: 40%;
 }
 
 .field.s451 .player:nth-of-type(4),
 .field.s451 .player:nth-of-type(9){
-    right: 380px;
+    right: 40%;
 }
 
 .field.s451 .player:nth-of-type(8){
     left: 50%;
     transform: translate(-50%, 0);
-    bottom: 300px;
+    bottom: 40%
 }
 
 /* 4-3-3 */
 .field.s433 .player:nth-of-type(n+2):nth-of-type(-n+5){
-    bottom: 200px;
+    bottom: 25%;
 }
 
 .field.s433 .player:nth-of-type(n+6):nth-of-type(-n+8){
-    bottom: 400px;
+    bottom: 50%;
 }
 
 .field.s433 .player:nth-of-type(n+9):nth-of-type(-n+11){
-    bottom: 600px;
+    bottom: 70%;
 }
 
 .field.s433 .player:nth-of-type(6),
 .field.s433 .player:nth-of-type(9){
-    left: 260px;
+    left: 26%;
 }
 
 .field.s433 .player:nth-of-type(8),
 .field.s433 .player:nth-of-type(11){
-    right: 260px;
+    right: 26%;
 }
 
 
 .field.s433 .player:nth-of-type(2){
-    left: 260px;
+    left: 26%;
 }
 
 .field.s433 .player:nth-of-type(3){
-    left: 380px;
+    left: 40%;
 }
 
 .field.s433 .player:nth-of-type(4){
-    right: 380px;
+    right: 40%;
 }
 
 .field.s433 .player:nth-of-type(5){
-    right: 260px;
+    right: 26%;
 }
 
 .field.s433 .player:nth-of-type(10),
@@ -146,4 +146,36 @@
     flex-direction: column;
     position: absolute;
     z-index: 20;
+}
+
+/* MOBILE */
+@media screen and (max-width: 1024px) {
+    .pitch {
+        height: 100%;
+        width: 130%;
+    }
+
+    .field.s442 .player:nth-of-type(2), .field.s442 .player:nth-of-type(6),
+    .field.s451 .player:nth-of-type(2), .field.s451 .player:nth-of-type(6),
+    .field.s433 .player:nth-of-type(2), .field.s433 .player:nth-of-type(6), .field.s433 .player:nth-of-type(9){
+        left: 18%;
+    }
+
+    .field.s442 .player:nth-of-type(3), .field.s442 .player:nth-of-type(7), .field.s442 .player:nth-of-type(10),
+    .field.s451 .player:nth-of-type(3), .field.s451 .player:nth-of-type(7),
+    .field.s433 .player:nth-of-type(3) {
+        left: 36%;
+    }
+
+    .field.s442 .player:nth-of-type(4), .field.s442 .player:nth-of-type(8), .field.s442 .player:nth-of-type(11),
+    .field.s451 .player:nth-of-type(4), .field.s451 .player:nth-of-type(9),
+    .field.s433 .player:nth-of-type(4) {
+        right: 36%;
+    }
+
+    .field.s442 .player:nth-of-type(5), .field.s442 .player:nth-of-type(9),
+    .field.s451 .player:nth-of-type(5), .field.s451 .player:nth-of-type(10),
+    .field.s433 .player:nth-of-type(5), .field.s433 .player:nth-of-type(8), .field.s433 .player:nth-of-type(11){
+        right: 18%;
+    }
 }

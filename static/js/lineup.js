@@ -8,6 +8,8 @@ $(function() {
     var player = null;
 
     $('#players').selectric({
+        disableOnMobile: false,
+        nativeOnMobile: false,
         onOpen: function() {
             player = $('.field .player.selected')
         },

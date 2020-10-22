@@ -363,10 +363,6 @@ footer .socials img{
     position: relative;
 }
 
-#info-tables .scoreboard{
-    width: 60%;
-}
-
 #info-tables .fixtures{
     width: 40%;
     display: flex;
@@ -375,6 +371,7 @@ footer .socials img{
 
 #info-tables .scoreboard{
     margin-right: 20px;
+    width: 60%;
 }
 
 #info-tables .fixtures .match{
@@ -805,3 +802,181 @@ form.btn{
 
 
 /* /Players List */
+
+
+/* MOBILE VERSION */
+/*MOBILE VERSION*/
+@media screen and (max-width: 1024px) {
+
+    .container {
+        max-width: 90vw;
+        padding: 0;
+    }
+
+    header{
+        height: 22vw;
+    }
+
+    header img.logo {
+        width: 20vw;
+    }
+
+    header .part.logo {
+        padding: unset;
+        width: unset;
+        height: 20vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    header .part.logo a{
+        height: 20vw;
+    }
+
+    header.sticky .part.logo a{
+        height: unset;
+    }
+
+    header .wrapper ul li {
+        margin: 0 1vw;
+    }
+
+    header .wrapper ul {
+        font-size: 3vw;
+    }
+
+    header .part.logo h1 {
+        font-size: 4vw;
+    }
+    
+    .part.auth{
+        font-size: 3vw;
+    }
+
+    #post-big .wrapper {
+        height: 130vw;
+        flex-direction: column-reverse;
+    }
+
+    #post-big .wrapper .title {
+        width: 100%;
+        padding: 20px;
+    }
+
+    #post-big .wrapper h2 {
+        margin-bottom: 5px;
+    }
+
+    #post-big .wrapper .image {
+        width: 100%;
+    }
+
+    #post-big .image .overlay-logo {
+        opacity: .1;
+    }
+
+    #posts .wrapper {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        flex-direction: column;
+    }
+
+    #posts .post {
+        height: 65vw;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    #posts .post .title {
+        height: 20%;
+    }
+
+    #posts .post .image {
+        height: 80%;
+    }
+
+    #posts a{
+        width: 100%;
+    }
+
+    #info-tables .wrapper {
+        flex-direction: column;
+    }
+
+    #info-tables .scoreboard {
+        margin-right: 0;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .scoreboard .heading {
+        height: 15vw;
+        font-size: 4vw;
+    }
+
+    .scoreboard .team-name {
+        width: 30vw;
+    }
+
+    .scoreboard .team p {
+        white-space: nowrap;
+    }
+
+    .scoreboard .stamp {
+        left: unset;
+        top: 4px;
+        font-size: 2.5vw;
+        width: 100%;
+        text-align: center;
+        transform: unset;
+    }
+
+    #refresh-scoreboard {
+        height: 0;
+        margin-bottom: 2vw;
+        transition: all .3s ease-in-out;
+    }
+
+    #info-tables .fixtures {
+        width: 100%;
+    }
+
+    #info-tables .fixtures .team {
+        min-width: 32vw;
+        height: unset;
+    }
+
+    #info-tables .fixtures .team img {
+        width: 25vw;
+        height: 25vw;
+        object-fit: contain;
+    }
+
+    #sponsors .wrapper img {
+        width: 10vw;
+        height: unset;
+    }
+
+    footer .part .logo {
+        height: 20vw;
+    }
+
+    footer .part {
+        padding: 0 10px;
+    }
+
+    footer .part .hfl_logo {
+        width: 27vw;
+        border-radius: 50%;
+        border: unset;
+        top: 3vw;
+        left: 7vw;
+        transform: translate(0, -25%) rotate(15deg);
+    }
+
+    footer .part.mid {
+        display: none;
+    }
+}

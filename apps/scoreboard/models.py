@@ -34,11 +34,14 @@ class Team(models.Model):
         """
         
         words = self.name.split()
-        if len(words) > 2:
-            return ''.join([word[0] for word in words])
-        elif '"' in self.name:
+        
+        if '"' in self.name:
             quoted = re.compile('"[^"]*"')
             return quoted.findall(self.name)[0][1:-1]
+        elif len(words) > 2:
+            if self.name.lower().startswith(('fc', 'фк')):
+                return self.name[2:]
+            return ''.join([word[0] for word in words])
         return self.name
 
 

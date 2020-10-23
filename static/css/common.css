@@ -757,11 +757,11 @@ form.btn{
 
 .player-container .crown{
     position: absolute;
-    width: 90px;
+    width: 50px;
     z-index: 10;
-    transform: rotate(-45deg);
-    top: -37px;
-    left: -37px;
+    transform: rotate(-41deg);
+    top: -23px;
+    left: -21px;
 }
 
 .player-container .card{
@@ -1050,6 +1050,12 @@ form.btn{
         height: unset;
         margin-right: 20px;
         margin-bottom: 20px;
+    }
+
+    .player-container .crown {
+        width: 35px;
+        top: -16px;
+        left: -13px;
     }
 
     .card:nth-of-type(4n+4) {

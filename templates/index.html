@@ -11,7 +11,7 @@
 {% block content %}
 <section id="post-big">
     <div class="container">
-        <a href="https://youtu.be/i3UUQ3sUwv0?t=2445" target="_blank">
+        <a href="{% url 'blog-detail' pk=last_posts.0.pk %}">
             <div class="wrapper shadow">
                     <div class="title">
                         <h2>{{ last_posts.0.category.name }}</h2>
@@ -30,7 +30,7 @@
         <div class="wrapper">
             
             {% for post in last_posts %}
-            <a href="https://youtu.be/i3UUQ3sUwv0?t=2445" target="_blank">
+            <a href="{% url 'blog-detail' pk=post.pk %}">
                 <div class="post shadow">
                     <div class="image" style="background-image: url({{ post.image.url }})">
 

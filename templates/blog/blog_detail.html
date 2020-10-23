@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Новини{% endblock %}
+
+{% block content %}
+
+<section id="post-photo">
+    <div class="container-full" style="background-image: url({{ object.image.url }});">
+
+    </div>
+</section>
+<section id="post-title">
+    <div class="container title">
+        <h1>{{ object.title }}</h1>
+        <h2>{{ object.category.name }}</h2>
+        <h3>Автор: {{ object.author }}</h3>
+        <h4>{{ object.posted|date:"d/m/Y G:i" }}</h4>
+    </div>
+</section>
+<section id="post-content">
+    <div class="container">
+        {{ object.text }}
+    </div>
+</section>
+<!-- NEXT/PREV POSTS -->
+<section id="posts">
+    <div class="container">
+        <div class="wrapper">
+            {% if prev_post %}
+                <a href="{% url 'blog-detail' pk=prev_post.pk %}">
+                    <p class="subtitle">Попередній допис</p>
+                    <div class="post shadow">
+                        <div class="image" style="background-image: url({{ prev_post.image.url }})">
+
+                        </div>
+                        <div class="title">
+                            <h2>{{ prev_post.category.name }}</h2>
+                            <h1>{{ prev_post.title }}</h1>
+                            <p>{{ prev_post.posted|date:"d/m/Y G:i" }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% else %}
+            <a href="">
+                <div class="post placeholder">
+                </div>
+            </a>
+            {% endif %}
+            <a href="">
+                <div class="post placeholder">
+                </div>
+            </a>
+            {% if next_post %}
+                <a href="{% url 'blog-detail' pk=next_post.pk %}">
+                    <p class="subtitle">Наступний допис</p>
+                    <div class="post shadow">
+                        <div class="image" style="background-image: url({{ next_post.image.url }})">
+
+                        </div>
+                        <div class="title">
+                            <h2>{{ next_post.category.name }}</h2>
+                            <h1>{{ next_post.title }}</h1>
+                            <p>{{ next_post.posted|date:"d/m/Y G:i" }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% else %}
+            <a href="">
+                <div class="post placeholder">
+                </div>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -19,6 +19,9 @@ urlpatterns = [
     # Scoreboard
     path('scoreboard/', include('scoreboard.urls')),
 
+    # Blog
+    path('blog/', include('blog.urls')),
+
     # provide the most basic login/logout functionality
     path('login/', auth_views.LoginView.as_view(template_name='auth/login.html'),
         name='login'),

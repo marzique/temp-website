@@ -3,8 +3,6 @@
 {% block title %}{{object.first_name}} {{object.last_name}}{% endblock %}
 
 {% block content %}
-    
-    {% regroup object_list by position as positions_list %}
-        {{object.first_name}} {{object.last_name}}
+        {{posted.first_name}} {{object.last_name}}
         <img src="{{object.photo.url}}">
 {% endblock %}

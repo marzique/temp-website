@@ -42,6 +42,7 @@ body{
     -webkit-font-smoothing: antialiased;
     color: #0d2e52;
     font-family: 'Open Sans', sans-serif;
+    line-height: 100%;
 }
 
 header{
@@ -161,6 +162,7 @@ header.sticky img.logo{
 .container.title h1{
     font-size: 48px;
     font-weight: 800;
+    margin: 40px 0;
 }
 
 .shadow{
@@ -319,6 +321,22 @@ footer .socials img{
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+#posts .wrapper a{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+#posts .wrapper p.subtitle{
+    position: absolute;
+    top: -30px;
+    font-weight: 300;
+    font-size: 20px;
 }
 
 #posts .post{
@@ -329,7 +347,7 @@ footer .socials img{
     width: 312px;
 }
 
-#posts .post:nth-of-type(3n+3){
+#posts a:nth-of-type(3n+3) .post{
     margin-right: 0;
 }
 
@@ -352,8 +370,8 @@ footer .socials img{
 
 #posts .post p{
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 3px;
+    right: 3px;
 }
 #posts .post h2{
     position: absolute;
@@ -363,6 +381,7 @@ footer .socials img{
 
 #posts .post .title h1{
     font-size: 16px;
+    line-height: 100%;
 }
 
 #posts .post .title h2{
@@ -873,7 +892,53 @@ form.btn{
 }
 /* Login Form */
 
-/* Login Form */
+/* Blog */
+#post-photo{
+    margin-bottom: 40px;
+}
+
+#post-photo .container-full{
+    height: 600px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+#post-title .title {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+#post-title .title h1{
+    line-height: 100%;
+}
+
+#post-title .title h2{
+    position: absolute;
+    top: -20px;
+    color: #0691f5;
+    font-size: 18px;
+}
+
+#post-title .title h3,
+#post-title .title h4{
+    position: absolute;
+    bottom: -30px;
+    font-size: 14px;
+    font-weight: 300;
+    color: gray;
+}
+
+#post-title .title h4{
+    right: 0;
+}
+
+#post-content{
+    margin: 80px 0;
+    line-height: 120%;
+    font-weight: 300;
+    font-size: 18px;
+}
 
 /*MOBILE VERSION*/
 @media screen and (max-width: 1024px) {

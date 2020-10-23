@@ -1,6 +1,6 @@
 $(function() {
 
-    // Sticky Element on scroll
+    // Sticky HEADER
     var sticky = $('header.sticky');
     var fixed = $('header.fixed');
 	var top = fixed.offset().top - parseFloat(fixed.css('margin-top').replace(/auto/, 0));
@@ -14,5 +14,9 @@ $(function() {
             fixed.removeClass('hide')
         }
     });
-    
+
+    // Next Match countdown
+    if ($('#countdown').length){
+        var countdownHtml = $('#countdown');
+      }
 });

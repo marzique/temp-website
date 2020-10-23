@@ -5,9 +5,12 @@
         <div class="match next-match shadow">
             <p class="type">НАСТУПНИЙ МАТЧ</p>
             <div class="info">
-                <p class="date" data-date="{{ next_match.date }}">
+                <p class="date">
                     {% if next_match.date %}
-                        {{ next_match.date|date:"d/m/Y" }}
+                        <p>{{ next_match.date|date:"d/m/Y H:i" }}</p>
+                        <div id="countdown" class="countdown simple-bar" data-Date="{{ next_match.date|date:'c' }}" data-endText="" data-zeroPad='{"Days": "false"}'>
+                            (days) дні, (hours):(minutes):(seconds)
+                        </div>
                     {% else %}
                         TBA
                     {% endif %}

@@ -407,6 +407,10 @@ footer .socials img{
     position: relative;
 }
 
+#info-tables .fixtures .match #countdown{
+    color: #44c379;
+}
+
 #info-tables .fixtures .next-match{
     margin-bottom: 20px;
 }
@@ -804,6 +808,7 @@ form.btn{
 .card .name h2{
     font-weight: 600;
     text-transform: uppercase;
+    line-height: 100%;
 }
 
 .card .nationality{

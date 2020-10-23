@@ -87,7 +87,7 @@ $(function () {
     // CONFIG
 
     let mainClass = '.countdown';
-    let OffsetLocation = +3; // IGNORED, see line 183. Tarnavskyi D.
+    let OffsetLocation = 4; // line 183. Tarnavskyi D.
 
     let runningClass = '.running'; //optinonal
     let endedClass = ".ended"; //optional
@@ -181,7 +181,7 @@ $(function () {
         else date2 = new Date(utc + (3600000 * OffsetLocation));
 
         // tempfc, ignore OffsetLocation
-        d = new Date();
+        // d = new Date();
 
         var diff = date1.getTime() - date2;
         var msec = diff;

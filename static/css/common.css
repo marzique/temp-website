@@ -1045,7 +1045,7 @@ form.btn{
         display: none;
     }
 
-    .card {
+    .player-container .card {
         width: 42vw;
         height: unset;
         margin-right: 20px;

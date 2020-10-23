@@ -20,9 +20,9 @@ urlpatterns = [
     path('scoreboard/', include('scoreboard.urls')),
 
     # provide the most basic login/logout functionality
-    path('login/', auth_views.LoginView.as_view(template_name='auth/core/login.html'),
-        name='core_login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='core_logout'),
+    path('login/', auth_views.LoginView.as_view(template_name='auth/login.html'),
+        name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
     # enable the admin interface
     path('admin/', admin.site.urls),

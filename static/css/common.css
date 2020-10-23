@@ -101,6 +101,11 @@ header .part.logo h1{
     font-size: 32px;
 }
 
+header .part.auth{
+    display: flex;
+    flex-direction: column;
+}
+
 header img.logo{
     width: 100%;
 }
@@ -816,6 +821,33 @@ form.btn{
 
 /* /Players List */
 
+.login{
+    margin: 30px auto;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.login h2{
+    text-align: center;
+}
+
+.login form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login form p{
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+/* Login Form */
+
+/* Login Form */
 
 /*MOBILE VERSION*/
 @media screen and (max-width: 1024px) {

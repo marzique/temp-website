@@ -108,6 +108,11 @@ header .part.auth{
 
 header img.logo{
     width: 100%;
+    transition: transform .3s ease-in-out;
+}
+
+header img.logo:hover{
+    transform: scale(.9);
 }
 
 header.sticky{

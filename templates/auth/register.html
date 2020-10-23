@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
-{% block title %}Увійти{% endblock %}
+{% block title %}Реєстрація{% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="login shadow">
-            <h2>Увійти</h2>
+            <h2>Реєстрація</h2>
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Увійти</button>
+                <button type="submit">Створити</button>
             </form>
         </div>
     </div>

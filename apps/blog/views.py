@@ -41,7 +41,6 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('blog-detail', kwargs={'pk': self.object.post.pk})
-        # TEMPORARY
 
     def form_valid(self, form):
         form.instance.author = self.request.user

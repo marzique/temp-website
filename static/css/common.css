@@ -72,6 +72,7 @@ header .wrapper{
 
 header .username{
     color: #0691f5;
+    margin-bottom: 5px;
 }
 
 header .wrapper ul{
@@ -275,6 +276,7 @@ footer .socials img{
 
 #post-big .image .overlay-logo{
     height: 50%;
+    object-fit: contain;
     opacity: .5;
     filter: grayscale(100%);
     transition: all .3s ease-in-out;
@@ -872,6 +874,10 @@ form.btn{
     display: flex;
     flex-direction: column;
     padding: 30px;
+}
+
+.login .helptext{
+    display: none;
 }
 
 .login h2{

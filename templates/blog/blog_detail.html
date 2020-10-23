@@ -32,7 +32,11 @@
             <div class="comment shadow">
                 <p class="text">{{comment.text}}</p>
                 <p class="date">{{comment.posted|date:"d/m/Y G:i"}}</p>
-            <p class="author" style="color: {{ comment.author_color }};">{{comment.author}}</p>
+                {% if comment.author %}
+                    <p class="author" style="color: {{ comment.author_color }};">{{comment.author}}</p>
+                {% else %}
+                    <p class="author" style="color: #888;">Видалено</p>
+                {% endif %}
             </div>
         {% endfor %}
     </div>

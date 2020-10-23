@@ -21,7 +21,7 @@
                 <a href="{% url 'logout' %}">вийти</a>
             {% else %}
                 <a href="{% url 'login' %}">увійти</a>
-                <a href="#">реєстрація</a>
+                <a href="{% url 'register' %}">реєстрація</a>
             {% endif %}
         </div>
     </div>

@@ -751,6 +751,10 @@ form.btn{
     flex-wrap: wrap;
 }
 
+.player-container a{
+    position: relative;
+}
+
 .player-container .crown{
     position: absolute;
     width: 90px;

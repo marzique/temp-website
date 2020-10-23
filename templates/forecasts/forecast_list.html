@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Прогнози{% endblock %}
+
+
+{% block content %}
+<div class="container title">
+    <h1>Прогнози</h1>
+</div>
+<section id="rules">
+    <div class="container">
+        <h2>Правила:</h2>
+        <p>
+            Запрошуємо прийняти участь у конкурсі прогнозистів від офіційного веб-сайту ФК ТЕМП ДИМЕР. <br>
+            Перед кожним туром чемпіонату користувачі можуть спробувати вгадати результати туру ХФЛ, а також декількох матчів ТОП чемпіонатів. Найкращі прогнозисти за результатами сезону отримують призи. <br>
+            Ставки не приймаються пізніше ніж за годину до першого матчу в турі.
+        </p>
+        <h2>Система очок:</h2>
+        <ul>
+            <li>Вгадано переможця матчу (або нічию): <span>5 БАЛІВ</span></li>
+            <li>Вгадано переможця матчу (або нічию) та точну кількість голів однієї з команд: <span>7 БАЛІВ</span></li>
+            <li>Вгадано точний рахунок матчу: <span>10 БАЛІВ</span></li>
+        </ul>
+    </div>
+</section>
+<section id="forecasts">
+    <div class="container">
+        
+        <div class="forecast heading">
+            <div class="name">
+                Назва/Тур
+            </div>
+            <div class="status">
+                Статус
+            </div>
+            <div class="deadline">
+                Завершення ставок
+            </div>
+            <div class="players">
+                Кількість учасників
+            </div>
+        </div>
+
+        {% for forecast in object_list %}
+            <a href="{% url 'forecast-detail' pk=forecast.pk %}">
+                <div class="forecast">
+                    <div class="name">
+                        {{ forecast }}
+                    </div>
+                    <div class="status status{{forecast.status }}">
+                        {{ forecast.get_status_display}}
+                    </div>
+                    <div class="deadline">
+                        {% if forecast.status == 1 %}
+                            <p class="deadline">{{ forecast.deadline|date:"d/m/Y G:i" }}</p>
+                        {% else %}
+                            <p class="deadline">-</p>
+                        {% endif %}
+                    </div>
+                    <div class="players">
+                        329
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</section>
+<div class="container .title">
+    <h2>Турнірна таблиця прогнозистів:</h2>
+</div>
+<section id="users">
+    <div class="container">
+        
+        <div class="user heading">
+            <div class="username">
+                Користувач
+            </div>
+            <div class="matches">
+                Матчів зіграно
+            </div>
+            <div class="points">
+                Очки
+            </div>
+        </div>
+
+        <div class="user">
+            <div class="username">
+                admin
+            </div>
+            <div class="matches">
+                10
+            </div>
+            <div class="points">
+                782
+            </div>
+        </div>
+
+        <div class="user">
+            <div class="username">
+                Петро
+            </div>
+            <div class="matches">
+                7
+            </div>
+            <div class="points">
+                337
+            </div>
+        </div>
+
+
+    </div>
+</section>
+{% endblock %}

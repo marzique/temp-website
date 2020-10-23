@@ -22,7 +22,10 @@ urlpatterns = [
     # Blog
     path('blog/', include('blog.urls')),
 
-    # provide the most basic login/logout functionality
+    # Forecasts
+    path('forecasts/', include('forecasts.urls')),
+
+    # Authentication
     path('login/', auth_views.LoginView.as_view(template_name='auth/login.html'),
         name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),

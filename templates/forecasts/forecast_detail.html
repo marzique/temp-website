@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Прогноз {{ object.week }} Тур{% endblock %}
+
+{% block content %}
+<div class="container title">
+    <h1>Прогноз</h1>
+    <h2>{{ object.season }}: {{ object.week }} Тур</h2>
+</div>
+<section id="forecast">
+    <div class="container">
+        <div class="wrapper">
+            <h2 class="status">
+                Статус: <span class="status{{object.status}}">{{ object.get_status_display }}</span>
+            </h2>
+            {% if object.status == 1 %}
+                <p class="deadline">до {{ object.deadline|date:"d/m/Y G:i" }}</p>
+            {% endif %}
+            
+            {% for fixture in object.fixtures.all %}
+                <div class="fixture">
+                    <div class="team home">
+                        <h2>{{ fixture.get_home_name }}</h2>
+                        <img src="{{ fixture.get_home_logo_url }}">
+                    </div>
+                    <div class="score">
+                        {% if object.status == 3 %}
+                            <p><span class="home_goals">{{ object.home_goals }}</span>:<span class="guest_goals">{{ object.guest_goals }}</span></p>
+                        {% else %}
+                            <p><span class="home_goals">-</span>:<span class="guest_goals">-</span></p>
+                        {% endif %}
+                        <p class="date">{{ fixture.date|date:"d/m/Y G:i" }}</p>
+                    </div>
+                    <div class="team guest">
+                        <img src="{{ fixture.get_guest_logo_url }}">
+                        <h2>{{ fixture.get_guest_name }}</h2>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+    
+{% endblock %}

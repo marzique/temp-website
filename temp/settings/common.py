@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'scoreboard',
     'blog',
     'users',
+    'forecasts',
 ]
 
 # Middlewares

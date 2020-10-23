@@ -45,6 +45,10 @@ body{
     line-height: 100%;
 }
 
+p{
+    line-height: 120%;
+}
+
 header{
     background-color: #0d2e52;
     height: 100px;
@@ -477,9 +481,10 @@ footer .socials img{
 }
 
 .scoreboard .team-name img{
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     margin-right: 10px;
+    object-fit: contain;
 }
 
 #info-tables .sides{
@@ -986,6 +991,132 @@ form.btn{
     font-weight: 300;
     margin-bottom: 20px;
     resize: none;
+}
+
+/* Forecasts */
+
+#rules,
+#users,
+#forecasts{
+    margin: 40px 0;
+}
+
+#rules h2{
+    margin: 20px 0;
+}
+
+#rules ul li{
+    margin: 10px;
+}
+
+#rules ul li span{
+    color: #44c379;
+}
+
+#forecasts .forecast,
+#users .user{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(239, 239, 239);
+    padding: 20px;
+    height: 48px;
+    justify-content: space-around;
+    transition: all .3s ease-in-out;
+}
+
+#forecasts .forecast:not(.heading):hover{
+    transform: scale(1.05);
+}
+
+#forecasts .forecast.heading,
+#users .user.heading{
+    background-color: #c34483;
+    color: white;
+    transform: skewX(-15deg);
+}
+
+#forecasts .forecast.heading > div,
+#users .user.heading > div{
+    transform: skewX(15deg);
+}
+
+#forecasts .forecast > div{
+    width: 200px;
+}
+
+#forecast{
+    margin: 80px 0;
+}
+
+#forecast .fixture .team img{
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    margin: 0 20px;
+}
+
+#forecast .fixture .team h2{
+    text-transform: capitalize;
+}
+
+#forecast .status{
+    margin: 20px 0;
+}
+
+.status1{
+    color: #44c379;
+}
+
+.status2{
+    color: #c34444;
+}
+
+.status3{
+    color: #44c3bd;
+}
+
+#forecast .deadline{
+    position: absolute;
+    font-size: 16px;
+    font-weight: 300;
+    color: gray;
+}
+
+#forecast .fixture .score{
+    width: 80px;
+    border: 1px solid rgb(229, 229, 229);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#forecast .score .date{
+    position: absolute;
+    font-size: 12px;
+    top: -25px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+#forecast .fixture{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    border-bottom: 1px solid rgb(239, 239, 239);
+    padding: 25px 0 10px;
+}
+
+#forecast .team{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 50%;
+}
+
+#forecast .team.guest{
+    justify-content: flex-start;
 }
 
 /*MOBILE VERSION*/

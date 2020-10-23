@@ -23,6 +23,33 @@
         {{ object.text }}
     </div>
 </section>
+<section id="comments">
+    <div class="container title">
+        <h1>Коментарі</h1>
+    </div>
+    <div class="container">
+        {% for comment in object.comments.all %}
+            <div class="comment shadow">
+                <p class="text">{{comment.text}}</p>
+                <p class="date">{{comment.posted|date:"d/m/Y G:i"}}</p>
+            <p class="author" style="color: {{ comment.author_color }};">{{comment.author}}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="container">
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'comment' pk=object.pk %}" class="shadow">
+                {% csrf_token %}
+                {{ comment_form }}
+                <button type="submit">Comment</button>
+            </form>
+        {% else %}
+            Для комментування авторизуйтесь
+            <a href="{% url 'login' %}">увійти</a>
+            <a href="#">реєстрація</a>
+        {% endif %}
+    </div>
+</section>
 <!-- NEXT/PREV POSTS -->
 <section id="posts">
     <div class="container">

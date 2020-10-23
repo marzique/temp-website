@@ -18,6 +18,7 @@ postgresql = "*"
 postgresql-contrib = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
+colorhash = "*"
 
 [requires]
 python_version = "3.8"

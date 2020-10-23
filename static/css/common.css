@@ -940,6 +940,48 @@ form.btn{
     font-size: 18px;
 }
 
+#comments{
+    margin: 80px 0;
+}
+
+#comments .comment{
+    padding: 40px 60px;
+    position: relative;
+    margin: 20px 0;
+}
+
+#comments .text{
+
+}
+
+#comments .date,
+#comments .author{
+    color: grey;
+    position: absolute;
+    right: 5px;
+}
+
+#comments .date{
+    bottom: 5px;
+}
+
+#comments .author{
+    bottom: 25px;
+}
+
+#comments form{
+    padding: 30px;
+}
+
+#comments textarea{    
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    resize: none;
+}
+
 /*MOBILE VERSION*/
 @media screen and (max-width: 1024px) {
 

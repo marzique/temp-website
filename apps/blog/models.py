@@ -1,4 +1,6 @@
 
+from colorhash import ColorHash
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -29,3 +31,29 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
+class Comment(models.Model):
+    author = models.ForeignKey(
+        User, 
+        on_delete=models.SET_NULL, 
+        blank=False, 
+        null=True
+    )
+    text = models.TextField(blank=False, null=False)
+    posted = models.DateTimeField(null=True, blank=True, auto_now_add=True)
+    post = models.ForeignKey(
+        Blog, 
+        on_delete=models.SET_NULL, 
+        blank=False, 
+        null=True,
+        related_name='comments'
+    )
+
+    def __str__(self):
+        return self.text[:30]
+
+    @property
+    def author_color(self):
+        """Hash function that returns color from user's username and date_joined"""
+        c = ColorHash(self.author.username)
+        return c.hex

@@ -337,12 +337,24 @@ footer .socials img{
 
 #posts .post .title{
     height: 30%;
-    padding: 0 10px;
+    padding: 10px 10px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     color: #0d2e52;
+    position: relative;
 }
+
+#posts .post p{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+#posts .post h2{
+    position: absolute;
+    top: 4px;
+}
+
 
 #posts .post .title h1{
     font-size: 16px;

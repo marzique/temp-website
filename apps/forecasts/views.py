@@ -15,12 +15,13 @@ class ForecastDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['can_vote'] = self._can_vote(**kwargs)
-        if self._voted(**kwargs):
-            user = self.request.user.profile
-            results = Prediction.objects.get(user=user, forecast__pk=self.kwargs['pk']).results
-            context['results'] = self._results_to_int_keys(results)
-            print(context['results'])
+        if self.request.user.is_authenticated:
+            context['can_vote'] = self._can_vote(**kwargs)
+            if self._voted(**kwargs):
+                user = self.request.user.profile
+                results = Prediction.objects.get(user=user, forecast__pk=self.kwargs['pk']).results
+                context['results'] = self._results_to_int_keys(results)
+                print(context['results'])
 
         return context
 
@@ -44,10 +45,9 @@ class ForecastDetailView(DetailView):
         2) didn't vote this week
         3) forecast is active.
         """
-        if self.request.user.is_authenticated:
-            if not self._voted(**kwargs):
-                if self.get_object().status == Forecast.ACTIVE:
-                    return True
+        if not self._voted(**kwargs):
+            if self.get_object().status == Forecast.ACTIVE:
+                return True
         return False
         
 

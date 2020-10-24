@@ -47,9 +47,9 @@
                                     {% endfor %}
                                 {% else %}
                                     <p>
-                                        <input type="text" class="home_goals" name="fixture{{fixture.pk}}" value="{{ fixture.home_goals }}" disabled>
+                                        <input type="text" class="home_goals" name="fixture{{fixture.pk}}" value="{% if fixture.home_goals%}{{ fixture.home_goals }}{%else%}-{%endif%}" disabled>
                                         :
-                                        <input type="text" class="guest_goals" name="fixture{{fixture.pk}}" value="{{ fixture.guest_goals }}" disabled>
+                                        <input type="text" class="guest_goals" name="fixture{{fixture.pk}}" value="{% if fixture.guest_goals%}{{ fixture.guest_goals }}{%else%}-{%endif%}" disabled>
                                     </p>
                                 {% endif %}
                             {% else %}

@@ -34,30 +34,43 @@
                         </div>
                         <div class="score">
                             {% if not can_vote %}
-                                {% if results %}
-                                    <!-- TODO: FIND OUT WHY CAN'T GET VALUE FROM DICT W/O LOOP!! -->
-                                    {% for key, value in results.items %}
-                                        {% if key == fixture.pk %}
-                                            <p>
-                                                <input type="text" class="home_goals" name="fixture{{fixture.pk}}" value="{{ value.0 }}" disabled>
-                                                :
-                                                <input type="text" class="guest_goals" name="fixture{{fixture.pk}}" value="{{ value.1}}" disabled>
-                                            </p>
-                                        {% endif %}
-                                    {% endfor %}
-                                {% else %}
+                                <!-- VOTED OR NOT AUTH OR STARTED -->
+                                {% if object.status != 1 %}
+                                    <!-- STARTED: [SHOW GAOLS or '-' if None yet] -->
                                     <p>
                                         <input type="text" class="home_goals" name="fixture{{fixture.pk}}" value="{% if fixture.home_goals%}{{ fixture.home_goals }}{%else%}-{%endif%}" disabled>
                                         :
                                         <input type="text" class="guest_goals" name="fixture{{fixture.pk}}" value="{% if fixture.guest_goals%}{{ fixture.guest_goals }}{%else%}-{%endif%}" disabled>
                                     </p>
+                                {% else %}
+                                    {% if results %}
+                                        <!-- ACTIVE, ALREADY VOTED [SHOW PREDICTIONS]-->
+                                        {% for key, value in results.items %}
+                                        <!-- TODO: FIND OUT WHY CAN'T GET VALUE FROM DICT W/O THIS LOOP!! -->
+                                            {% if key == fixture.pk %}
+                                                <p>
+                                                    <input type="text" class="home_goals" name="fixture{{fixture.pk}}" value="{{ value.0 }}" disabled>
+                                                    :
+                                                    <input type="text" class="guest_goals" name="fixture{{fixture.pk}}" value="{{ value.1}}" disabled>
+                                                </p>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <!-- ACTIVE, NOT AUTH -->
+                                        <p>
+                                            <input type="text" class="home_goals" name="fixture{{fixture.pk}}" value="{% if fixture.home_goals%}{{ fixture.home_goals }}{%else%}-{%endif%}" disabled>
+                                            :
+                                            <input type="text" class="guest_goals" name="fixture{{fixture.pk}}" value="{% if fixture.guest_goals%}{{ fixture.guest_goals }}{%else%}-{%endif%}" disabled>
+                                        </p>
+                                    {% endif %}
                                 {% endif %}
                             {% else %}
-                            <p>
-                                <input type="text" class="home_goals" name="fixture{{fixture.pk}}" required>
-                                :
-                                <input type="text" class="guest_goals" name="fixture{{fixture.pk}}" required>
-                            </p>
+                                <!-- STATUS ACTIVE, AUTH, CAN VOTE -->
+                                <p>
+                                    <input type="text" class="home_goals" name="fixture{{fixture.pk}}" required>
+                                    :
+                                    <input type="text" class="guest_goals" name="fixture{{fixture.pk}}" required>
+                                </p>
                             {% endif %}
                             <p class="date">{{ fixture.date|date:"d/m/Y G:i" }}</p>
                         </div>

@@ -58,13 +58,14 @@ class MainPageView(TemplateView):
 
     @transaction.atomic
     def update_matches(self):
+        Match.objects.update(next=None, prev=None)
         future_matches = Match.objects.filter(date__gte=timezone.localtime(timezone.now()))
         tba_matches = Match.objects.filter(date__isnull=True)
         next_match = None
         if future_matches.exists():
-            next_match = future_matches.latest('date')
+            next_match = future_matches.earliest('date')
         elif tba_matches.exists():
-            next_match = tba_matches.latest('id')
+            next_match = tba_matches.earliest('id')
 
         prev_matches = Match.objects.filter(date__lt=timezone.localtime(timezone.now()))
         prev_match = None

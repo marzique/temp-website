@@ -10,4 +10,4 @@ class TeamAdmin(admin.ModelAdmin):
 
 @admin.register(Match)
 class MatchAdmin(admin.ModelAdmin):
-    list_display = ('home', 'score', 'guest', 'next', 'prev')
+    list_display = ('home', 'score', 'guest', 'next', 'prev', 'date')

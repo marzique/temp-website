@@ -5,7 +5,7 @@ from django.db import models
 class Team(models.Model):
     PLACE_CHOICES = zip(range(1, 100), range(1, 100)) # 1-99
 
-    place = models.PositiveIntegerField(choices=PLACE_CHOICES, null=False, blank=False, unique=True)
+    place = models.PositiveIntegerField(choices=PLACE_CHOICES, null=False, blank=False)
     name = models.CharField(max_length=100, null=False, blank=False)
     logo_url = models.CharField(max_length=300)
     games = models.PositiveIntegerField(null=False, blank=False)

@@ -1375,4 +1375,43 @@ form.btn{
         font-size: 10vw;
         font-weight: 800;
     }
+
+    #forecast {
+        margin: 20px 0;
+    }
+
+    #forecast .fixture {
+        justify-content: center;
+    }
+
+    #forecast .fixture .team h2 {
+        font-size: 14px;
+        width: 30vw;
+        text-align: right;
+    }
+
+    #forecast .fixture .team.guest h2 {
+        text-align: left;
+    }
+
+    #forecast .team {
+        display: flex;
+        align-items: center;
+        width: 140px;
+    }
+
+    #forecast .fixture .team img {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+        margin: 0 15px;
+    }
+
+    #forecast .deadline {
+        font-size: 12px;
+    }
+
+    #forecast h2{
+        font-size: 20px;
+    }
 }

@@ -1,12 +1,17 @@
 from datetime import timedelta
 
-from django.db import models
+from django.db import models, transaction
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import JSONField
 from django.core.exceptions import ValidationError
 
 from scoreboard.models import Team
 from users.models import Profile
+from forecasts.constants import (
+    WIN_OR_DRAW_POINTS, 
+    WIN_AND_ONE_SIDE_GOALS_POINTS, 
+    EXACT_SCORE_POINTS
+)
 
 
 class Forecast(models.Model):
@@ -33,7 +38,48 @@ class Forecast(models.Model):
         return first_match_date.date - timedelta(hours=1)
 
     def __str__(self):
-        return f'{self.season} Week {self.week}'
+        return f'{self.season} Тур {self.week}'
+
+    @transaction.atomic
+    def update_profile_points(self):
+        """
+        Calculate points for every fixture prediction made by Users and update their profile's forecasts_points 
+        dicts accordingly. Only finished fixtures taken into account. This method can be safely called multiple times.
+        """
+
+        for prediction in self.predictions.all():
+            week_points = 0
+            profile = prediction.user
+            for fixture_id, predicted_score in prediction.results.items():
+                fixture = Fixture.objects.get(id=fixture_id)
+                # allow partially finished Forecasts calculations
+                if fixture.finished:
+                    points = self.calculate_fixture_prediction(fixture, predicted_score)
+                    week_points += points
+            profile.create_or_update_points(self.id, week_points)
+
+
+    def calculate_fixture_prediction(self, fixture, predicted_score):
+        winner = self.get_winner_from_score(fixture.score)
+        predicted_winner = self.get_winner_from_score(predicted_score)
+        # at least 5 points
+        if winner == predicted_winner:
+            matches = len(set(fixture.score) & set(predicted_score))
+            if matches == 2:
+                return EXACT_SCORE_POINTS
+            if matches == 1:
+                return WIN_AND_ONE_SIDE_GOALS_POINTS
+            return WIN_OR_DRAW_POINTS
+        else:
+            return 0
+
+    def get_winner_from_score(self, score):
+        if score[0] > score[1]:
+            return 1
+        elif score[0] < score[1]:
+            return -1
+        else:
+            return 0
 
 
 class Season(models.Model):
@@ -83,6 +129,10 @@ class Fixture(models.Model):
 
     def __str__(self):
         return f'{self.get_home_name()} {self.home_goals}:{self.guest_goals} {self.get_guest_name()}'
+
+    @property
+    def score(self):
+        return [self.home_goals, self.guest_goals]
 
     def get_home_name(self):
         if self.home:

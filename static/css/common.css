@@ -1165,6 +1165,10 @@ form.btn{
     white-space: nowrap;
 }
 
+#forecast .fixture.finished .score .date{
+    display: none;
+}
+
 #forecast .fixture{
     display: flex;
     width: 100%;

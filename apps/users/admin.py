@@ -5,4 +5,4 @@ from users.models import Profile
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'forecast_points')
+    list_display = ('user', 'total_points')

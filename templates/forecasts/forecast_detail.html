@@ -38,9 +38,9 @@
                                 {% if object.status != 1 %}
                                     <!-- STARTED: [SHOW GAOLS or '-' if None yet] -->
                                     <p>
-                                        <input type="text" class="home_goals" name="fixture{{fixture.pk}}" value="{% if fixture.home_goals%}{{ fixture.home_goals }}{%else%}-{%endif%}" disabled>
+                                        <input type="text" class="home_goals" name="fixture{{fixture.pk}}" value="{% if fixture.home_goals is not None %}{{ fixture.home_goals }}{%else%}-{%endif%}" disabled>
                                         :
-                                        <input type="text" class="guest_goals" name="fixture{{fixture.pk}}" value="{% if fixture.guest_goals%}{{ fixture.guest_goals }}{%else%}-{%endif%}" disabled>
+                                        <input type="text" class="guest_goals" name="fixture{{fixture.pk}}" value="{% if fixture.guest_goals  is not None %}{{ fixture.guest_goals }}{%else%}-{%endif%}" disabled>
                                     </p>
                                 {% else %}
                                     {% if results %}

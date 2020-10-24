@@ -27,13 +27,20 @@
                 {% endif %}
                 
                 {% for fixture in object.fixtures.all %}
-                    <div class="fixture">
+                    <div class="fixture {% if fixture.finished %}finished{% endif %}">
                         <div class="team home">
                             <h2>{{ fixture.get_home_name }}</h2>
                             <img src="{{ fixture.get_home_logo_url }}">
                         </div>
                         <div class="score">
-                            {% if not can_vote %}
+                            {% if can_vote %}
+                                <!-- User authenticated, didn't vote yet, and forecast is Active -->
+                                <p>
+                                    <input type="number" min="0" class="home_goals" name="fixture{{fixture.pk}}" required>
+                                    :
+                                    <input type="number" min="0" class="guest_goals" name="fixture{{fixture.pk}}" required>
+                                </p>
+                            {% else %}
                                 <!-- VOTED OR NOT AUTH OR STARTED -->
                                 {% if object.status != 1 %}
                                     <!-- STARTED: [SHOW GAOLS or '-' if None yet] -->
@@ -64,13 +71,6 @@
                                         </p>
                                     {% endif %}
                                 {% endif %}
-                            {% else %}
-                                <!-- STATUS ACTIVE, AUTH, CAN VOTE -->
-                                <p>
-                                    <input type="text" class="home_goals" name="fixture{{fixture.pk}}" required>
-                                    :
-                                    <input type="text" class="guest_goals" name="fixture{{fixture.pk}}" required>
-                                </p>
                             {% endif %}
                             <p class="date">{{ fixture.date|date:"d/m/Y G:i" }}</p>
                         </div>

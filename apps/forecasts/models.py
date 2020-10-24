@@ -3,6 +3,7 @@ from datetime import timedelta
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import JSONField
+from django.core.exceptions import ValidationError
 
 from scoreboard.models import Team
 from users.models import Profile
@@ -68,10 +69,18 @@ class Fixture(models.Model):
 
     home_goals = models.PositiveIntegerField(null=True, blank=True)
     guest_goals = models.PositiveIntegerField(null=True, blank=True)
+    finished = models.BooleanField(default=False)
     date = models.DateTimeField(blank=False, null=False)
 
     class Meta:
         ordering = ['date']
+
+    def clean(self):
+        # don't allow 'finish' match without goals
+        if self.pk:
+            if self.home_goals is None or self.guest_goals is None:
+                if self.finished:
+                    raise ValidationError('Provide goals if match is finished!')
 
     def __str__(self):
         return f'{self.get_home_name()} {self.home_goals}:{self.guest_goals} {self.get_guest_name()}'
@@ -118,6 +127,7 @@ class Prediction(models.Model):
     )
     # {fixture_id: [1, 0], }
     results = models.JSONField(blank=False, null=False, default=dict)
+    created_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         #One gameweek forecast per user

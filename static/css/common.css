@@ -45,6 +45,19 @@ body{
     line-height: 100%;
 }
 
+
+/* REMOVE ARROWS input type number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
 p{
     line-height: 120%;
 }
@@ -1135,6 +1148,11 @@ form.btn{
     background-color: transparent;
 }
 
+#forecast .fixture.finished input{
+    font-size: 20px;
+    color: #0d2e52;
+}
+
 #forecast .fixture .guest_goals{
     justify-content: flex-start;
 }
@@ -1153,6 +1171,10 @@ form.btn{
     align-items: center;
     border-bottom: 1px solid rgb(239, 239, 239);
     padding: 25px 0 10px;
+}
+
+#forecast .fixture.finished{
+    background-color: rgba(68, 195, 121, 0.1);
 }
 
 #forecast .team{

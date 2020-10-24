@@ -22,9 +22,10 @@ class SeasonAdmin(admin.ModelAdmin):
 
 @admin.register(Fixture)
 class FixtureAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('__str__', 'finished')
 
 
 @admin.register(Prediction)
 class PredictionAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['user', 'forecast', 'results', 'created_at']
+    readonly_fields = ['created_at', ]

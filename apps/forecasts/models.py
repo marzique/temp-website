@@ -36,7 +36,6 @@ class Forecast(models.Model):
         return f'{self.season} Week {self.week}'
 
 
-
 class Season(models.Model):
     name = models.CharField(max_length=15, null=False, blank=False)
 

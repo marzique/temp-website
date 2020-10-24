@@ -58,7 +58,7 @@ class ForecastListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['user_profiles'] = Profile.objects.with_predictions()\
-        .order_by('total_points', 'predictions_total').select_related('user')[:10]
+        .order_by('-total_points', 'predictions_total').select_related('user')[:10]
         return context
     
 

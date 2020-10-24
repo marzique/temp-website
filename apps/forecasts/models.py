@@ -1,8 +1,12 @@
 from datetime import timedelta
 
 from django.db import models
+from django.contrib.auth.models import User
+from django.contrib.postgres.fields import JSONField
 
 from scoreboard.models import Team
+from users.models import Profile
+
 
 class Forecast(models.Model):
 
@@ -98,4 +102,26 @@ class Fixture(models.Model):
 
 
 class Prediction(models.Model):
-    pass
+    user = models.ForeignKey(
+        Profile, 
+        on_delete=models.CASCADE, 
+        blank=False, 
+        null=False,
+        related_name='predictions'
+    )
+    forecast = models.ForeignKey(
+        Forecast, 
+        on_delete=models.CASCADE, 
+        blank=False, 
+        null=False,
+        related_name='predictions'
+    )
+    # {fixture_id: [1, 0], }
+    results = models.JSONField(blank=False, null=False, default=dict)
+
+    class Meta:
+        #One gameweek forecast per user
+        unique_together = ('user', 'forecast')
+
+    def __str__(self):
+        return f'{self.user} {self.forecast}'

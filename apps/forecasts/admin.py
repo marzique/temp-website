@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from forecasts.models import Forecast, Season, Fixture
+from forecasts.models import Forecast, Season, Fixture, Prediction
 
 
 class FixtureInline(admin.TabularInline):
@@ -22,4 +22,9 @@ class SeasonAdmin(admin.ModelAdmin):
 
 @admin.register(Fixture)
 class FixtureAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Prediction)
+class PredictionAdmin(admin.ModelAdmin):
     pass

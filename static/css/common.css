@@ -1040,12 +1040,33 @@ form.btn{
     transform: skewX(15deg);
 }
 
-#forecasts .forecast > div{
+#forecasts .forecast > div,
+#users .user > div{
     width: 200px;
+    text-align: center;
 }
 
 #forecast{
-    margin: 80px 0;
+    margin: 40px 0;
+}
+
+#forecast #predict{
+    display: none;
+}
+
+#forecast.editable #predict{
+    display: initial;
+    outline: none;
+    background-color: #44c379;
+    color: white;
+    border: none;
+    height: 48px;
+    padding: 0 10px;
+    transform: translate(-50%, 0);
+    cursor: pointer;
+    margin: 20px 0;
+    left: 50%;
+    position: relative;
 }
 
 #forecast .fixture .team img{
@@ -1090,12 +1111,38 @@ form.btn{
     align-items: center;
     justify-content: center;
     position: relative;
+    padding: 3px;
+}
+
+#forecast .score p{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#forecast .fixture .home_goals,
+#forecast .fixture .guest_goals{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border: none;
+    text-align: center;
+    outline: none;
+    background-color: transparent;
+}
+
+#forecast .fixture .guest_goals{
+    justify-content: flex-start;
 }
 
 #forecast .score .date{
     position: absolute;
     font-size: 12px;
-    top: -25px;
+    top: -35px;
     text-align: center;
     white-space: nowrap;
 }

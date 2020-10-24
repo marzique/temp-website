@@ -77,36 +77,27 @@
                 Користувач
             </div>
             <div class="matches">
-                Матчів зіграно
+                Прогнозів
             </div>
             <div class="points">
                 Очки
             </div>
         </div>
 
-        <div class="user">
-            <div class="username">
-                admin
+        {% for profile in user_profiles %}
+            <div class="user">
+                <div class="username">
+                    {{ profile.user.username }}
+                </div>
+                <div class="predictions">
+                    {{ profile.predictions_total }}
+                </div>
+                <div class="points">
+                    {{ profile.forecast_points }}
+                </div>
             </div>
-            <div class="matches">
-                10
-            </div>
-            <div class="points">
-                782
-            </div>
-        </div>
+        {% endfor %}
 
-        <div class="user">
-            <div class="username">
-                Петро
-            </div>
-            <div class="matches">
-                7
-            </div>
-            <div class="points">
-                337
-            </div>
-        </div>
 
 
     </div>

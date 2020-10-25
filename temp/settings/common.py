@@ -124,6 +124,12 @@ STATIC_URL = '/static/'
 # the URL for media files
 MEDIA_URL = '/media/'
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'users.authentication.EmailOrUsernameModelBackend',
+)
+
+
 
 # ##### DEBUG CONFIGURATION ###############################
 DEBUG = False

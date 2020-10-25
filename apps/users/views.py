@@ -11,3 +11,7 @@ class RegisterView(CreateView):
 
     def get_success_url(self):
         return reverse('login')
+
+
+# TODO: Inherit default auth views and override labels and stuff
+# https://stackoverflow.com/questions/53980603/is-there-any-way-to-change-username-field-label-in-user-authentication-login-pag

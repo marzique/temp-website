@@ -770,6 +770,7 @@ form.btn{
     text-align: center;
     bottom: -30%;
     font-size: 1.3vmax;
+    z-index: 30;
 }
 
 #download-lineup{

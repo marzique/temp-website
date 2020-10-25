@@ -64,7 +64,7 @@ class Forecast(models.Model):
         predicted_winner = self.get_winner_from_score(predicted_score)
         # at least 5 points
         if winner == predicted_winner:
-            matches = len(set(fixture.score) & set(predicted_score))
+            matches = self.matched_goals_both(fixture.score, predicted_score)
             if matches == 2:
                 return EXACT_SCORE_POINTS
             if matches == 1:
@@ -80,6 +80,14 @@ class Forecast(models.Model):
             return -1
         else:
             return 0
+
+    def matched_goals_both(self, score1, score2):
+        matched = 0
+        for pair in zip(score1, score2):
+            # pair has 2 same integers
+            if pair[1:] == pair[:-1]:
+                matched += 1
+        return matched
 
 
 class Season(models.Model):

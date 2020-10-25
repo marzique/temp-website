@@ -23,7 +23,7 @@ class Profile(models.Model):
     # {forecast_id: points, }
     forecasts_points = models.JSONField(blank=True, null=True, default=dict)
     favourite_team = models.ForeignKey(Team, on_delete=models.SET_NULL, blank=True, null=True)
-    total_points = models.PositiveIntegerField(default=0)
+    total_points = models.PositiveIntegerField(default=0, editable=False)
 
     objects = ProfileManager.from_queryset(ProfileQueryset)()
 
@@ -32,19 +32,20 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         # recalculate total points each time profile saved
-        if self.pk:
-            self.total_points = self.get_total_points()
+        self.total_points = self.calculate_total_points()
         super().save(*args, **kwargs)
 
-    def get_total_points(self):
+    def calculate_total_points(self):
         """Calculate total points earned from all weeks"""
         points_total = 0
         for forecast, points in self.forecasts_points.items():
             points_total += points
+            print(forecast, points)
         return points_total
     
     def create_or_update_points(self, forecast_id, week_points):
-        self.forecasts_points[forecast_id] = week_points
+        # without str() forecasts_points JSONfield gets 2 keys both string and integer
+        self.forecasts_points[str(forecast_id)] = week_points
         self.save()
 
 

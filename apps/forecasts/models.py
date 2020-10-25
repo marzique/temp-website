@@ -4,6 +4,8 @@ from django.db import models, transaction
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import JSONField
 from django.core.exceptions import ValidationError
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 from scoreboard.models import Team
 from users.models import Profile
@@ -134,6 +136,11 @@ class Fixture(models.Model):
             if self.home_goals is None or self.guest_goals is None:
                 if self.finished:
                     raise ValidationError('Provide goals if match is finished!')
+
+    def save(self, *args, **kwargs):
+        # recalculate total points each time profile saved
+        print('Fixture saved\n\n\n\n')
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.get_home_name()} {self.home_goals}:{self.guest_goals} {self.get_guest_name()}'

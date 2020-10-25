@@ -4,6 +4,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseForbidden
 
 from forecasts.models import Forecast, Prediction
 from users.models import Profile
@@ -69,7 +70,7 @@ class PredictView(LoginRequiredMixin, View):
         forecast_id = self.kwargs['pk']
         Prediction.objects.create(
             user=request.user.profile,
-            forecast=Forecast.objects.get(),
+            forecast=Forecast.objects.get(pk=forecast_id),
             results=prediction
         )
         return redirect('forecast-detail', pk=forecast_id)
@@ -82,3 +83,13 @@ class PredictView(LoginRequiredMixin, View):
                 scores = request.POST.getlist(k)
                 prediction[pk] = [int(goals) for goals in scores]
         return prediction
+
+
+class UpdatePointsView(View):
+    def post(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseForbidden()
+        forecast_id = self.kwargs['pk']
+        forecast = Forecast.objects.get(pk=forecast_id)
+        forecast.update_profile_points()
+        return redirect('forecast-detail', pk=forecast_id)

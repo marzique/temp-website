@@ -575,6 +575,7 @@ footer .socials img{
     color: white;
     height: 48px;
     transform: skewX(-15deg);
+    margin-top: 10px;
 }
 
 .scoreboard .team{
@@ -622,7 +623,6 @@ footer .socials img{
 
 #refresh-scoreboard{
     height: 0;
-    margin-bottom: 10px;
     transition: all .3s ease-in-out;
 }
 

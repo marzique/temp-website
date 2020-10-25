@@ -23,6 +23,8 @@ class SeasonAdmin(admin.ModelAdmin):
 @admin.register(Fixture)
 class FixtureAdmin(admin.ModelAdmin):
     list_display = ('id', '__str__', 'finished')
+    list_filter = ('forecast',)
+
 
 
 @admin.register(Prediction)

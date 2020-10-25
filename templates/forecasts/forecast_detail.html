@@ -16,10 +16,12 @@
         {% endif %}
     </div>
     <div class="container">
-        <form action="{% url 'update-points' pk=object.pk %}" method="post">
-            {% csrf_token %}
-            <button type="submit" id="update-points">Оновити бали</button>
-        </form>
+        {% if user.is_staff %}
+            <form action="{% url 'update-points' pk=object.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit" id="update-points">Оновити бали</button>
+            </form>
+        {% endif %}
         <form action="{% url 'predict' pk=object.pk %}" method="post">
             {% csrf_token %}
             <div class="wrapper">

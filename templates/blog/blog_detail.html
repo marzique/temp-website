@@ -30,6 +30,13 @@
     <div class="container">
         {% for comment in object.comments.all %}
             <div class="comment shadow">
+                {% with avatar=comment.author.profile.avatar %}
+                    {% if avatar %}
+                        <img src="{{ avatar.url }}" class="avatar">
+                    {% else %}
+                        <img src="{% static 'img/no_avatar.png' %}" class="avatar">
+                    {% endif %}
+                {% endwith %}
                 <p class="text">{{comment.text}}</p>
                 <p class="date">{{comment.posted|date:"d/m/Y G:i"}}</p>
                 {% if comment.author %}

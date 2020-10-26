@@ -1,5 +1,9 @@
-from django.contrib.auth.forms import UserCreationForm
 from django import forms
+from django.contrib.auth.forms import (
+    AuthenticationForm, 
+    UsernameField, 
+    UserCreationForm
+)
 from django.contrib.auth.models import User
 from django.contrib.auth import (
     authenticate, get_user_model, password_validation,
@@ -44,3 +48,17 @@ class CustomUserCreationForm(UserCreationForm):
             user.save()
 
         return user
+
+
+class CustomAuthenticationForm(AuthenticationForm):
+    """Overwrite field labels"""
+    
+    username = UsernameField(
+        label='Логін або email',
+        widget=forms.TextInput(attrs={'autofocus': True})
+    )
+    password = forms.CharField(
+        label='Пароль',
+        strip=False,
+        widget=forms.PasswordInput,
+    )

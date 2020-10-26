@@ -24,6 +24,7 @@ class Profile(models.Model):
     forecasts_points = models.JSONField(blank=True, null=True, default=dict)
     favourite_team = models.ForeignKey(Team, on_delete=models.SET_NULL, blank=True, null=True)
     total_points = models.PositiveIntegerField(default=0, editable=False)
+    avatar = models.ImageField(upload_to='avatars/', blank=True)
 
     objects = ProfileManager.from_queryset(ProfileQueryset)()
 

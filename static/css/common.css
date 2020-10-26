@@ -970,7 +970,7 @@ form.btn{
 }
 
 #comments .comment{
-    padding: 40px 60px;
+    padding: 40px 70px;
     position: relative;
     margin: 20px 0;
 }
@@ -988,6 +988,15 @@ form.btn{
 
 #comments .date{
     bottom: 5px;
+}
+
+#comments .avatar{
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    left: 10px;
+    top: 24px;
 }
 
 #comments .author{

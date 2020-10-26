@@ -7,16 +7,13 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    # comings soon TEMPORARY main page
-    # path('', include('comingsoon.urls')),
-
     # Main page
     path('', include('main.urls')),
     
-    # Team
+    # Team Players
     path('squad/', include('squad.urls')),
 
-    # Scoreboard
+    # Scoreboard and matches
     path('scoreboard/', include('scoreboard.urls')),
 
     # Blog
@@ -26,11 +23,9 @@ urlpatterns = [
     path('forecasts/', include('forecasts.urls')),
 
     # Authentication
-    path('login/', auth_views.LoginView.as_view(template_name='auth/login.html'),
-        name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('register/', include('users.urls')),
-
+    path('auth/', include('users.urls')),
+    path('account/', include('users.account_urls')),
+    
     # enable the admin interface
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

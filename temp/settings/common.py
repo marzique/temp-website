@@ -130,6 +130,15 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'marzique@gmail.com'
+EMAIL_HOST_PASSWORD = 'Goofy282818trax18'
+DEFAULT_FROM_EMAIL = 'noreply@tempfc.club'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+SERVER_EMAIL = 'errors@tempfc.club'
+
 
 # ##### DEBUG CONFIGURATION ###############################
 DEBUG = False

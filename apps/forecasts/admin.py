@@ -10,7 +10,7 @@ class FixtureInline(admin.TabularInline):
 
 @admin.register(Forecast)
 class ForecastAdmin(admin.ModelAdmin):
-    list_display = ('season', 'week')
+    list_display = ('week', 'season')
 
     inlines = [FixtureInline, ]
 

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{{user.username}}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {{ user.username }}<br>
+        {{ user.email }}<br>
+        {{ user.first_name}} {{ user.last_name}}<br>
+        Points: {{ user.profile.total_points}}<br>
+        Fav Team: {{ user.profile.favourite_team }}
+        <img src="{{ user.profile.avatar.url }}">
+    </div>
+  
+{% endblock %}

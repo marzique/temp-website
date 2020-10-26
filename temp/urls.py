@@ -25,6 +25,9 @@ urlpatterns = [
     # Authentication
     path('auth/', include('users.urls')),
     path('account/', include('users.account_urls')),
+
+    # CKEditor
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     
     # enable the admin interface
     path('admin/', admin.site.urls),

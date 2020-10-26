@@ -1,5 +1,6 @@
 
 from colorhash import ColorHash
+from ckeditor_uploader.fields import RichTextUploadingField
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -9,7 +10,7 @@ from squad.models import Player
 
 class Blog(models.Model):
     title = models.CharField(max_length=500, null=False, blank=False)
-    text = models.TextField(blank=False, null=False)
+    text = RichTextUploadingField(blank=False, null=False)
     image = models.ImageField(upload_to='blogs/', blank=False, null=False)
     author = models.ForeignKey(
         User, 

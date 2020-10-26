@@ -19,6 +19,7 @@ postgresql-contrib = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
 colorhash = "*"
+django-ckeditor = "*"
 
 [requires]
 python_version = "3.8"

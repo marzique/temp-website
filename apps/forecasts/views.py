@@ -36,21 +36,20 @@ class ForecastDetailView(DetailView):
         """
         Check if user already voted this week.
         """
+
         user = self.request.user.profile
         return Prediction.objects.filter(user=user, forecast__pk=self.kwargs['pk']).exists()
 
     def _can_vote(self, **kwargs):
         """
-        User can vote if:
-        1) he is authenticated
-        2) didn't vote this week
-        3) forecast is active.
+        Didn't vote yet, and this forecast is active.
         """
+
         if not self._voted(**kwargs):
             if self.get_object().status == Forecast.ACTIVE:
                 return True
         return False
-        
+
 
 class ForecastListView(ListView):
     model = Forecast

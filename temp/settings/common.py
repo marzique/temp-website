@@ -46,9 +46,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     # libs
     'django_extensions',
     'aboutconfig',
+    'ckeditor',
+    'ckeditor_uploader',
 
     # custom apps
     'comingsoon',
@@ -123,6 +126,28 @@ STATIC_URL = '/static/'
 
 # the URL for media files
 MEDIA_URL = '/media/'
+
+
+####################################
+##  CKEDITOR CONFIGURATION ##
+####################################
+
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+
+CKEDITOR_UPLOAD_PATH = 'blogs/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+    },
+}
+
+CKEDITOR_BROWSE_SHOW_DIRS = True
+
+
+###################################
+
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',

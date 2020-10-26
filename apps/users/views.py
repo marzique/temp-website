@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 
 
 from users.forms import CustomUserCreationForm, CustomAuthenticationForm  
+from forecasts.models import Forecast, Prediction
 
 
 class RegisterView(CreateView):
@@ -51,5 +52,19 @@ class AccountView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
         context['user'] = user
+        context['stats'] = self._get_forecasts_stats()
         return context
+
+    def _get_forecasts_stats(self):
+        user = self.request.user
+        stats = {}
+
+        predictions = Prediction.objects.filter(user=user.profile)
+        for prediction in predictions:
+            name = str(prediction)
+            points = user.profile.forecasts_points[str(prediction.forecast.id)]
+            stats[name] = points
+
+        print(stats)
+        return stats
     

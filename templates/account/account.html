@@ -4,7 +4,48 @@
 {% block title %}{{user.username}}{% endblock %}
 
 {% block content %}
+<section id="account">
     <div class="container">
+        <div class="wrapper">
+            <div class="user-profile shadow">
+                <form action="#">
+                    {% with avatar=user.profile.avatar %}
+                        {% if avatar %}
+                            <img src="{{ avatar.url }}" class="avatar">
+                        {% else %}
+                            <img src="{% static 'img/no_avatar.png' %}" class="avatar">
+                        {% endif %}
+                    {% endwith %}
+                    
+                    <input type="text" class="username shadow" name="username" value="{{ user.username }}" disabled>
+
+                    {% if user.is_staff %}
+                        <p class="admin">адміністратор</p>
+                    {% endif %}
+
+                    <input type="text" class="first_name shadow" name="first_name" value="{{ user.first_name }}" disabled>
+                    <input type="text" class="last_name shadow" name="last_name" value="{{ user.last_name }}" disabled>
+                    <input type="email" class="email shadow" name="email" value="{{ user.email }}" disabled>
+
+                </form>
+
+            </div>
+            <div class="info shadow">
+                <h2>Прогнози</h2>
+                <p class="points">Бали: <span>{{ user.profile.total_points }}</span></p>
+                <p class="place">Місце: <span>1</span></p>
+
+                <div class="predictions">
+                    {% for name, points in stats.items %}
+                        {{ name }}: +{{ points }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <!-- <div class="container">
         {{ user.username }}<br>
         {{ user.email }}<br>
         {{ user.first_name}} {{ user.last_name}}<br>
@@ -18,6 +59,6 @@
                 <img src="{% static 'img/no_avatar.png' %}" class="avatar">
             {% endif %}
         {% endwith %}
-    </div>
+    </div> -->
   
 {% endblock %}

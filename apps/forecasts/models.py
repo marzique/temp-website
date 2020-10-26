@@ -139,7 +139,10 @@ class Fixture(models.Model):
 
     def save(self, *args, **kwargs):
         # recalculate total points each time profile saved
-        print('Fixture saved\n\n\n\n')
+        if isinstance(self.home_goals, int) and isinstance(self.guest_goals, int):
+            self.finished = True
+        else:
+            self.finished = False
         super().save(*args, **kwargs)
 
     def __str__(self):

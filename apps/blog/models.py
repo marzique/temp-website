@@ -25,6 +25,9 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = ['-posted']
+
 
 class Category(models.Model):
     name = models.CharField(max_length=15, null=False, blank=False)

@@ -1090,7 +1090,8 @@ form.btn{
 
 #forecast.editable #predict,
 #forecast #reset,
-#forecast #update-points{
+#forecast #update-points,
+.square-btn{
     display: initial;
     outline: none;
     background-color: #44c379;
@@ -1105,11 +1106,14 @@ form.btn{
     position: relative;
 }
 
-#forecast #reset{
+
+#forecast #reset,
+.square-btn.red{
     background-color: #c36844;
 }
 
-#forecast #update-points{
+#forecast #update-points,
+.square-btn.blue{
     background-color: #44c3bd;
 }
 

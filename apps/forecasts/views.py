@@ -5,6 +5,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseForbidden
+from django.utils import timezone
 
 from forecasts.models import Forecast, Prediction
 from users.models import Profile
@@ -16,13 +17,19 @@ class ForecastDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        if timezone.now() >= self.object.deadline:
+            self.object.status = Forecast.STARTED
+            self.object.save()
+
         if self.request.user.is_authenticated:
             context['can_vote'] = self._can_vote(**kwargs)
+
             if self._voted(**kwargs):
                 user = self.request.user.profile
                 results = Prediction.objects.get(user=user, forecast__pk=self.kwargs['pk']).results
                 context['results'] = self._results_to_int_keys(results)
-
+            
         return context
 
     def _results_to_int_keys(self, results):
@@ -90,6 +97,10 @@ class UpdatePointsView(View):
         forecast_id = self.kwargs['pk']
         forecast = Forecast.objects.get(pk=forecast_id)
         forecast.update_profile_points()
+        # change status if all matches are finished 
+        if all(forecast.fixtures.values_list('finished', flat=True)):
+            forecast.status = forecast.CALCULATED
+            forecast.save()
         return redirect('forecast-detail', pk=forecast_id)
 
 

@@ -18,6 +18,7 @@ class ForecastDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        # Trigger forecast status change when user requests page after deadline
         if timezone.now() >= self.object.deadline:
             self.object.status = Forecast.STARTED
             self.object.save()

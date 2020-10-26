@@ -10,7 +10,7 @@
 <section id="posts">
     <div class="container">
         <div class="wrapper">
-            {% for post in object_list %}
+            {% for post in page_obj %}
                 <a href="{% url 'blog-detail' pk=post.pk %}">
                     <div class="post shadow">
                         <div class="image" style="background-image: url({{ post.image.url }})">
@@ -24,6 +24,28 @@
                     </div>
                 </a>
             {% endfor %}
+        </div>
+    </div>
+    <div class="container">
+        <div class="pagination">
+            
+            <div class="links">
+                {% if page_obj.previous_page_number != 1 %}
+                    <a href="?page=1" class="first">1</a>
+                    <p class="filler">. . .</p>
+                {% endif %}
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                {% endif %}
+                <a href="#" class="current">{{ page_obj.number }}</a>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                {% endif %}
+                {% if page_obj.next_page_number != page_obj.paginator.num_pages  %}
+                    <p class="filler">. . .</p>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="last">{{ page_obj.paginator.num_pages }}</a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </section>

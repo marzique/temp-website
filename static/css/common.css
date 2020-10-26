@@ -1027,6 +1027,44 @@ form.btn{
     resize: none;
 }
 
+.pagination{
+    margin-bottom: 40px;
+}
+
+.pagination .links{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination .links > a{
+    height: 30px;
+    width: 30px;
+    background-color: #0d2e52;
+    margin: 0 10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s ease-in-out;
+}
+
+.pagination .links > a:hover{
+    background-color: #c34483;
+}
+
+.pagination .links > a.current{
+    background-color: #0691f5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.pagination .links > p.filler{
+    height: 30px;
+    text-align: center;
+}
+
+
 /* Forecasts */
 
 #rules,

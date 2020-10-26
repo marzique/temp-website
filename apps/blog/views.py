@@ -15,6 +15,7 @@ from blog.forms import BlogCommentForm
 
 class BlogListView(ListView):
     template_name = 'blog/blog_list.html'
+    paginate_by = 9
 
     def get_queryset(self):
         return Blog.objects.filter(posted__lte=timezone.localtime(timezone.now()))

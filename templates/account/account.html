@@ -9,7 +9,14 @@
         {{ user.first_name}} {{ user.last_name}}<br>
         Points: {{ user.profile.total_points}}<br>
         Fav Team: {{ user.profile.favourite_team }}
-        <img src="{{ user.profile.avatar.url }}">
+
+        {% with avatar=user.profile.avatar %}
+            {% if avatar %}
+                <img src="{{ avatar.url }}" class="avatar">
+            {% else %}
+                <img src="{% static 'img/no_avatar.png' %}" class="avatar">
+            {% endif %}
+        {% endwith %}
     </div>
   
 {% endblock %}

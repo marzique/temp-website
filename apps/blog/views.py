@@ -30,7 +30,7 @@ class BlogDetailView(DetailView):
         post = self.get_object()
 
         context['next_post'] = Blog.objects.filter(posted__gt=post.posted).order_by('posted').first()
-        context['prev_post'] = Blog.objects.filter(posted__lt=post.posted).order_by('posted').first()
+        context['prev_post'] = Blog.objects.filter(posted__lt=post.posted).order_by('-posted').first()
         context['comment_form'] = BlogCommentForm(self.request.POST or None)
         return context
 

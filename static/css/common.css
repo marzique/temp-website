@@ -364,6 +364,11 @@ footer .socials img{
     flex-direction: column;
     margin-right: 20px;
     width: 312px;
+    transition: all .3s ease-in-out;
+}
+
+#posts .post:hover{
+    transform: scale(1.05);
 }
 
 #posts a:nth-of-type(3n+3) .post{
@@ -443,6 +448,7 @@ footer .socials img{
     align-items: center;
     justify-content: center;
     position: relative;
+    transition: all .3s ease-in-out;
 }
 
 #info-tables .fixtures .match #countdown{
@@ -451,6 +457,11 @@ footer .socials img{
 
 #info-tables .fixtures .next-match{
     margin-bottom: 20px;
+}
+
+
+#info-tables .fixtures .match:hover{
+    transform: scale(1.05);
 }
 
 #info-tables .type{

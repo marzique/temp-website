@@ -1088,7 +1088,9 @@ form.btn{
     display: none;
 }
 
-#forecast.editable #predict{
+#forecast.editable #predict,
+#forecast #reset,
+#forecast #update-points{
     display: initial;
     outline: none;
     background-color: #44c379;
@@ -1101,6 +1103,18 @@ form.btn{
     margin: 20px 0;
     left: 50%;
     position: relative;
+}
+
+#forecast #reset{
+    background-color: #c36844;
+}
+
+#forecast #update-points{
+    background-color: #44c3bd;
+}
+
+#forecast.editable #reset{
+    display: none;
 }
 
 #forecast .fixture .team img{

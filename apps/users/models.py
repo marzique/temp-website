@@ -41,7 +41,6 @@ class Profile(models.Model):
         points_total = 0
         for forecast, points in self.forecasts_points.items():
             points_total += points
-            print(forecast, points)
         return points_total
     
     def create_or_update_points(self, forecast_id, week_points):

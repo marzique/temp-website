@@ -22,7 +22,6 @@ class ForecastDetailView(DetailView):
                 user = self.request.user.profile
                 results = Prediction.objects.get(user=user, forecast__pk=self.kwargs['pk']).results
                 context['results'] = self._results_to_int_keys(results)
-                print(context['results'])
 
         return context
 
@@ -91,4 +90,17 @@ class UpdatePointsView(View):
         forecast_id = self.kwargs['pk']
         forecast = Forecast.objects.get(pk=forecast_id)
         forecast.update_profile_points()
+        return redirect('forecast-detail', pk=forecast_id)
+
+
+class ResetPredictionView(View):
+    """Delete prediction of user for forecast"""
+
+    def post(self, request, *args, **kwargs):
+        profile = request.user.profile
+        forecast_id = self.kwargs['pk']
+        forecast = Forecast.objects.get(pk=forecast_id)
+        prediction = Prediction.objects.get(user=profile, forecast=forecast)
+        prediction.delete()
+
         return redirect('forecast-detail', pk=forecast_id)

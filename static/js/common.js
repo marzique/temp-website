@@ -1,5 +1,21 @@
 $(function() {
 
+    let good = '#44c379'
+    let bad = '#c34444'
+    let status = '#44c3bd'
+
+    function notification(text, color){
+        Toastify({
+            text: text,
+            duration: 3000, 
+            gravity: "top", // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            backgroundColor: color,
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            onClick: function(){} // Callback after click
+        }).showToast();
+    }
+
     // Sticky HEADER
     var sticky = $('header.sticky');
     var fixed = $('header.fixed');
@@ -18,5 +34,5 @@ $(function() {
     // Next Match countdown
     if ($('#countdown').length){
         var countdownHtml = $('#countdown');
-      }
+    }
 });

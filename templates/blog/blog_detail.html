@@ -52,7 +52,7 @@
             <form method="post" action="{% url 'comment' pk=object.pk %}" class="shadow">
                 {% csrf_token %}
                 {{ comment_form }}
-                <button type="submit">Прокоментувати</button>
+                <button type="submit" class="square-btn">Прокоментувати</button>
             </form>
         {% else %}
             Для комментування авторизуйтесь

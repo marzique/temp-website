@@ -1117,6 +1117,14 @@ form.btn{
     transform: skewX(15deg);
 }
 
+#users .user > div.place{
+    width: 20px;
+}
+
+#users .user:not(.heading) > div.place{
+    color: grey;
+}
+
 #forecasts .forecast > div,
 #users .user > div{
     width: 200px;

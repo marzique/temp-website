@@ -74,6 +74,9 @@
     <div class="container">
         
         <div class="user heading">
+            <div class="place">
+                Місце
+            </div>
             <div class="username">
                 Користувач
             </div>
@@ -87,6 +90,9 @@
 
         {% for profile in user_profiles %}
             <div class="user">
+                <div class="place">
+                    {{ forloop.counter }}
+                </div>
                 <div class="username">
                     {{ profile.user.username }}
                 </div>

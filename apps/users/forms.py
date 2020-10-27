@@ -54,7 +54,6 @@ class CustomUserCreationForm(UserCreationForm):
 
 class CustomAuthenticationForm(AuthenticationForm):
     """Overwrite field labels"""
-    file = forms.FileField()
     username = UsernameField(
         label='Логін або email',
         widget=forms.TextInput(attrs={'autofocus': True})

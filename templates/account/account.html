@@ -31,34 +31,37 @@
 
             </div>
             <div class="info shadow">
-                <h2>Прогнози</h2>
-                <p class="points">Бали: <span>{{ user.profile.total_points }}</span></p>
-                <p class="place">Місце: <span>1</span></p>
-
-                <div class="predictions">
-                    {% for name, points in stats.items %}
-                        {{ name }}: +{{ points }}
-                    {% endfor %}
+                <div class="tabs">
+                    <p class="tab chosen">Прогнози</p>
+                    <p class="tab">Коментарі</p>
+                    <p class="tab tba">TBA</p>
+                    <p class="tab tba">TBA</p>
+                </div>
+                <div class="wrapper chosen">
+                    <div class="summary">
+                        <p class="points">Бали: <span>{{ user.profile.total_points }}</span></p>
+                        <p class="place">Місце: <span>1</span></p>
+                    </div>
+    
+                    <div class="predictions">
+                        <div class="prediction heading">
+                            <div class="name">Ліга/Тур</div>
+                            <div class="points">Бали</div>
+                        </div>
+                        
+                        {% for name, points in stats.items %}
+                            <div class="prediction">
+                                <div class="name">{{ name }}</div>
+                                <div class="points">{{ points }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="wrapper">
+                    TBA CONTENT
                 </div>
             </div>
         </div>
     </div>
 </section>
-    
-    <!-- <div class="container">
-        {{ user.username }}<br>
-        {{ user.email }}<br>
-        {{ user.first_name}} {{ user.last_name}}<br>
-        Points: {{ user.profile.total_points}}<br>
-        Fav Team: {{ user.profile.favourite_team }}
-
-        {% with avatar=user.profile.avatar %}
-            {% if avatar %}
-                <img src="{{ avatar.url }}" class="avatar">
-            {% else %}
-                <img src="{% static 'img/no_avatar.png' %}" class="avatar">
-            {% endif %}
-        {% endwith %}
-    </div> -->
-  
 {% endblock %}

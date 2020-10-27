@@ -1085,6 +1085,11 @@ form.btn{
     color: #44c379;
 }
 
+#rules code{
+    color: grey;
+    font-size: 14px;
+}
+
 #forecasts .forecast,
 #users .user{
     display: flex;
@@ -1283,6 +1288,7 @@ form.btn{
     padding: 30px 0;
     margin-right: 20px;
     position: relative;
+    height: max-content;
 }
 
 
@@ -1294,7 +1300,103 @@ form.btn{
 
 #account .info{
     width: 65%;
-    padding: 40px 30px;
+    position: relative;
+}
+
+#account .info .wrapper{
+    padding: 80px 30px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#account .info .wrapper:not(.chosen){
+    display: none;
+}
+
+#account .tabs{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 40px;
+    border-bottom: 1px solid #c3448479;
+}
+
+#account .tab{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+#account .tab.tba{
+    background-color: rgb(239, 239, 239);
+    border-left: 1px solid white;
+    pointer-events: none;
+    cursor: none;
+}
+
+#account .tab:not(.chosen){
+    opacity: .5;
+    border-right: 1px solid #7f98b3;
+}
+
+#account .tab.chosen{
+    background-color: #0d2e52;
+    color: white;
+}
+
+#account .info h2{
+}
+
+#account .info .summary{
+    display: flex;
+}
+
+#account .info .summary p{
+    font-size: 20px;
+    margin: 0 20px;
+}
+
+#account .info .summary p span{
+    font-size: 50px;
+    font-weight: 700;
+    color: #0d2e52;
+}
+
+#account .predictions{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 20px 0;
+}
+
+#account .prediction.heading{
+    background-color: #c34483;
+    color: white;
+    transform: skewX(-15deg);
+}
+
+#account .prediction.heading > div{
+    transform: skewX(15deg);
+}
+
+#account .prediction{
+    padding: 20px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    border-bottom: 1px solid rgb(239, 239, 239);
+}
+
+#account .prediction > div{
+    width: 50%;
+    text-align: center;
 }
 
 #account .avatar{
@@ -1313,10 +1415,10 @@ form.btn{
 
 #account .admin{
     position: absolute;
-    top: 7px;
+    top: 14px;
     font-size: 14px;
     font-weight: 300;
-    color: red;
+    color: #c34483;
 }
 
 #account input:disabled{

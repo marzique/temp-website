@@ -35,4 +35,15 @@ $(function() {
     if ($('#countdown').length){
         var countdownHtml = $('#countdown');
     }
+
+    // Tabs switcher
+    if ($('.tabs').length){
+
+        // thanks to https://denis-creative.com/jquery-tabs/
+        $('.tabs').on('click', '.tab:not(.chosen)', function() {
+            $(this)
+                .addClass('chosen').siblings().removeClass('chosen')
+                .closest('.info').find('.wrapper').removeClass('chosen').eq($(this).index()).addClass('chosen');
+        });
+    }
 });

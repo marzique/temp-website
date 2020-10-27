@@ -64,7 +64,7 @@
                     <p class="author" style="color: #888;">Видалено</p>
                 {% endif %}
 
-                {% if user.is_authenticated %}
+                {% if comment.author == user %}
                     <form method="post" action="{% url 'delete-comment' pk=comment.pk %}" id="delete-form">
                         {% csrf_token %}
                         <button type="submit" class="square-btn red">X</button>

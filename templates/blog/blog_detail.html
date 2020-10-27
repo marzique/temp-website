@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load blog_extras %}
 
 {% block title %}{{ object.title }}{% endblock %}
 
@@ -29,12 +30,12 @@
         <div class="wrapper">
             <form action="{% url 'post-react' pk=object.pk %}?type=like" method="post">
                 {% csrf_token %}
-                <span class="triangle {% if object.liked %}active{% endif %}"></span>
+                <span class="triangle {% if object|liked_by:user %}active{% endif %}"></span>
                 <span class="likes">{{ object.likes_total }}</span>
             </form>
             <form action="{% url 'post-react' pk=object.pk %}?type=dislike" method="post">
                 {% csrf_token %}
-                <span class="triangle dislike {% if object.disliked %}active{% endif %}"></span>
+                <span class="triangle dislike {% if object|disliked_by:user %}active{% endif %}"></span>
                 <span class="dislikes">{{ object.dislikes_total }}</span>
             </form>
         </div>

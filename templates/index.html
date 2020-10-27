@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load blog_extras %}
 
 {% block title %}Головна{% endblock %}
 
@@ -39,9 +40,9 @@
                         <h2>{{ post.category.name }}</h2>
                         <h1>{{ post.title }}</h1>
                         <p>
-                            <span class="triangle {% if post.liked %}active{% endif %}"></span>
+                            <span class="triangle {% if post|liked_by:user %}active{% endif %}"></span>
                             <span class="likes">{{ post.likes_total }}</span>
-                            <span class="triangle dislike {% if post.disliked %}active{% endif %}"></span>
+                            <span class="triangle dislike {% if post|disliked_by:user %}active{% endif %}"></span>
                             <span class="dislikes">{{ post.dislikes_total }}</span>
                             {{ post.posted|date:"d/m/Y G:i" }}
                         </p>

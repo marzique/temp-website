@@ -51,6 +51,12 @@ class Blog(models.Model):
     class Meta:
         ordering = ['-posted']
 
+    def liked_by(self, user):
+        return self.likes.filter(author=user, dislike=False).exists()
+
+    def disliked_by(self, user):
+        return self.likes.filter(author=user, dislike=True).exists()
+
 
 class Category(models.Model):
     name = models.CharField(max_length=15, null=False, blank=False)

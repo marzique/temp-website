@@ -25,8 +25,7 @@ class BlogListView(ListView):
         qs = Blog.objects.with_likes()\
             .filter(posted__lte=timezone.localtime(timezone.now()))
 
-        if user.is_authenticated:
-            qs = qs.with_liked_disliked(user)
+        qs = qs.with_liked_disliked(user)
 
         return qs
 
@@ -37,9 +36,8 @@ class BlogDetailView(DetailView):
         user = self.request.user
         qs = Blog.objects.with_likes()\
             .filter(posted__lte=timezone.localtime(timezone.now()))
-
-        if user.is_authenticated:
-            qs = qs.with_liked_disliked(user)
+        
+        qs = qs.with_liked_disliked(user)
 
         return qs
 

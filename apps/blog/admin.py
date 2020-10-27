@@ -30,4 +30,10 @@ class CommentAdmin(admin.ModelAdmin):
 
 @admin.register(Like)
 class Like(admin.ModelAdmin):
-    pass
+    list_display = ('author', 'instance', 'dislike')
+
+    def instance(self, obj):
+        if obj.post:
+            return f'Post: {obj.post}'
+        else:
+            return f'Comment: {obj.comment}'

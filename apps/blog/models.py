@@ -111,7 +111,7 @@ class Like(models.Model):
     comment = models.ForeignKey(
         Comment, 
         on_delete=models.CASCADE, 
-        blank=False, 
+        blank=True, 
         null=True,
         related_name='likes'
     )

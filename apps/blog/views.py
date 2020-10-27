@@ -1,7 +1,7 @@
 from django.views import View
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
 from django.utils import timezone
@@ -23,9 +23,8 @@ class BlogListView(ListView):
     def get_queryset(self):
         user = self.request.user
         qs = Blog.objects.with_likes()\
-            .filter(posted__lte=timezone.localtime(timezone.now()))
-
-        qs = qs.with_liked_disliked(user)
+            .filter(posted__lte=timezone.localtime(timezone.now()))\
+            .with_liked_disliked(user)
 
         return qs
 
@@ -35,9 +34,8 @@ class BlogDetailView(DetailView):
     def get_queryset(self):
         user = self.request.user
         qs = Blog.objects.with_likes()\
-            .filter(posted__lte=timezone.localtime(timezone.now()))
-        
-        qs = qs.with_liked_disliked(user)
+            .filter(posted__lte=timezone.localtime(timezone.now()))\
+            .with_liked_disliked(user)
 
         return qs
 
@@ -53,8 +51,8 @@ class BlogDetailView(DetailView):
 
 
 class CreateCommentView(LoginRequiredMixin, CreateView):
-    model = Comment
     fields = ['text',]
+    model = Comment
 
     def get_success_url(self):
         return reverse('blog-detail', kwargs={'pk': self.object.post.pk})
@@ -64,7 +62,16 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
         blog = Blog.objects.get(id=self.kwargs['pk'])
         form.instance.post = blog
         return super().form_valid(form)
-    
+
+
+class DeleteCommentView(LoginRequiredMixin, DeleteView):
+
+    def get_queryset(self):
+        return Comment.objects.filter(author=self.request.user)
+
+    def get_success_url(self):
+        return reverse('blog-detail', kwargs={'pk': self.object.post.pk})
+
 
 class LikeDislikeView(LoginRequiredMixin, View):
 

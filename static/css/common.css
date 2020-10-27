@@ -1042,8 +1042,16 @@ form.btn{
     margin: 20px 0;
 }
 
-#comments .text{
+#comments #delete-form{
+    position: absolute;
+    padding: 0;
+    right: 10px;
+    top: 10px;
+}
 
+#delete-form button{
+    width: 30px;
+    height: 30px;
 }
 
 #comments .date,

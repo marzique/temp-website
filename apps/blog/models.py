@@ -32,7 +32,7 @@ class BlogQueryset(models.QuerySet):
         """
         Check if user already liked/disliked
         """
-        print('called')
+        print(user)
 
         qs = self.annotate(liked=Count('likes', filter=Q(author__id=user.id, likes__dislike=False)))\
                 .annotate(disliked=Count('likes', filter=Q(author=user.id, likes__dislike=True)))\

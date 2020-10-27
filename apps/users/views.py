@@ -17,6 +17,7 @@ from users.forms import (
     EditUserForm,
     EditProfileForm,
 )
+from users.models import Profile
 from forecasts.models import Forecast, Prediction
 
 
@@ -62,6 +63,7 @@ class AccountView(LoginRequiredMixin, TemplateView):
         user = self.request.user
         context['user'] = user
         context['stats'] = self._get_forecasts_stats()
+        context['place'] = self._get_place()
         return context
 
     def _get_forecasts_stats(self):
@@ -74,8 +76,10 @@ class AccountView(LoginRequiredMixin, TemplateView):
             points = user.profile.forecasts_points[str(prediction.forecast.id)]
             stats[name] = points
 
-        print(stats)
         return stats
+
+    def _get_place(self):
+        return Profile.objects.filter(total_points__gt=self.request.user.profile.total_points).count() + 1
     
 
 class EditUserProfileView(LoginRequiredMixin, View):

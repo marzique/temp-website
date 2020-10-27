@@ -17,7 +17,7 @@
                             <img src="{% static 'img/no_avatar.png' %}" class="avatar">
                         {% endif %}
                     {% endwith %}
-                    <input type="file" id="avatar" name="avatar" accept="image/*">
+                    <input type="file" id="avatar" name="avatar" accept="image/*" >
                     
                     <input type="text" class="username shadow" name="username" value="{{ user.username }}" disabled>
 
@@ -45,7 +45,7 @@
                 <div class="wrapper chosen">
                     <div class="summary">
                         <p class="points">Бали: <span>{{ user.profile.total_points }}</span></p>
-                        <p class="place">Місце: <span>1</span></p>
+                        <p class="place">Місце: <span>{{ place }}</span></p>
                     </div>
     
                     <div class="predictions">

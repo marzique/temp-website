@@ -22,11 +22,14 @@ class MainPageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        user = self.request.user
 
         context['scoreboard'] = Team.objects.all()
         context['next_match'] = Match.objects.filter(next=True).first()
         context['prev_match'] = Match.objects.filter(prev=True).first()
-        context['last_posts'] = Blog.objects.filter(posted__lte=timezone.localtime(timezone.now())).order_by('-posted')[:3]
+        context['last_posts'] = Blog.objects.with_likes().filter(posted__lte=timezone.localtime(timezone.now())).order_by('-posted')[:3]
+        if user.is_authenticated:
+            context['last_posts'] = context['last_posts'].with_liked_disliked(user)
         return context
 
     @transaction.atomic

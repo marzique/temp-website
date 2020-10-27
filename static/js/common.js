@@ -55,4 +55,12 @@ $(function() {
             $('#account #edit-profile, #avatar').show();
        });
     }
+
+    // Like/Dislike 
+    if ($('#likes').length){
+        $('.triangle').on('click', function() {
+            let form = $(this).parent();
+            form.submit();
+       });
+    }
 });

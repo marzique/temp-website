@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 
-from blog.models import Blog, Category, Comment
+from blog.models import Blog, Category, Comment, Like
 
 
 class CommentInline(admin.TabularInline):
@@ -25,4 +25,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Like)
+class Like(admin.ModelAdmin):
     pass

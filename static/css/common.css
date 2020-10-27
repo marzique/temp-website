@@ -1133,8 +1133,7 @@ form.btn{
 
 #forecast.editable #predict,
 #forecast #reset,
-#forecast #update-points,
-.square-btn{
+#forecast #update-points{
     display: initial;
     outline: none;
     background-color: #44c379;
@@ -1146,6 +1145,18 @@ form.btn{
     cursor: pointer;
     margin: 20px 0;
     left: 50%;
+    position: relative;
+}
+
+.square-btn{
+    display: initial;
+    outline: none;
+    background-color: #44c379;
+    color: white;
+    border: none;
+    height: 48px;
+    padding: 0 10px;
+    cursor: pointer;
     position: relative;
 }
 
@@ -1292,10 +1303,26 @@ form.btn{
 }
 
 
+#account #enable-edit{
+    background-color: #c36844;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+#account #edit-profile,
+#account #avatar{
+    display: none;
+}
+
 #account .user-profile form{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#account .user-profile #edit-profile,
+#account .user-profile #enable-edit{
+    margin-top: 20px;
 }
 
 #account .info{

@@ -46,4 +46,13 @@ $(function() {
                 .closest('.info').find('.wrapper').removeClass('chosen').eq($(this).index()).addClass('chosen');
         });
     }
+
+    // Profile update
+    if ($('.user-profile').length){
+        $('#enable-edit').on('click', function() {
+            $(this).hide();
+            $('.user-profile input').prop('disabled', false);
+            $('#account #edit-profile, #avatar').show();
+       });
+    }
 });

@@ -9,6 +9,8 @@ from django.contrib.auth import (
     authenticate, get_user_model, password_validation,
 )
 
+from users.models import Profile 
+
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -52,7 +54,7 @@ class CustomUserCreationForm(UserCreationForm):
 
 class CustomAuthenticationForm(AuthenticationForm):
     """Overwrite field labels"""
-    
+    file = forms.FileField()
     username = UsernameField(
         label='Логін або email',
         widget=forms.TextInput(attrs={'autofocus': True})
@@ -62,3 +64,18 @@ class CustomAuthenticationForm(AuthenticationForm):
         strip=False,
         widget=forms.PasswordInput,
     )
+
+
+class EditUserForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ('email', 'username', 'first_name', 'last_name')
+
+
+class EditProfileForm(forms.ModelForm):
+    avatar = forms.FileField()
+    
+    class Meta:
+        model = Profile
+        fields = ('avatar', )

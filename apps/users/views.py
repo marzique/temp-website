@@ -1,5 +1,9 @@
+from django.db import transaction
 from django.urls import reverse
-from django.views.generic.edit import CreateView
+from django.http import HttpResponseForbidden, HttpResponseRedirect
+from django.views import View
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.detail import DetailView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LoginView
 from django.views.generic import TemplateView
@@ -7,7 +11,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 
 
-from users.forms import CustomUserCreationForm, CustomAuthenticationForm  
+from users.forms import (
+    CustomUserCreationForm, 
+    CustomAuthenticationForm,
+    EditUserForm,
+    EditProfileForm,
+)
 from forecasts.models import Forecast, Prediction
 
 
@@ -68,3 +77,21 @@ class AccountView(LoginRequiredMixin, TemplateView):
         print(stats)
         return stats
     
+
+class EditUserProfileView(LoginRequiredMixin, View):
+    
+    @transaction.atomic
+    def post(self, request, *args, **kwargs):
+        user = self.request.user
+        data = request.POST
+        files = request.FILES
+        user_form = EditUserForm(data, instance=user)
+        profile_form = EditProfileForm(data, files, instance=user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+
+        return HttpResponseRedirect(reverse('account'))
+
+    def get_object(self, queryset=None):
+        return self.request.user

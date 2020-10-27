@@ -8,7 +8,8 @@
     <div class="container">
         <div class="wrapper">
             <div class="user-profile shadow">
-                <form action="#">
+                <form action="{% url 'account-update' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
                     {% with avatar=user.profile.avatar %}
                         {% if avatar %}
                             <img src="{{ avatar.url }}" class="avatar">
@@ -16,6 +17,7 @@
                             <img src="{% static 'img/no_avatar.png' %}" class="avatar">
                         {% endif %}
                     {% endwith %}
+                    <input type="file" id="avatar" name="avatar" accept="image/*">
                     
                     <input type="text" class="username shadow" name="username" value="{{ user.username }}" disabled>
 
@@ -27,7 +29,10 @@
                     <input type="text" class="last_name shadow" name="last_name" value="{{ user.last_name }}" disabled>
                     <input type="email" class="email shadow" name="email" value="{{ user.email }}" disabled>
 
+                    <button type="submit" class="square-btn" id="edit-profile">Підтвердити</button>
+
                 </form>
+                <button type="submit" class="square-btn" id="enable-edit">Оновити профіль</button>
 
             </div>
             <div class="info shadow">

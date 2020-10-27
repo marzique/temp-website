@@ -23,8 +23,7 @@ class BlogListView(ListView):
     def get_queryset(self):
         user = self.request.user
         qs = Blog.objects.with_likes()\
-            .filter(posted__lte=timezone.localtime(timezone.now()))\
-            .with_liked_disliked(user)
+            .filter(posted__lte=timezone.localtime(timezone.now()))
 
         return qs
 
@@ -34,8 +33,7 @@ class BlogDetailView(DetailView):
     def get_queryset(self):
         user = self.request.user
         qs = Blog.objects.with_likes()\
-            .filter(posted__lte=timezone.localtime(timezone.now()))\
-            .with_liked_disliked(user)
+            .filter(posted__lte=timezone.localtime(timezone.now()))
 
         return qs
 
@@ -82,7 +80,8 @@ class LikeDislikeView(LoginRequiredMixin, View):
         user = self.request.user
         is_dislike = request.GET.get('type', None) == 'dislike'
         post_or_comment_id = self.kwargs['pk']
-        if request.GET.get('comment', None):
+        is_comment = request.GET.get('comment', False)
+        if is_comment:
             # Comment to like
             post_or_comment = Comment.objects.get(pk=post_or_comment_id)
         else:
@@ -93,14 +92,16 @@ class LikeDislikeView(LoginRequiredMixin, View):
         if like_qs.exists():
             like_obj = like_qs.first()
             if like_obj.dislike == is_dislike:
-                print('DELETING')
                 like_obj.delete()
             else:
                 like_obj.dislike = is_dislike
                 like_obj.save()
         else:
-            print('CREATING')
-            like_obj = Like(dislike=is_dislike, author=user, content_object=post_or_comment)
+            like_obj = Like(dislike=is_dislike, author=user)
+            if is_comment:
+                like_obj.comment = post_or_comment
+            else:
+                like_obj.post = post_or_comment
             like_obj.save()
 
         return HttpResponseRedirect(reverse('blog-detail', kwargs={'pk': self.kwargs['pk']}))

@@ -28,8 +28,6 @@ class MainPageView(TemplateView):
         context['next_match'] = Match.objects.filter(next=True).first()
         context['prev_match'] = Match.objects.filter(prev=True).first()
         context['last_posts'] = Blog.objects.with_likes().filter(posted__lte=timezone.localtime(timezone.now())).order_by('-posted')[:3]
-        if user.is_authenticated:
-            context['last_posts'] = context['last_posts'].with_liked_disliked(user)
         return context
 
     @transaction.atomic

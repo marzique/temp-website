@@ -28,31 +28,6 @@ class BlogQueryset(models.QuerySet):
         .annotate(dislikes_total=Count('likes', filter=Q(likes__dislike=True)))
         return qs
 
-    def with_liked_disliked(self, user):
-        """
-        Check if user already liked/disliked
-        """
-        print(user)
-
-        qs = self.annotate(liked=Count('likes', filter=Q(author__id=user.id, likes__dislike=False)))\
-                .annotate(disliked=Count('likes', filter=Q(author=user.id, likes__dislike=True)))\
-                .annotate(
-                    liked=Case(
-                        When(liked=0, then=Value(False)), 
-                        default=Value(True), 
-                        output_field=models.BooleanField()
-                    )
-                )\
-                .annotate(
-                    disliked=Case(
-                        When(disliked=0, then=Value(False)), 
-                        default=Value(True), 
-                        output_field=models.BooleanField()
-                    )
-                )
-        return qs
-
-
 
 class Blog(models.Model):
     title = models.CharField(max_length=500, null=False, blank=False)
@@ -67,7 +42,6 @@ class Blog(models.Model):
     created = models.DateTimeField(auto_now=True)
     posted = models.DateTimeField(null=True, blank=True)
     category = models.ForeignKey('blog.Category', on_delete=models.CASCADE)
-    likes = GenericRelation('Like')
 
     objects = BlogManager.from_queryset(BlogQueryset)()
 
@@ -101,7 +75,6 @@ class Comment(models.Model):
         null=True,
         related_name='comments'
     )
-    likes = GenericRelation('Like')
 
     def __str__(self):
         return self.text[:30]
@@ -122,12 +95,23 @@ class Like(models.Model):
         null=True
     )
 
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.PositiveIntegerField()
-    content_object=GenericForeignKey('content_type', 'object_id')
+    post = models.ForeignKey(
+        Blog,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        related_name='likes'
+    )
+    comment = models.ForeignKey(
+        Comment, 
+        on_delete=models.CASCADE, 
+        blank=False, 
+        null=True,
+        related_name='likes'
+    )
 
     dislike = models.BooleanField(default=False)
 
     class Meta:
         # One like per Post/Comment
-        unique_together = ('author', 'content_type', 'object_id')
+        unique_together = ('author', 'post')

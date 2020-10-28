@@ -504,8 +504,12 @@ footer .socials img{
     margin-bottom: 20px;
 }
 
+.expandable{
+    transition: all .3s ease-in-out;
+}
 
-#info-tables .fixtures .match:hover{
+#info-tables .fixtures .match:hover,
+.expandable:hover{
     transform: scale(1.05);
 }
 

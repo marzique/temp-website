@@ -20,14 +20,17 @@ class BlogManager(models.Manager):
 
 class BlogQueryset(models.QuerySet):
 
+    def with_comments(self):
+        qs = self.prefetch_related(
+            Prefetch('comments', queryset=Comment.objects.with_likes())
+        )
+        return qs
+
     def with_likes(self):
         """
         Count likes/dislikes
         """
-        qs = self.prefetch_related(
-            Prefetch('comments', queryset=Comment.objects.with_likes())
-        )
-        qs = qs.annotate(likes_total=Count('likes', filter=Q(likes__dislike=False)))
+        qs = self.annotate(likes_total=Count('likes', filter=Q(likes__dislike=False)))
         qs = qs.annotate(dislikes_total=Count('likes', filter=Q(likes__dislike=True)))
         
         return qs

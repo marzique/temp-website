@@ -27,7 +27,7 @@ class MainPageView(TemplateView):
         context['scoreboard'] = Team.objects.all()
         context['next_match'] = Match.objects.filter(next=True).first()
         context['prev_match'] = Match.objects.filter(prev=True).first()
-        context['last_posts'] = Blog.objects.with_likes().filter(posted__lte=timezone.localtime(timezone.now())).order_by('-posted')[:3]
+        context['last_posts'] = Blog.objects.select_related('category').with_likes().filter(posted__lte=timezone.localtime(timezone.now())).order_by('-posted')[:3]
         return context
 
     @transaction.atomic

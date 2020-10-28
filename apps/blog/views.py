@@ -28,7 +28,7 @@ class BlogListView(ListView):
 
         qs = Blog.objects.all()
         qs = qs.filter(posted__lte=timezone.localtime(timezone.now())).order_by('-posted')
-        qs = qs.with_likes()
+        qs = qs.with_likes().select_related('category')
 
         qs = self._get_searched_queryset(qs)
 
@@ -36,7 +36,6 @@ class BlogListView(ListView):
 
     def _get_searched_queryset(self, queryset):
         search_string = self.request.GET.get('query', None)
-        print(search_string)
         if search_string:
             q_condition = None
             if search_string.isdigit():
@@ -66,7 +65,7 @@ class BlogDetailView(DetailView):
 
     def get_queryset(self):
         user = self.request.user
-        qs = Blog.objects.with_likes()\
+        qs = Blog.objects.with_likes().with_comments().prefetch_related('comments__author')\
             .filter(posted__lte=timezone.localtime(timezone.now()))
 
         return qs

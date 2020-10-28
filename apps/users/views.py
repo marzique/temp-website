@@ -60,8 +60,6 @@ class AccountView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        user = self.request.user
-        context['user'] = user
         context['stats'] = self._get_forecasts_stats()
         context['place'] = self._get_place()
         return context
@@ -70,7 +68,7 @@ class AccountView(LoginRequiredMixin, TemplateView):
         user = self.request.user
         stats = {}
 
-        predictions = Prediction.objects.filter(user=user.profile)
+        predictions = Prediction.objects.select_related('user', 'forecast').filter(user=user.profile)
         for prediction in predictions:
             name = str(prediction)
             points_dict = user.profile.forecasts_points

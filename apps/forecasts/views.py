@@ -12,7 +12,12 @@ from users.models import Profile
 
 
 class ForecastDetailView(DetailView):
-    queryset = Forecast.objects.prefetch_related('predictions').all()
+    queryset = Forecast.objects.prefetch_related(
+        'predictions', 
+        'predictions__user', 
+        'fixtures__home',
+        'fixtures__guest',
+        ).all()
     template_name = 'forecasts/forecast_detail.html'
 
     def get_context_data(self, **kwargs):
@@ -28,7 +33,7 @@ class ForecastDetailView(DetailView):
 
             if self._voted(**kwargs):
                 user = self.request.user.profile
-                results = Prediction.objects.get(user=user, forecast__pk=self.kwargs['pk']).results
+                results = Prediction.objects.select_related('user').get(user=user, forecast__pk=self.kwargs['pk']).results
                 context['results'] = self._results_to_int_keys(results)
             
         return context
@@ -59,7 +64,7 @@ class ForecastDetailView(DetailView):
 
 
 class ForecastListView(ListView):
-    model = Forecast
+    queryset = Forecast.objects.select_related('season').all()
     template_name = 'forecasts/forecast_list.html'
 
     def get_context_data(self, **kwargs):

@@ -20,6 +20,7 @@ django-markdown-deux==1.0.5
 django-pagedown==2.1.2
 django-simple-blog==0.3.0
 django-simple-math-captcha==1.0.9
+django-smuggler==1.0.2
 fpdf==1.7.2
 gunicorn==20.0.4
 html5lib==1.0.1

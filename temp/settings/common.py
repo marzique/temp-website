@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'aboutconfig',
     'ckeditor',
     'ckeditor_uploader',
+    'smuggler',
 
     # custom apps
     'comingsoon',

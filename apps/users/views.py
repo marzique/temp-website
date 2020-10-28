@@ -95,8 +95,9 @@ class EditUserProfileView(LoginRequiredMixin, View):
         files = request.FILES
         user_form = EditUserForm(data, instance=user)
         profile_form = EditProfileForm(data, files, instance=user.profile)
-        if user_form.is_valid() and profile_form.is_valid():
+        if user_form.is_valid():
             user_form.save()
+        if profile_form.is_valid():
             profile_form.save()
 
         return HttpResponseRedirect(reverse('account'))

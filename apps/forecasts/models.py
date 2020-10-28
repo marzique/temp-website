@@ -199,6 +199,23 @@ class Prediction(models.Model):
     class Meta:
         #One gameweek forecast per user
         unique_together = ('user', 'forecast')
+        ordering = ['-created_at']
 
     def __str__(self):
         return f'{self.user} {self.forecast}'
+
+    @property
+    def fixtures(self):
+        fixtures = []
+        
+        for week, goals in self.results.items():
+            fixture = Fixture.objects.get(id=week)
+            home_logo = fixture.get_home_logo_url()
+            guest_logo = fixture.get_guest_logo_url()
+            fixtures.append({
+                    'home_logo': home_logo,
+                    'guest_logo': guest_logo,
+                    'goals': goals
+            })
+        return fixtures
+            

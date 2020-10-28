@@ -98,5 +98,37 @@
     </div>
 </section>
 
+<section id="predictions">
+    <div class="container">
+        <div class="wrapper">
+            {% for prediction in object.predictions.all %}
+                <div class="prediction shadow">
+                    <div class="author">
+                        {{ prediction.user }}
+                    </div>
+                    {% for fixture in prediction.fixtures %}
+                        <div class="match-prediction">
+                            <div class="team home">
+                                <img src="{{ fixture.home_logo }}" class="logo">
+                            </div>
+                            <div class="score">
+                                <div class="home_goals">{{ fixture.goals.0 }}</div>
+                                :
+                                <div class="guest_goals">{{ fixture.goals.1 }}</div>
+                            </div>
+                            <div class="team guest">
+                                <img src="{{ fixture.guest_logo }}" class="logo">
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="date">
+                        {{ prediction.created_at|date:"d/m/Y G:i" }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
     
 {% endblock %}

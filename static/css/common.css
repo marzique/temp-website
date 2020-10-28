@@ -1391,6 +1391,78 @@ form.btn{
     justify-content: flex-start;
 }
 
+#predictions{
+    margin-bottom: 40px;
+}
+
+#predictions .wrapper{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#predictions .prediction {
+    display: flex;
+    align-items: center;
+    padding: 30px 20px;
+    flex-direction: column;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 229px;
+}
+
+#predictions .prediction:nth-of-type(4n+4){
+    margin-right: 0;
+}
+
+#predictions .team .logo{
+    width: 35px;
+    height: 40px;
+    object-fit: contain;
+    object-position: center;
+}
+
+#predictions .match-prediction{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(239, 239, 239);
+    padding: 10px 20px;
+}
+
+#predictions .match-prediction .date{
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+    margin-top: 20px;
+    color: gray;
+}
+
+#predictions .match-prediction:last-child{
+    border: none;
+}
+
+#predictions .score{
+    width: 50px;
+    border: 1px solid rgb(229, 229, 229);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 5px;
+    margin: 0 15px;
+}
+
+#predictions .score .home_goals,
+#predictions .score .guest_goals
+{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* ACCOUNT */
 #account{
     margin: 40px 0;

@@ -12,7 +12,7 @@ from users.models import Profile
 
 
 class ForecastDetailView(DetailView):
-    model = Forecast
+    queryset = Forecast.objects.prefetch_related('predictions').all()
     template_name = 'forecasts/forecast_detail.html'
 
     def get_context_data(self, **kwargs):

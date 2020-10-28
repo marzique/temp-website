@@ -58,7 +58,6 @@ INSTALLED_APPS = [
     'nplusone.ext.django',
 
     # custom apps
-    'comingsoon',
     'main',
     'squad',
     'scoreboard',

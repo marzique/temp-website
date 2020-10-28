@@ -10,6 +10,7 @@
 {% endblock%}
 
 {% block content %}
+{% if last_posts %}
 <section id="post-big">
     <div class="container">
         <a href="{% url 'blog-detail' pk=last_posts.0.pk %}">
@@ -25,6 +26,7 @@
         </a>
     </div>
 </section>
+{% endif %}
 
 <section id="posts">
     <div class="container">

@@ -369,6 +369,16 @@ footer .socials img{
     margin-bottom: 10px;
 }
 
+#search{
+    margin-bottom: 40px;
+}
+
+#search input{
+    height: 48px;
+    margin-right: 10px;
+}
+
+
 #posts .wrapper{
     display: flex;
     align-items: center;

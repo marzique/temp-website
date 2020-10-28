@@ -12,20 +12,54 @@ from django.urls import reverse
 from django.db.models import (Count, Q, Exists, OuterRef, 
                               F, Case, When, Value)
 
-from blog.models import Blog, Comment, Like
+from blog.models import Blog, Comment, Like, Category
 from blog.forms import BlogCommentForm
 
 
 class BlogListView(ListView):
     template_name = 'blog/blog_list.html'
     paginate_by = 9
+    search_fields = ['id', ]
+    text_search_fields = ['title', 'text', 'author__first_name', 'author__last_name',
+                          'author__username']
 
     def get_queryset(self):
         user = self.request.user
-        qs = Blog.objects.with_likes()\
-            .filter(posted__lte=timezone.localtime(timezone.now())).order_by('-posted')
+
+        qs = Blog.objects.all()
+        qs = qs.filter(posted__lte=timezone.localtime(timezone.now())).order_by('-posted')
+        qs = qs.with_likes()
+
+        qs = self._get_searched_queryset(qs)
 
         return qs
+
+    def _get_searched_queryset(self, queryset):
+        search_string = self.request.GET.get('query', None)
+        print(search_string)
+        if search_string:
+            q_condition = None
+            if search_string.isdigit():
+                for field in self.search_fields:
+                    if q_condition:
+                        q_condition |= Q(**{'{}'.format(field): search_string})
+                    else:
+                        q_condition = Q(**{'{}'.format(field): search_string})
+                queryset = queryset.filter(q_condition)
+            for field in self.text_search_fields:
+                if q_condition:
+                    q_condition |= Q(**{'{}__icontains'.format(field): search_string})
+                else:
+                    q_condition = Q(**{'{}__icontains'.format(field): search_string})
+            queryset = queryset.filter(q_condition)
+        return queryset
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['categories'] = Category.objects.all()
+        return context
 
 class BlogDetailView(DetailView):
     template_name = 'blog/blog_detail.html'

@@ -8,6 +8,16 @@
 <div class="container title">
     <h1>Новини</h1>
 </div>
+<section id="search">
+    <div class="container">
+        <div class="wrapper">
+            <form action="{% url 'blog-list'%}" method="GET">
+                <input type="text" class="search-area" name="query">
+                <button type="submit" class="square-btn">Пошук</button>
+            </form>
+        </div>
+    </div>
+</section>
 <section id="posts">
     <div class="container">
         <div class="wrapper">

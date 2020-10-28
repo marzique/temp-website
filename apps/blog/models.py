@@ -11,6 +11,7 @@ from django.db.models import (Count, Q, Exists, OuterRef,
 
 
 from squad.models import Player
+from blog.mixins import LikedDislikedByMixin
 
 
 class BlogManager(models.Manager):
@@ -31,7 +32,7 @@ class BlogQueryset(models.QuerySet):
         
         return qs
 
-class Blog(models.Model):
+class Blog(LikedDislikedByMixin, models.Model):
     title = models.CharField(max_length=500, null=False, blank=False)
     text = RichTextUploadingField(blank=False, null=False)
     image = models.ImageField(upload_to='blogs/', blank=False, null=False)
@@ -52,12 +53,6 @@ class Blog(models.Model):
 
     class Meta:
         ordering = ['-posted']
-
-    def liked_by(self, user):
-        return self.likes.filter(author=user, dislike=False).exists()
-
-    def disliked_by(self, user):
-        return self.likes.filter(author=user, dislike=True).exists()
 
     @property
     def comments_total(self):
@@ -87,7 +82,7 @@ class CommentQueryset(models.QuerySet):
         return qs
 
 
-class Comment(models.Model):
+class Comment(LikedDislikedByMixin, models.Model):
     author = models.ForeignKey(
         User, 
         on_delete=models.SET_NULL, 
@@ -114,12 +109,6 @@ class Comment(models.Model):
         """Hash function that returns color from user's username and date_joined"""
         c = ColorHash(self.author.username)
         return c.hex
-
-    def liked_by(self, user):
-        return self.likes.filter(author=user, dislike=False).exists()
-
-    def disliked_by(self, user):
-        return self.likes.filter(author=user, dislike=True).exists()
 
 
 class Like(models.Model):

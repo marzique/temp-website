@@ -89,7 +89,7 @@
                 <button type="submit" id="predict">Підтвердити</button>
             </div>
         </form>
-        {% if object.status == 1 %}
+        {% if object.status == 1 and user.is_authenticated %}
             <form action="{% url 'reset-prediction' pk=object.pk %}" method="post">
                 {% csrf_token %}
                 <button id="reset">Змінити</button>

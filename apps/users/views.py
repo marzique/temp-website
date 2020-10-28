@@ -73,7 +73,11 @@ class AccountView(LoginRequiredMixin, TemplateView):
         predictions = Prediction.objects.filter(user=user.profile)
         for prediction in predictions:
             name = str(prediction)
-            points = user.profile.forecasts_points[str(prediction.forecast.id)]
+            points_dict = user.profile.forecasts_points
+            points = points_dict.get(str(prediction.forecast.id), 0)
+            if not points:
+                points_dict[str(prediction.forecast.id)] = 0
+                user.save()
             stats[name] = points
 
         return stats

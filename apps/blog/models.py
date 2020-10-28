@@ -23,15 +23,13 @@ class BlogQueryset(models.QuerySet):
         """
         Count likes/dislikes
         """
-
         qs = self.prefetch_related(
             Prefetch('comments', queryset=Comment.objects.with_likes())
         )
         qs = qs.annotate(likes_total=Count('likes', filter=Q(likes__dislike=False)))
         qs = qs.annotate(dislikes_total=Count('likes', filter=Q(likes__dislike=True)))
-        qs = qs.annotate(comments_total=Count('comments'))
+        
         return qs
-
 
 class Blog(models.Model):
     title = models.CharField(max_length=500, null=False, blank=False)
@@ -60,6 +58,10 @@ class Blog(models.Model):
 
     def disliked_by(self, user):
         return self.likes.filter(author=user, dislike=True).exists()
+
+    @property
+    def comments_total(self):
+        return self.comments.count()
 
 
 class Category(models.Model):

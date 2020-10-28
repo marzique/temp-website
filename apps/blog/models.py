@@ -7,7 +7,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import (Count, Q, Exists, OuterRef, 
-                              F, Case, When, Value)
+                              F, Case, When, Value, Prefetch)
 
 
 from squad.models import Player
@@ -24,8 +24,12 @@ class BlogQueryset(models.QuerySet):
         Count likes/dislikes
         """
 
-        qs = self.annotate(likes_total=Count('likes', filter=Q(likes__dislike=False)))\
-        .annotate(dislikes_total=Count('likes', filter=Q(likes__dislike=True)))
+        qs = self.prefetch_related(
+            Prefetch('comments', queryset=Comment.objects.with_likes())
+        )
+        qs = qs.annotate(likes_total=Count('likes', filter=Q(likes__dislike=False)))
+        qs = qs.annotate(dislikes_total=Count('likes', filter=Q(likes__dislike=True)))
+        qs = qs.annotate(comments_total=Count('comments'))
         return qs
 
 
@@ -65,6 +69,22 @@ class Category(models.Model):
         return self.name
 
 
+class CommentManager(models.Manager):
+    pass
+
+
+class CommentQueryset(models.QuerySet):
+
+    def with_likes(self):
+        """
+        Count likes/dislikes
+        """
+
+        qs = self.annotate(likes_total=Count('likes', filter=Q(likes__dislike=False)))\
+        .annotate(dislikes_total=Count('likes', filter=Q(likes__dislike=True)))
+        return qs
+
+
 class Comment(models.Model):
     author = models.ForeignKey(
         User, 
@@ -82,6 +102,8 @@ class Comment(models.Model):
         related_name='comments'
     )
 
+    objects = CommentManager.from_queryset(CommentQueryset)()
+
     def __str__(self):
         return self.text[:30]
 
@@ -90,6 +112,12 @@ class Comment(models.Model):
         """Hash function that returns color from user's username and date_joined"""
         c = ColorHash(self.author.username)
         return c.hex
+
+    def liked_by(self, user):
+        return self.likes.filter(author=user, dislike=False).exists()
+
+    def disliked_by(self, user):
+        return self.likes.filter(author=user, dislike=True).exists()
 
 
 class Like(models.Model):

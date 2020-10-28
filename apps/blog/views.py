@@ -84,9 +84,11 @@ class LikeDislikeView(LoginRequiredMixin, View):
         if is_comment:
             # Comment to like
             post_or_comment = Comment.objects.get(pk=post_or_comment_id)
+            post_id = post_or_comment.post.pk
         else:
             # Post to like
             post_or_comment = Blog.objects.get(pk=post_or_comment_id)
+            post_id = post_or_comment.pk
 
         like_qs = post_or_comment.likes.filter(author=user)
         if like_qs.exists():
@@ -103,5 +105,6 @@ class LikeDislikeView(LoginRequiredMixin, View):
             else:
                 like_obj.post = post_or_comment
             like_obj.save()
+        
 
-        return HttpResponseRedirect(reverse('blog-detail', kwargs={'pk': self.kwargs['pk']}))
+        return HttpResponseRedirect(reverse('blog-detail', kwargs={'pk': post_id}))

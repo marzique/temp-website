@@ -183,6 +183,12 @@ header.sticky img.logo{
     margin: 40px 0;
 }
 
+.container.title h1 span{
+    font-size: 24px;
+    font-weight: 300;
+    color: grey;
+}
+
 .shadow{
     box-shadow: 0 0 9px 0 #bbb;
 }
@@ -1072,6 +1078,23 @@ form.btn{
     object-fit: cover;
     left: 10px;
     top: 24px;
+}
+
+#comments .reactions{
+    position: absolute;
+    display: flex;
+    bottom: 10px;
+    left: 10px;
+}
+
+#comments .reactions form{
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+#comments .reactions form .triangle{
+    margin-left: 5px;
 }
 
 #comments .author{

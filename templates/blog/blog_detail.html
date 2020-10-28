@@ -45,7 +45,7 @@
 
 <section id="comments">
     <div class="container title">
-        <h1>Коментарі</h1>
+        <h1>Коментарі <span>({{ object.comments_total }})</span></h1>
     </div>
     <div class="container">
         {% for comment in object.comments.all %}
@@ -58,6 +58,18 @@
                     {% endif %}
                 {% endwith %}
                 <p class="text">{{comment.text}}</p>
+                <div class="reactions">
+                    <form action="{% url 'post-react' pk=comment.pk %}?type=like&comment=true" method="post">
+                        {% csrf_token %}
+                        <span class="triangle {% if comment|liked_by:user %}active{% endif %}"></span>
+                        <span class="likes">{{ comment.likes_total }}</span>
+                    </form>
+                    <form action="{% url 'post-react' pk=comment.pk %}?type=dislike&comment=true" method="post">
+                        {% csrf_token %}
+                        <span class="triangle dislike {% if comment|disliked_by:user %}active{% endif %}"></span>
+                        <span class="dislikes">{{ comment.dislikes_total }}</span>
+                    </form>
+                </div>
                 <p class="date">{{comment.posted|date:"d/m/Y G:i"}}</p>
                 {% if comment.author %}
                     <p class="author" style="color: {{ comment.author_color }};">{{comment.author}}</p>

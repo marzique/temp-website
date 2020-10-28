@@ -23,7 +23,7 @@ class BlogListView(ListView):
     def get_queryset(self):
         user = self.request.user
         qs = Blog.objects.with_likes()\
-            .filter(posted__lte=timezone.localtime(timezone.now()))
+            .filter(posted__lte=timezone.localtime(timezone.now())).order_by('-posted')
 
         return qs
 

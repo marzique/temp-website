@@ -1,53 +1,47 @@
-name: Unit-Testing-After-Push
+name: Temp Run Tests
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
   push:
     branches: master
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
     
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:10.8
+        env:
+          POSTGRES_USER: tempfc
+          POSTGRES_PASSWORD: 'Gp>kw6w/S])k%?[Q'
+          POSTGRES_DB: tempfcuser
+        ports:
+          - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
-      - uses: actions/checkout@v2
-      - name: install Ubuntu packages
-        run: |
-          sudo apt update
-          sudo apt install python-pip python-dev libpq-dev postgresql postgresql-contrib nginx curl
-          
-      - name: Run postgres
-        run: sudo service postgresql start
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: psycopg2 prerequisites
+      run: sudo apt-get install libpq-dev postgresql postgresql-contrib
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
         
-      - name: Create test DB
-        run: |
-          sudo -u postgres psql
-          CREATE DATABASE tempfc;
-          CREATE USER tempfcuser WITH PASSWORD 'Gp>kw6w/S])k%?[Q';
-          ALTER ROLE tempfcuser SET client_encoding TO 'utf8';
-          ALTER ROLE tempfcuser SET default_transaction_isolation TO 'read committed';
-          ALTER ROLE tempfcuser SET timezone TO 'UTC';
-          GRANT ALL PRIVILEGES ON DATABASE tempfc TO tempfcuser;
-          \q
-          
-      - name: Pip Upgrade
-        run: pip3 install --upgrade setuptools
-      - name: Install requirements
-        run: pip3 install -r requirements.txt
-
-      - name: DB Migrations
-        run: python3 manage.py migrate
-        
-      - name: Run tests
-        run: python3 manage.py test
-
-      - uses: yanzay/notify-telegram@v0.1.0
-        if: always()
-        with:
-          chat: ${{ secrets.chat }} # user id or channel name secret
-          token: ${{ secrets.token }} # token secret
-          status: ${{ job.status }}
+    - name: Run migrations
+      run: python manage.py migrate
+      
+    - name: Run tests
+      run: python manage.py migrate
+      
+    - uses: yanzay/notify-telegram@v0.1.0
+      if: always()
+      with:
+        chat: ${{ secrets.chat }} # user id or channel name secret
+        token: ${{ secrets.token }} # token secret
+        status: ${{ job.status }}

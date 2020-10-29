@@ -18,6 +18,12 @@ jobs:
         
       - name: List current folder
         run: ls -la
+      - name: ADD requirements
+        run: pip install -r requirements.txt
+      - name: DB Migrations
+        run: python manage.py migrate
+      - name: Run tests
+        run: python manage.py test
 
       - uses: yanzay/notify-telegram@v0.1.0
         if: always()

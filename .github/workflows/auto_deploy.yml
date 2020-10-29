@@ -20,6 +20,8 @@ jobs:
         run: pip3 install --upgrade setuptools
       - name: ADD requirements
         run: pip3 install -r requirements.txt
+      - name: Run postgres
+        run: sudo service postgresql start
       - name: DB Migrations
         run: python3 manage.py migrate
       - name: Run tests

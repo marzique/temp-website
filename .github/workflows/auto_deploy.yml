@@ -24,7 +24,7 @@ jobs:
       - name: List current folder
         run: ls -la
 
-      - uses: yanzay/notify-telegram@v0.1.0
+      - uses: yanzay/notify-telegram@TempFC_bot
         if: always()
         with:
           chat  : ${{ secrets.chat }} # user id or channel name secret

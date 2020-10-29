@@ -16,8 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         
-#      - name: Pip Upgrade
- #       run: pip install -U pip
+      - name: Pip Upgrade
+        run: pip3 install --upgrade setuptools
       - name: ADD requirements
         run: pip3 install -r requirements.txt
       - name: DB Migrations

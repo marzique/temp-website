@@ -22,6 +22,6 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: List current folder
-        run: ll
+        run: ls -la
 
 

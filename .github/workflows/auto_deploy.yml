@@ -14,7 +14,7 @@ jobs:
         image: postgres:10.8
         env:
           POSTGRES_USER: tempfc
-          POSTGRES_PASSWORD: 'Gp>kw6w/S])k%?[Q'
+          POSTGRES_PASSWORD: Gp>kw6w/S])k%?[Q
           POSTGRES_DB: tempfcuser
         ports:
           - 5432:5432

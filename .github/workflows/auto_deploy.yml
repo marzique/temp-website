@@ -21,9 +21,9 @@ jobs:
       - name: ADD requirements
         run: pip3 install -r requirements.txt
       - name: DB Migrations
-        run: python manage.py migrate
+        run: python3 manage.py migrate
       - name: Run tests
-        run: python manage.py test
+        run: python3 manage.py test
 
       - uses: yanzay/notify-telegram@v0.1.0
         if: always()

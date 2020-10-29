@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Create test DB
-        run: 
+        run: |
           sudo apt update
           sudo apt install python-pip python-dev libpq-dev postgresql postgresql-contrib nginx curl
       - name: Pip Upgrade

@@ -15,7 +15,11 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
-        
+      
+      - name: Create test DB
+        run: 
+          sudo apt update
+          sudo apt install python-pip python-dev libpq-dev postgresql postgresql-contrib nginx curl
       - name: Pip Upgrade
         run: pip3 install --upgrade setuptools
       - name: ADD requirements

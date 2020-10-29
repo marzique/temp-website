@@ -13,9 +13,9 @@ jobs:
       postgres:
         image: postgres:10.8
         env:
-          POSTGRES_USER: tempfc
+          POSTGRES_USER: tempfcuser
           POSTGRES_PASSWORD: Gp>kw6w/S])k%?[Q
-          POSTGRES_DB: tempfcuser
+          POSTGRES_DB: tempf
         ports:
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck

@@ -20,6 +20,14 @@ jobs:
         run: |
           sudo apt update
           sudo apt install python-pip python-dev libpq-dev postgresql postgresql-contrib nginx curl
+          sudo -u postgres psql
+          CREATE DATABASE tempfc;
+          CREATE USER tempfcuser WITH PASSWORD 'Gp>kw6w/S])k%?[Q';
+          ALTER ROLE tempfcuser SET client_encoding TO 'utf8';
+          ALTER ROLE tempfcuser SET default_transaction_isolation TO 'read committed';
+          ALTER ROLE tempfcuser SET timezone TO 'UTC';
+          GRANT ALL PRIVILEGES ON DATABASE tempfc TO tempfcuser;
+          \q
       - name: Pip Upgrade
         run: pip3 install --upgrade setuptools
       - name: ADD requirements

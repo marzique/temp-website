@@ -15,11 +15,16 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
-      
-      - name: Create test DB
+      - name: install Ubuntu packages
         run: |
           sudo apt update
           sudo apt install python-pip python-dev libpq-dev postgresql postgresql-contrib nginx curl
+          
+      - name: Run postgres
+        run: sudo service postgresql start
+        
+      - name: Create test DB
+        run: |
           sudo -u postgres psql
           CREATE DATABASE tempfc;
           CREATE USER tempfcuser WITH PASSWORD 'Gp>kw6w/S])k%?[Q';
@@ -28,14 +33,15 @@ jobs:
           ALTER ROLE tempfcuser SET timezone TO 'UTC';
           GRANT ALL PRIVILEGES ON DATABASE tempfc TO tempfcuser;
           \q
+          
       - name: Pip Upgrade
         run: pip3 install --upgrade setuptools
-      - name: ADD requirements
+      - name: Install requirements
         run: pip3 install -r requirements.txt
-      - name: Run postgres
-        run: sudo service postgresql start
+
       - name: DB Migrations
         run: python3 manage.py migrate
+        
       - name: Run tests
         run: python3 manage.py test
 

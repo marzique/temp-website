@@ -87,8 +87,14 @@ header .wrapper{
     justify-content: space-between;
 }
 
-header .username{
+header .username,
+header .admin{
     color: #0691f5;
+    margin-bottom: 5px;
+}
+
+header .admin{
+    color: #fb7000;
     margin-bottom: 5px;
 }
 

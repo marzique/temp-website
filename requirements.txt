@@ -1,5 +1,5 @@
 appdirs==1.4.3
-asgiref
+asgiref==3.2.10
 beautifulsoup4==4.9.3
 blinker==1.4
 CacheControl==0.12.6

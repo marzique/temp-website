@@ -29,7 +29,9 @@ class BlogQueryset(models.QuerySet):
             )
         else:
             qs = self.prefetch_related(
-                Prefetch('comments', queryset=Comment.objects.order_by('posted').with_likes())
+                Prefetch('comments', queryset=Comment.objects.prefetch_related(
+                    Prefetch('replies', queryset=Comment.objects.order_by('posted'))
+                ).order_by('posted').with_likes())
             )
         return qs
 

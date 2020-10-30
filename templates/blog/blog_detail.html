@@ -84,7 +84,7 @@
                     </form>
                 {% endif %}
             </div>
-            {% for reply in comment.replies.all %}
+            {% for reply in comment.replies.with_likes %}
                 <div class="comment reply shadow">
                     {% with avatar=reply.author.profile.avatar %}
                         {% if avatar %}
@@ -94,7 +94,8 @@
                         {% endif %}
                     {% endwith %}
                     <p class="text">{{reply.text}}</p>
-                    <div class="reactions">
+                    <!-- FIX TOTAL LIKES AND DOWNVOTE  -->
+                    <!-- <div class="reactions">
                         <form action="{% url 'post-react' pk=reply.pk %}?type=like&comment=true" method="post">
                             {% csrf_token %}
                             <span class="triangle {% if reply|liked_by:user %}active{% endif %}"></span>
@@ -105,7 +106,7 @@
                             <span class="triangle dislike {% if reply|disliked_by:user %}active{% endif %}"></span>
                             <span class="dislikes">{{ reply.dislikes_total }}</span>
                         </form>
-                    </div>
+                    </div> -->
                     <p class="date">{{reply.posted|date:"d/m/Y G:i"}}</p>
                     {% if reply.author %}
                         <p class="author" style="color: {{ reply.author_color }};">{{reply.author}}</p>

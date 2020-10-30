@@ -20,10 +20,19 @@ class BlogManager(models.Manager):
 
 class BlogQueryset(models.QuerySet):
 
-    def with_comments(self):
-        qs = self.prefetch_related(
-            Prefetch('comments', queryset=Comment.objects.with_likes())
-        )
+    def with_comments(self, no_replies=True):
+        if no_replies:
+            qs = self.prefetch_related(
+                Prefetch('comments', queryset=Comment.objects.filter(parent__isnull=no_replies).with_likes())
+            )
+        else:
+            qs = self.prefetch_related(
+                Prefetch('comments', queryset=Comment.objects.with_likes())
+            )
+        return qs
+
+    def without_replies(self):
+        qs = self.filter(comments__parent__isnull=True)
         return qs
 
     def with_likes(self):
@@ -59,7 +68,7 @@ class Blog(LikedDislikedByMixin, models.Model):
 
     @property
     def comments_total(self):
-        return self.comments.count()
+        return Blog.objects.filter(pk=self.pk).with_comments(no_replies=False).first().comments.count()
 
 
 class Category(models.Model):
@@ -101,6 +110,7 @@ class Comment(LikedDislikedByMixin, models.Model):
         null=True,
         related_name='comments'
     )
+    parent = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
 
     objects = CommentManager.from_queryset(CommentQueryset)()
 

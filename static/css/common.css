@@ -1070,6 +1070,10 @@ form.btn{
     margin: 20px 0;
 }
 
+#comments .comment.reply{
+    margin-left: 10%;
+}
+
 #comments #delete-form{
     position: absolute;
     padding: 0;

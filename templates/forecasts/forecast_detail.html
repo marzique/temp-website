@@ -104,6 +104,13 @@
             {% for prediction in object.predictions.all %}
                 <div class="prediction shadow expandable">
                     <div class="author">
+                        
+                        {% if prediction.user.avatar %}
+                            <img src="{{ prediction.user.avatar.url}}" class="avatar">  
+                        {% else %}
+                            <img src="{% static 'img/no_avatar.png' %}" class="avatar">
+                        {% endif %}
+                        <br>
                         {{ prediction.user }}
                     </div>
                     {% for fixture in prediction.fixtures %}

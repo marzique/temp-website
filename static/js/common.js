@@ -63,4 +63,44 @@ $(function() {
             form.submit();
        });
     }
+
+    //reply to comment
+    if ($('#comments').length){
+        $('#comments .answer').on('click', function() {
+            let reply_to = $(this).closest('.comment');
+            focus_on_reply(reply_to)
+            
+            let comment_id = reply_to.data('pk')
+            let username = reply_to.find('.author').text()
+            update_form(comment_id, username)
+
+            // scroll to form
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $("#id_text").offset().top - 200,
+            }, 1000);
+
+            console.log(comment_id)
+        });
+
+        $('#reset-reply').on('click', function() {
+            reset_reply();
+        }); 
+    }
+
+    function focus_on_reply(reply_to){
+        $('#comments .comment').addClass('blurall');
+        reply_to.removeClass('blurall').addClass('active-to-reply');
+    }
+
+    function update_form(comment_id, username){
+        $('#reply-name span.alias').text(username);
+        $('#reply-name').addClass('visible');
+        $('#id_parent').val(comment_id);
+    }
+
+    function reset_reply(){
+        $('#id_parent').val("");
+        $('#reply-name').removeClass('visible');
+        $('#comments .comment').removeClass('blurall active-to-reply');
+    }
 });

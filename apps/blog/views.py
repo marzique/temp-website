@@ -82,7 +82,7 @@ class BlogDetailView(DetailView):
 
 
 class CreateCommentView(LoginRequiredMixin, CreateView):
-    fields = ['text',]
+    fields = ['text', 'parent']
     model = Comment
 
     def get_success_url(self):

@@ -198,6 +198,7 @@ header.sticky img.logo{
 
 .shadow{
     box-shadow: 0 0 9px 0 #bbb;
+    background-color: white;
 }
 
 .mtb20{
@@ -1064,14 +1065,69 @@ form.btn{
     margin: 80px 0;
 }
 
+#comments .container{
+    position: relative;
+}
+
+#comments .answer{
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    object-position: center;    
+    margin-left: 15px;
+    opacity: .3;
+    cursor: pointer;
+}
+
+#comments #reset-reply{
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    object-position: center;
+    cursor: pointer;
+    margin-left: 10px;
+    opacity: .3;
+}
+
+#comments .comment:not(.blurall){
+    z-index: 99;
+}
+
+.blurall{
+    opacity: .2;
+    filter: blur(1px);
+}
+
 #comments .comment{
     padding: 50px 70px;
     position: relative;
     margin: 20px 0;
+    transition: all .3s ease-in-out;
+    height: initial;
 }
 
 #comments .comment.reply{
     margin-left: 10%;
+}
+
+#comments #reply-name{
+    margin: 10px 0;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    height: 0;
+}
+
+#comments #reply-name span{
+    color: #ea0074;
+}
+
+.visible{
+    visibility: visible !important;
+}
+
+#comments #reply-name.visible{
+    height: 50px;
 }
 
 #comments #delete-form{

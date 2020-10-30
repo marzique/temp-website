@@ -23,11 +23,11 @@ class BlogQueryset(models.QuerySet):
     def with_comments(self, no_replies=True):
         if no_replies:
             qs = self.prefetch_related(
-                Prefetch('comments', queryset=Comment.objects.order_by('-posted').filter(parent__isnull=no_replies).with_likes())
+                Prefetch('comments', queryset=Comment.objects.order_by('posted').filter(parent__isnull=no_replies).with_likes())
             )
         else:
             qs = self.prefetch_related(
-                Prefetch('comments', queryset=Comment.objects.order_by('-posted').with_likes())
+                Prefetch('comments', queryset=Comment.objects.order_by('posted').with_likes())
             )
         return qs
 

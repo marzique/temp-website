@@ -1971,4 +1971,8 @@ form.btn{
         width: 100%;
         position: relative;
     }
+
+    #post-big {
+        margin-top: 40px;
+    }
 }

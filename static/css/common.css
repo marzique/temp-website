@@ -20,6 +20,7 @@ ul{
 a{
     text-decoration: none;
     transition: color .3s ease-in-out;
+    color: #ea0074;
 }
 
 a:hover{
@@ -1790,6 +1791,7 @@ form.btn{
         margin-right: 10px;
         border: none;
         padding: 0 20px;
+        border: 1px solid #bdb7b7;
     }
 
     #info-tables .wrapper {

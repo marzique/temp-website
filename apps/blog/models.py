@@ -117,6 +117,9 @@ class Comment(LikedDislikedByMixin, models.Model):
     def __str__(self):
         return self.text[:30]
 
+    class Meta:
+        ordering = ['posted']
+
     @property
     def author_color(self):
         """Hash function that returns color from user's username and date_joined"""

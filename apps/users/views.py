@@ -70,7 +70,7 @@ class AccountView(LoginRequiredMixin, TemplateView):
 
         predictions = Prediction.objects.select_related('user', 'forecast').filter(user=user.profile)
         for prediction in predictions:
-            name = str(prediction)
+            name = str(prediction.forecast)
             points_dict = user.profile.forecasts_points
             points = points_dict.get(str(prediction.forecast.id), 0)
             if not points:

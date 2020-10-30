@@ -1951,4 +1951,24 @@ form.btn{
         width: 20vw;
         text-align: center;
     }
+
+    .login {
+        width: 100%;
+        padding: 30px;
+    }
+
+    #account .wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #account .user-profile {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    #account .info {
+        width: 100%;
+        position: relative;
+    }
 }

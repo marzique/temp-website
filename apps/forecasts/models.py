@@ -32,6 +32,9 @@ class Forecast(models.Model):
     week = models.PositiveIntegerField()
     status = models.PositiveIntegerField(choices=STATUSES, null=False, blank=False, default=ACTIVE)
 
+    class Meta:
+        ordering = ['-id']
+
     @property
     def deadline(self):
         """Return datetime of the first match -1 hour"""

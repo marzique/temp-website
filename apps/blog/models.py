@@ -118,7 +118,7 @@ class Comment(LikedDislikedByMixin, models.Model):
         return self.text[:30]
 
     class Meta:
-        ordering = ['posted']
+        ordering = ['-posted']
 
     @property
     def author_color(self):

@@ -68,7 +68,9 @@
                         {% csrf_token %}
                         <span class="triangle dislike {% if comment|disliked_by:user %}active{% endif %}"></span>
                         <span class="dislikes">{{ comment.dislikes_total }}</span>
-                        <img src="{% static 'img/reply.png' %}" class="answer">
+                        {% if user.is_authenticated %}
+                            <img src="{% static 'img/reply.png' %}" class="answer">
+                        {% endif %}
                     </form>
                 </div>
                 <p class="date">{{comment.posted|date:"d/m/Y G:i"}}</p>

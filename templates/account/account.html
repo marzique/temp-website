@@ -19,15 +19,15 @@
                     {% endwith %}
                     <input type="file" id="avatar" name="avatar" accept="image/*" >
                     
-                    <input type="text" class="username shadow" name="username" value="{{ user.username }}" disabled>
+                    <input type="text" class="username" name="username" value="{{ user.username }}" disabled>
 
                     {% if user.is_staff %}
                         <p class="admin">адміністратор</p>
                     {% endif %}
 
-                    <input type="text" class="first_name shadow" name="first_name" value="{{ user.first_name }}" disabled>
-                    <input type="text" class="last_name shadow" name="last_name" value="{{ user.last_name }}" disabled>
-                    <input type="email" class="email shadow" name="email" value="{{ user.email }}" disabled>
+                    <input type="text" class="first_name" name="first_name" value="{{ user.first_name }}" disabled>
+                    <input type="text" class="last_name" name="last_name" value="{{ user.last_name }}" disabled>
+                    <input type="email" class="email" name="email" value="{{ user.email }}" disabled>
 
                     <button type="submit" class="square-btn" id="edit-profile">Підтвердити</button>
 

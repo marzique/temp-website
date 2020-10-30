@@ -1708,6 +1708,11 @@ form.btn{
     border: none;
 }
 
+#account input[type="text"]:not(:disabled),
+#account input[type="email"]:not(:disabled){
+    border: 1px solid grey;
+}
+
 #account .admin{
     position: absolute;
     top: 14px;
@@ -1890,6 +1895,7 @@ form.btn{
         height: 0;
         margin-bottom: 2vw;
         transition: all .3s ease-in-out;
+        height: 50px;
     }
 
     #info-tables .fixtures {
@@ -2061,5 +2067,15 @@ form.btn{
 
     #post-big {
         margin-top: 40px;
+    }
+
+    #info-tables {
+        margin-bottom: 30px;
+        margin-top: -30px;
+    }
+
+    .scoreboard:hover #refresh-scoreboard{
+        margin-bottom: 2vw;
+        z-index: 20;
     }
 }

@@ -104,7 +104,6 @@
             {% for prediction in object.predictions.all %}
                 <div class="prediction shadow expandable">
                     <div class="author">
-                        
                         {% if prediction.user.avatar %}
                             <img src="{{ prediction.user.avatar.url}}" class="avatar">  
                         {% else %}
@@ -113,6 +112,13 @@
                         <br>
                         {{ prediction.user }}
                     </div>
+
+                    {% if prediction.points is not None %}
+                        <div class="points">
+                            +{{ prediction.points }}
+                        </div>
+                    {% endif %}
+
                     {% for fixture in prediction.fixtures %}
                         <div class="match-prediction">
                             <div class="team home">

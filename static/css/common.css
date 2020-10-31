@@ -1480,6 +1480,7 @@ form.btn{
     margin-right: 20px;
     margin-bottom: 20px;
     width: 229px;
+    position: relative;
 }
 
 #predictions .prediction .author{
@@ -1487,6 +1488,14 @@ form.btn{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+#predictions .prediction .points{
+    position: absolute;
+    color: #44c379;
+    font-weight: 700;
+    font-size: 30px;
+    right: 10px;
 }
 
 #predictions .prediction .date{

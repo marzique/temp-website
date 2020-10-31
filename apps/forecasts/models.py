@@ -208,6 +208,11 @@ class Prediction(models.Model):
         return f'{self.user} {self.forecast}'
 
     @property
+    def points(self):
+        if self.forecast.status == Forecast.CALCULATED:
+            return self.user.forecasts_points[str(self.forecast.id)]
+
+    @property
     def fixtures(self):
         fixtures = []
         

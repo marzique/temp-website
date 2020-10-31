@@ -24,7 +24,7 @@ class ForecastDetailView(DetailView):
         context = super().get_context_data(**kwargs)
 
         # Trigger forecast status change when user requests page after deadline
-        if timezone.now() >= self.object.deadline:
+        if timezone.now() >= self.object.deadline and self.object.status == Forecast.ACTIVE:
             self.object.status = Forecast.STARTED
             self.object.save()
 
@@ -105,8 +105,11 @@ class UpdatePointsView(View):
         forecast.update_profile_points()
         # change status if all matches are finished 
         if all(forecast.fixtures.values_list('finished', flat=True)):
+            print('HELLO BISH\n\n\n\n')
             forecast.status = forecast.CALCULATED
             forecast.save()
+        else:
+            print('FALSEEE?E??')
         return redirect('forecast-detail', pk=forecast_id)
 
 

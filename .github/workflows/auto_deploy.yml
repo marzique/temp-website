@@ -39,14 +39,13 @@ jobs:
     - name: Run tests
       run: python manage.py test
      
-    - name: ls -a via ssh
-      uses: garygrossgarten/github-action-ssh@release
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
       with:
-        command: ls -a
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
-        passphrase: ${{ secrets.PASSPHRASE }}
-        privateKey: ${{ secrets.PRIVATE_KEY}}
+        password: ${{ secrets.PASSPHRASE }}
+        script: ls -la
       
     - uses: yanzay/notify-telegram@v0.1.0
       if: always()

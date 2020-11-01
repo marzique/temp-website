@@ -40,14 +40,13 @@ jobs:
       run: python manage.py test
      
     - name: ls -a via ssh
-      uses: fifsky/ssh-action@master
+      uses: garygrossgarten/github-action-ssh@release
       with:
-        command: |
-          cd /home/temp
-          ls -a
+        command: ls -a
         host: ${{ secrets.REMOTE_HOST }}
-        user: root
-        key: ${{ secrets.PRIVATE_KEY }}
+        username: root
+        passphrase: ${{ secrets.PASSPHRASE }}
+        privateKey: ${{ secrets.PRIVATE_KEY}}
       
     - uses: yanzay/notify-telegram@v0.1.0
       if: always()

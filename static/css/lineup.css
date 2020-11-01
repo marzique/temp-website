@@ -15,24 +15,24 @@
 
 .field.s442 .player:nth-of-type(2),
 .field.s442 .player:nth-of-type(6){
-    left: 26%;
+    left: 24%;
 }
 
 .field.s442 .player:nth-of-type(3),
 .field.s442 .player:nth-of-type(7),
 .field.s442 .player:nth-of-type(10){
-    left: 40%;
+    left: 38%;
 }
 
 .field.s442 .player:nth-of-type(4),
 .field.s442 .player:nth-of-type(8),
 .field.s442 .player:nth-of-type(11){
-    right: 40%;
+    right: 38%;
 }
 
 .field.s442 .player:nth-of-type(5),
 .field.s442 .player:nth-of-type(9){
-    right: 26%;
+    right: 24%;
 }
 
 /* 4-5-1 */
@@ -54,27 +54,27 @@
 
 .field.s451 .player:nth-of-type(6),
 .field.s451 .player:nth-of-type(10){
-    bottom: 55%;
+    bottom: 60%;
 }
 
 .field.s451 .player:nth-of-type(2),
 .field.s451 .player:nth-of-type(6){
-    left: 26%;
+    left: 24%;
 }
 
 .field.s451 .player:nth-of-type(5),
 .field.s451 .player:nth-of-type(10){
-    right: 26%;
+    right: 24%;
 }
 
 .field.s451 .player:nth-of-type(3),
 .field.s451 .player:nth-of-type(7){
-    left: 40%;
+    left: 38%;
 }
 
 .field.s451 .player:nth-of-type(4),
 .field.s451 .player:nth-of-type(9){
-    right: 40%;
+    right: 38%;
 }
 
 .field.s451 .player:nth-of-type(8){
@@ -98,29 +98,29 @@
 
 .field.s433 .player:nth-of-type(6),
 .field.s433 .player:nth-of-type(9){
-    left: 26%;
+    left: 24%;
 }
 
 .field.s433 .player:nth-of-type(8),
 .field.s433 .player:nth-of-type(11){
-    right: 26%;
+    right: 24%;
 }
 
 
 .field.s433 .player:nth-of-type(2){
-    left: 26%;
+    left: 24%;
 }
 
 .field.s433 .player:nth-of-type(3){
-    left: 40%;
+    left: 38%;
 }
 
 .field.s433 .player:nth-of-type(4){
-    right: 40%;
+    right: 38%;
 }
 
 .field.s433 .player:nth-of-type(5){
-    right: 26%;
+    right: 24%;
 }
 
 .field.s433 .player:nth-of-type(10),

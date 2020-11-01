@@ -50,14 +50,18 @@ class Profile(models.Model):
 
 
 # Create profiles for users automatically
+# Use user 'super' with pk 999 both in produciton and dev to be able
+# to transfer data via smuggler
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
+    if instance.pk != 999:
+        if created:
+            Profile.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    if not hasattr(instance, 'profile'):
-        Profile.objects.create(user=instance)
-    else:
-        instance.profile.save()
+    if instance.pk != 999:
+        if not hasattr(instance, 'profile'):
+            Profile.objects.create(user=instance)
+        else:
+            instance.profile.save()

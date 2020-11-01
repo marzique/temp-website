@@ -38,6 +38,20 @@ jobs:
       
     - name: Run tests
       run: python manage.py test
+     
+     
+    - name: Deploy to Staging server
+      uses: easingthemes/ssh-deploy@v2.1.5
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        ARGS: "-rltgoDzvO"
+        SOURCE: "dist/"
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        TARGET: ${{ secrets.REMOTE_TARGET }}
+  
+    - name: Check list
+      run: ls -la
       
     - uses: yanzay/notify-telegram@v0.1.0
       if: always()

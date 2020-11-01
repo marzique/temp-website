@@ -13,7 +13,7 @@ class MainPageTestCase(BaseClassTestCase):
     
     def test_page_response(self):
         response = self.client.get(self.url)
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 200)
 
     def test_logged_as_user_response(self):
         self.client.login(username='user', password='qwerty')

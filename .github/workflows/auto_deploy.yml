@@ -42,7 +42,9 @@ jobs:
     - name: ls -a via ssh
       uses: garygrossgarten/github-action-ssh@release
       with:
-        command: ls -a
+        command: |
+          cd /home/temp-website
+          ls -la
         host: ${{ secrets.REMOTE_HOST }}
         username: root
         passphrase: ${{ secrets.PASSPHRASE }}

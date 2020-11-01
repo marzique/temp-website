@@ -43,11 +43,11 @@ jobs:
       uses: fifsky/ssh-action@master
       with:
         command: |
-          cd /home/temp-website
+          cd /home/temp
           ls -a
         host: ${{ secrets.REMOTE_HOST }}
         user: root
-        key: ${{ secrets.PRIVATE_KEY}}
+        key: ${{ secrets.PRIVATE_KEY }}
       
     - uses: yanzay/notify-telegram@v0.1.0
       if: always()

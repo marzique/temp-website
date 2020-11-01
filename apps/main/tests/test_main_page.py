@@ -23,7 +23,7 @@ class MainPageTestCase(BaseClassTestCase):
     def test_logged_as_admin_response(self):
         self.client.login(username='admin', password='s3cr37')
         response = self.client.get(self.url)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
 
 
 class NextPrevMatchTestCase(BaseClassTestCase):

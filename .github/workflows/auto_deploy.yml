@@ -39,18 +39,14 @@ jobs:
     - name: Run tests
       run: python manage.py test
      
-     
-    - name: Deploy to Staging server
-      uses: easingthemes/ssh-deploy@v2.1.5
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.TEST_KEY }}
-        SOURCE: "/"
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        TARGET: ${{ secrets.REMOTE_TARGET }}
-  
-    - name: Check list
-      run: ls -la
+    - name: ls -a via ssh
+      uses: garygrossgarten/github-action-ssh@release
+      with:
+        command: ls -a
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        passphrase: ${{ secrets.PASSPHRASE }}
+        privateKey: ${{ secrets.PRIVATE_KEY}}
       
     - uses: yanzay/notify-telegram@v0.1.0
       if: always()

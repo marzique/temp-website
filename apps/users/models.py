@@ -46,7 +46,7 @@ class Profile(models.Model):
     @property
     def average_points(self):
         if self.forecasts_points and self.total_points:
-            return round(self.total_points / len(self.forecasts_points))
+            return round(self.total_points / len(self.forecasts_points), 2)
         return 0
     
     def create_or_update_points(self, forecast_id, week_points):

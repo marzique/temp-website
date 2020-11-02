@@ -45,7 +45,9 @@ jobs:
         command: |
           cd /home/temp-website &&
           source tempfcenv/bin/activate && 
-          echo ${{ secrets.PASSPHRASE }} | git pull origin master &&
+          eval $(ssh-agent) &&
+          ssh-add &&
+          git pull origin master &&
           pip install -r requirements.txt &&
           python manage.py migrate &&
           python manage.py collectstatic --noinput &&

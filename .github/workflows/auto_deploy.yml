@@ -43,12 +43,12 @@ jobs:
       uses: garygrossgarten/github-action-ssh@release
       with:
         command: |
-          cd /home/temp-website
-          source tempfcenv/bin/activate
-          echo ${{ secrets.PASSPHRASE }} | git pull origin master
-          pip install -r requirements.txt
-          python manage.py migrate
-          python manage.py collectstatic --noinput
+          cd /home/temp-website &&
+          source tempfcenv/bin/activate && 
+          echo ${{ secrets.PASSPHRASE }} | git pull origin master &&
+          pip install -r requirements.txt &&
+          python manage.py migrate &&
+          python manage.py collectstatic --noinput &&
           systemctl restart tempfc
         host: ${{ secrets.REMOTE_HOST }}
         username: root

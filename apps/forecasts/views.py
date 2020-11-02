@@ -69,9 +69,16 @@ class ForecastListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['user_profiles'] = Profile.objects.with_predictions()\
-        .order_by('-total_points', 'predictions_total').select_related('user')[:10]
+        
+        context['user_profiles'] = self._get_top_ten_predictors()
         return context
+    
+    def _get_top_ten_predictors(self):
+        """Return qs with all user profiles with at least 1 prediction"""
+
+        qs = Profile.objects.exclude(predictions__isnull=True).with_predictions()\
+        .order_by('-total_points', 'predictions_total').select_related('user')
+        return qs
     
 
 class PredictView(LoginRequiredMixin, View):
@@ -105,11 +112,8 @@ class UpdatePointsView(View):
         forecast.update_profile_points()
         # change status if all matches are finished 
         if all(forecast.fixtures.values_list('finished', flat=True)):
-            print('HELLO BISH\n\n\n\n')
             forecast.status = forecast.CALCULATED
             forecast.save()
-        else:
-            print('FALSEEE?E??')
         return redirect('forecast-detail', pk=forecast_id)
 
 

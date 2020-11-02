@@ -45,7 +45,7 @@
 
         {% for forecast in object_list %}
             <a href="{% url 'forecast-detail' pk=forecast.pk %}">
-                <div class="forecast">
+                <div class="forecast {% if forecast.status == 1 %}active{% endif %}">
                     <div class="name">
                         {{ forecast }}
                     </div>
@@ -75,7 +75,7 @@
         
         <div class="user heading">
             <div class="place">
-                Місце
+                #
             </div>
             <div class="username">
                 Користувач
@@ -83,8 +83,11 @@
             <div class="matches">
                 Прогнозів
             </div>
-            <div class="points">
-                Очки
+            <div class="average">
+                Очки сер.
+            </div>
+            <div class="total">
+                Очки заг.
             </div>
         </div>
 
@@ -99,7 +102,10 @@
                 <div class="predictions">
                     {{ profile.predictions_total }}
                 </div>
-                <div class="points">
+                <div class="average">
+                    {{ profile.average_points }}
+                </div>
+                <div class="total">
                     {{ profile.total_points }}
                 </div>
             </div>

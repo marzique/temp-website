@@ -43,6 +43,12 @@ class Profile(models.Model):
             points_total += points
         return points_total
     
+    @property
+    def average_points(self):
+        if self.forecasts_points and self.total_points:
+            return round(self.total_points / len(self.forecasts_points))
+        return 0
+    
     def create_or_update_points(self, forecast_id, week_points):
         # without str() forecasts_points JSONfield gets 2 keys both string and integer
         self.forecasts_points[str(forecast_id)] = week_points
@@ -54,14 +60,12 @@ class Profile(models.Model):
 # to transfer data via smuggler
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
-    if instance.pk != 999:
-        if created:
-            Profile.objects.create(user=instance)
+    if created:
+        Profile.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    if instance.pk != 999:
-        if not hasattr(instance, 'profile'):
-            Profile.objects.create(user=instance)
-        else:
-            instance.profile.save()
+    if not hasattr(instance, 'profile'):
+        Profile.objects.create(user=instance)
+    else:
+        instance.profile.save()

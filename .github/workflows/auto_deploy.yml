@@ -38,32 +38,22 @@ jobs:
       
     - name: Run tests
       run: python manage.py test
-
+     
     - name: Deploy to prod
       uses: garygrossgarten/github-action-ssh@release
       with:
         command: |
-          ls -la
+          cd /home/temp-website
+          source tempfcenv/bin/activate
+          echo ${{ secrets.PASSPHRASE }} | git pull origin master
+          pip install -r requirements.txt
+          python manage.py migrate
+          python manage.py collectstatic --noinput
+          systemctl restart tempfc
         host: ${{ secrets.REMOTE_HOST }}
         username: root
         passphrase: ${{ secrets.PASSPHRASE }}
         privateKey: ${{ secrets.PRIVATE_KEY}}
-     
-    # - name: Deploy to prod
-    #   uses: garygrossgarten/github-action-ssh@release
-    #   with:
-    #     command: |
-    #       cd /home/temp-website
-    #       source tempfcenv/bin/activate
-    #       echo ${{ secrets.PASSPHRASE }} | git pull origin master
-    #       pip install -r requirements.txt
-    #       python manage.py migrate
-    #       python manage.py collectstatic --noinput
-    #       systemctl restart tempfc
-    #     host: ${{ secrets.REMOTE_HOST }}
-    #     username: root
-    #     passphrase: ${{ secrets.PASSPHRASE }}
-    #     privateKey: ${{ secrets.PRIVATE_KEY}}
   
 #  Тарик включишь когда сделаешь что б приходило мне тож 
 #     - uses: yanzay/notify-telegram@v0.1.0

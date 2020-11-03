@@ -55,8 +55,7 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}
         privateKey: ${{ secrets.PRIVATE_KEY}}
 
-    # new style notificaiton
-    # SUCCESS
+    # SUCCESS MESSAGE: DISABLED
     - name: send success message
       uses: appleboy/telegram-action@master
       if: success()
@@ -66,7 +65,7 @@ jobs:
         message: |
           ✅ author: ${{ github.actor }}, commit: ${{ github.event.head_commit.message }} 
 
-    # FAIL
+    # FAILURE MESSAGE
     - name: send failure message
       uses: appleboy/telegram-action@master
       if: failure()

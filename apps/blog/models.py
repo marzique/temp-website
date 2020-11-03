@@ -103,7 +103,8 @@ class Comment(LikedDislikedByMixin, models.Model):
         User, 
         on_delete=models.SET_NULL, 
         blank=False, 
-        null=True
+        null=True,
+        related_name='comments'
     )
     text = models.TextField(blank=False, null=False)
     posted = models.DateTimeField(null=True, blank=True, auto_now_add=True)

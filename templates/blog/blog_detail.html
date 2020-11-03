@@ -4,6 +4,21 @@
 
 {% block title %}{{ object.title }}{% endblock %}
 
+{% block metatags %}
+    <!-- titles -->
+    <meta property="og:title" content="{{ object.title }} | ФК ТЕМП">
+    <meta property="twitter:title" content="{{ object.title }} | ФК ТЕМП">
+
+    <!-- custom images -->
+    <meta property="og:image" content="{{ object.image.url }}">
+    <meta property="twitter:image" content="{{ object.image.url }}">
+
+    <!-- custom descriptions -->
+    <meta property="og:description" content="{{ object.text|striptags|truncatechars:140 }}">
+    <meta property="twitter:description" content="{{ object.text|striptags|truncatechars:140 }}">
+
+{% endblock %}  
+
 {% block content %}
 
 <section id="post-photo">

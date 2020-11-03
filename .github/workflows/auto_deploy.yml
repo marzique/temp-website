@@ -85,5 +85,4 @@ jobs:
           Хто: ${{ github.actor }}
           За шо: ${{ github.event_name }}
 
-        message: Шось наєбнулось
         photo: https://media.datacenterdynamics.com/media/images/Failed-ThinkstockPhotos-Aquir.width-358.jpg

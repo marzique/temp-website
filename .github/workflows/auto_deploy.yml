@@ -66,23 +66,23 @@ jobs:
 
     # new style notificaiton
     # SUCCESS
-    - name: send default message
+    - name: send success message
       uses: appleboy/telegram-action@master
       if: success()
       with:
         to: ${{ secrets.CHAT  }}
         token: ${{ secrets.TOKEN }}
+        message: |
+          ✅ ${{ github.event.head_commit.message }} ${{ github.actor }}
 
     # FAIL
-    - name: send photo message
+    - name: send failure message
       uses: appleboy/telegram-action@master
       if: failure()
       with:
         to: ${{ secrets.CHAT  }}
         token: ${{ secrets.TOKEN }}
         message: |
-          Щось наєбнулось
-          Хто: ${{ github.actor }}
-          За шо: ${{ github.event_name }}
-
-        photo: https://media.datacenterdynamics.com/media/images/Failed-ThinkstockPhotos-Aquir.width-358.jpg
+          ❌ Щось наєбнулось 💩 
+          Підор: ${{ github.actor }}
+          Говнокод: ${{ github.event.head_commit.message }}

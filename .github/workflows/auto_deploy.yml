@@ -84,7 +84,6 @@ jobs:
           Щось наєбнулось
           Хто: ${{ github.actor }}
           За шо: ${{ github.event_name }}
-          Це шо?: ${{ commit.ref }}
 
         message: Шось наєбнулось
         photo: https://media.datacenterdynamics.com/media/images/Failed-ThinkstockPhotos-Aquir.width-358.jpg

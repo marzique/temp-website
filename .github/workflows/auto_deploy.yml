@@ -55,15 +55,6 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}
         privateKey: ${{ secrets.PRIVATE_KEY}}
 
-    # tariq's telegram notification
-    - name: Send notifications
-      uses: yanzay/notify-telegram@v0.1.0
-      if: always()
-      with:
-        chat: ${{ secrets.CHAT }} # user id or channel name secret
-        token: ${{ secrets.TOKEN }} # token secret
-        status: ${{ job.status }}
-
     # new style notificaiton
     # SUCCESS
     - name: send success message

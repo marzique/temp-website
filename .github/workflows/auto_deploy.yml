@@ -55,10 +55,10 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}
         privateKey: ${{ secrets.PRIVATE_KEY}}
     
-#     - name: Send notifications
-    - uses: yanzay/notify-telegram@v0.1.0
-      if: always()
-      with:
-        chat: ${{ secrets.chat }} # user id or channel name secret
-        token: ${{ secrets.token }} # token secret
-        status: ${{ job.status }}
+    # - name: Send notifications
+    # - uses: yanzay/notify-telegram@v0.1.0
+    #   if: always()
+    #   with:
+    #     chat: ${{ secrets.chat }} # user id or channel name secret
+    #     token: ${{ secrets.token }} # token secret
+    #     status: ${{ job.status }}

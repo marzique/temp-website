@@ -220,10 +220,14 @@ class Prediction(models.Model):
             fixture = Fixture.objects.get(id=week)
             home_logo = fixture.get_home_logo_url()
             guest_logo = fixture.get_guest_logo_url()
+            date = fixture.date
             fixtures.append({
                     'home_logo': home_logo,
                     'guest_logo': guest_logo,
-                    'goals': goals
+                    'goals': goals,
+                    'date': date
             })
-        return fixtures
+
+        sorted_fixtures = sorted(fixtures, key=lambda k: k['date']) 
+        return sorted_fixtures
             

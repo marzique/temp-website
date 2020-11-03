@@ -64,7 +64,7 @@ jobs:
         to: ${{ secrets.CHAT  }}
         token: ${{ secrets.TOKEN }}
         message: |
-          ✅ ${{ github.event.head_commit.message }} ${{ github.actor }}
+          ✅ author: ${{ github.actor }}, commit: ${{ github.event.head_commit.message }} 
 
     # FAIL
     - name: send failure message

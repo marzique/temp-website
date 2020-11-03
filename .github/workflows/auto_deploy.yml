@@ -54,11 +54,37 @@ jobs:
         username: root
         passphrase: ${{ secrets.PASSPHRASE }}
         privateKey: ${{ secrets.PRIVATE_KEY}}
-    
-    # - name: Send notifications
-    # - uses: yanzay/notify-telegram@v0.1.0
-    #   if: always()
-    #   with:
-    #     chat: ${{ secrets.chat }} # user id or channel name secret
-    #     token: ${{ secrets.token }} # token secret
-    #     status: ${{ job.status }}
+
+    # tariq's telegram notification
+    - name: Send notifications
+      uses: yanzay/notify-telegram@v0.1.0
+      if: always()
+      with:
+        chat: ${{ secrets.CHAT }} # user id or channel name secret
+        token: ${{ secrets.TOKEN }} # token secret
+        status: ${{ job.status }}
+
+    # new style notificaiton
+    # SUCCESS
+    - name: send default message
+      uses: appleboy/telegram-action@master
+      if: success()
+      with:
+        to: ${{ secrets.CHAT  }}
+        token: ${{ secrets.TOKEN }}
+
+    # FAIL
+    - name: send photo message
+      uses: appleboy/telegram-action@master
+      if: failure()
+      with:
+        to: ${{ secrets.CHAT  }}
+        token: ${{ secrets.TOKEN }}
+        message: |
+          Щось наєбнулось
+          Хто: ${{ github.actor }}
+          За шо: ${{ github.event_name }}
+          Це шо?: ${{ commit.ref }}
+
+        message: Шось наєбнулось
+        photo: https://media.datacenterdynamics.com/media/images/Failed-ThinkstockPhotos-Aquir.width-358.jpg

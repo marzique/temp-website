@@ -68,17 +68,26 @@ class ForecastListView(ListView):
     template_name = 'forecasts/forecast_list.html'
 
     def get_context_data(self, **kwargs):
+        average = self.request.GET.get('average', False)
+        if average:
+            average = True
+
         context = super().get_context_data(**kwargs)
         
-        context['user_profiles'] = self._get_top_ten_predictors()
+        context['user_profiles'] = self._get_top_ten_predictors(average=average)
+        context['average'] = average
         return context
     
-    def _get_top_ten_predictors(self):
+    def _get_top_ten_predictors(self, average=False):
         """Return qs with all user profiles with at least 1 prediction"""
 
-        qs = Profile.objects.exclude(predictions__isnull=True).with_predictions()\
-        .order_by('-total_points', 'predictions_total').select_related('user')
-        return qs
+        qs = Profile.objects.exclude(predictions__isnull=True).with_predictions().select_related('user')
+
+        # reorder profiles by average points using plain python
+        if average:
+            return sorted(qs, key=lambda a: a.average_points, reverse=True)
+
+        return qs.order_by('-total_points', 'predictions_total')
     
 
 class PredictView(LoginRequiredMixin, View):

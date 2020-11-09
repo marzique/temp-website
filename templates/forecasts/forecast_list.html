@@ -69,6 +69,16 @@
 </section>
 <div class="container .title">
     <h2>Турнірна таблиця прогнозистів:</h2>
+    <div id="order-switcher">
+        <p>Загальна</p>
+        <a href="/forecasts/{% if not average %}?average=true{%else%}{% endif %}">
+            <div class="switcher {% if average %}switched{% endif %}">
+                <div class="circle">
+                </div>
+            </div>
+         </a>
+        <p>Середня</p>
+    </div>
 </div>
 <section id="users">
     <div class="container">

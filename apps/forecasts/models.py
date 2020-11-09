@@ -200,7 +200,7 @@ class Prediction(models.Model):
     created_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        #One gameweek forecast per user
+        # One gameweek forecast per user
         unique_together = ('user', 'forecast')
         ordering = ['-created_at']
 
@@ -209,8 +209,7 @@ class Prediction(models.Model):
 
     @property
     def points(self):
-        if self.forecast.status == Forecast.CALCULATED:
-            return self.user.forecasts_points[str(self.forecast.id)]
+        return self.user.forecasts_points[str(self.forecast.id)]
 
     @property
     def fixtures(self):

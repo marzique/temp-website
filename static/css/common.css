@@ -1365,6 +1365,11 @@ form.btn{
     display: none;
 }
 
+#forecast .info{
+    font-size: 12px;
+    color: #c34444;
+}
+
 #forecast.editable #predict,
 #forecast #reset,
 #forecast #update-points{

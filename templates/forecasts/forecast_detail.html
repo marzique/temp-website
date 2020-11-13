@@ -15,6 +15,11 @@
             <a href="{% url 'register' %}?next={% url 'forecast-detail' pk=object.pk %}">реєстрація</a>
         {% endif %}
     </div>
+    {% if object.info%}
+        <div class="container info">
+            <p>*{{ object.info }}</p>
+        </div>
+    {% endif %}
     <div class="container">
         {% if user.is_staff %}
             <form action="{% url 'update-points' pk=object.pk %}" method="post">

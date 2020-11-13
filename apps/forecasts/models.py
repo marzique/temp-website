@@ -31,6 +31,7 @@ class Forecast(models.Model):
     season = models.ForeignKey('forecasts.Season', on_delete=models.CASCADE)
     week = models.PositiveIntegerField()
     status = models.PositiveIntegerField(choices=STATUSES, null=False, blank=False, default=ACTIVE)
+    info = models.TextField(blank=True)
 
     class Meta:
         ordering = ['-id']

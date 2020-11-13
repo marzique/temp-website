@@ -3,6 +3,17 @@
 
 {% block title %}Прогноз {{ object.week }} Тур{% endblock %}
 
+{% block metatags %}
+    <!-- titles -->
+    <meta property="og:title" content="Прогноз | ФК ТЕМП">
+    <meta property="twitter:title" content="Прогноз | ФК ТЕМП">
+
+    <!-- custom descriptions -->
+    <meta property="og:description" content="{{ object.season }}: {{ object.week }} Тур">
+    <meta property="twitter:description" content="{{ object.season }}: {{ object.week }} Тур">
+
+{% endblock %}  
+
 {% block content %}
 <div class="container title">
     <h1>Прогноз</h1>

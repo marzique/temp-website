@@ -18,6 +18,8 @@ gunicorn = "*"
 psycopg2-binary = "*"
 colorhash = "*"
 django-ckeditor = "*"
+django-smuggler = "*"
+nplusone = "*"
 
 [requires]
 python_version = "3.8"

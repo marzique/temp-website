@@ -4,6 +4,15 @@ import sys
 import os
 import logging
 
+import environ  
+
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+environ.Env.read_env()
+
 
 # ##### PATH CONFIGURATION ################################
 
@@ -191,13 +200,10 @@ TIME_ZONE = 'Europe/Kiev'
 
 # ##### SECURITY CONFIGURATION ############################
 
-# We store the secret key here
-# The required SECRET_KEY is fetched at the end of this file
-SECRET_FILE = normpath(join(PROJECT_ROOT, 'run', 'SECRET.key'))
 
 # these persons receive error notification
 ADMINS = (
-    ('your name', 'your_name@example.com'),
+    ('Denys', env('EMAIL_HOST_USER')),
 )
 MANAGERS = ADMINS
 
@@ -244,32 +250,33 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'marzique@gmail.com'
-EMAIL_HOST_PASSWORD = 'Goofy282818trax18'
-DEFAULT_FROM_EMAIL = 'noreply@tempfc.club'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-SERVER_EMAIL = 'errors@tempfc.club'
+EMAIL_USE_TLS = env('EMAIL_USE_TLS')
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
+EMAIL_BACKEND = env('EMAIL_BACKEND')
+SERVER_EMAIL = env('SERVER_EMAIL')
 
 
 # ##### DEBUG CONFIGURATION ###############################
-DEBUG = False
-
+DEBUG = env('DEBUG')
 
 # ENV VARIABLES temporary
 HFL_SCOREBOARD_URL = 'https://diamondliga.join.football/tournament/1008633/tables'
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env('POSTGRES_DB'),
+        'USER': env('POSTGRES_USER'),
+        'PASSWORD': env('POSTGRES_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+
+
 # finally grab the SECRET KEY
-try:
-    SECRET_KEY = open(SECRET_FILE).read().strip()
-except IOError:
-    try:
-        from django.utils.crypto import get_random_string
-        chars = 'abcdefghijklmnopqrstuvwxyz0123456789!$%&()=+-_'
-        SECRET_KEY = get_random_string(50, chars)
-        with open(SECRET_FILE, 'w') as f:
-            f.write(SECRET_KEY)
-    except IOError:
-        raise Exception('Could not open %s for writing!' % SECRET_FILE)
+SECRET_KEY = env('SECRET_KEY')

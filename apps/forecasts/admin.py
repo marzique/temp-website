@@ -11,27 +11,27 @@ class FixtureInline(admin.TabularInline):
 
 @admin.register(Forecast)
 class ForecastAdmin(admin.ModelAdmin):
-    list_display = ('week', 'season', 'status')
+    list_display = ('week', 'season', 'status', 'created_at')
 
     inlines = [FixtureInline, ]
 
 
 @admin.register(Season)
 class SeasonAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'created_at')
 
 
 @admin.register(Fixture)
 class FixtureAdmin(admin.ModelAdmin):
-    list_display = ('id', '__str__', 'finished')
+    list_display = ('id', '__str__', 'finished', 'created_at')
     list_filter = ('forecast',)
 
 
 
 @admin.register(Prediction)
 class PredictionAdmin(admin.ModelAdmin):
-    list_display = ['user', 'forecast', 'with_teams', 'created_at']
-    readonly_fields = ['created_at', ]
+    list_display = ('user', 'forecast', 'with_teams', 'created_at')
+    readonly_fields = ('created_at', )
 
 
     def with_teams(self, obj):

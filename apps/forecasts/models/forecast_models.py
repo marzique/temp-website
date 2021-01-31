@@ -14,9 +14,10 @@ from forecasts.constants import (
     WIN_AND_ONE_SIDE_GOALS_POINTS, 
     EXACT_SCORE_POINTS
 )
+from core.models.mixins import Timestamps
 
 
-class Forecast(models.Model):
+class Forecast(Timestamps):
 
     ACTIVE = 1
     STARTED = 2
@@ -96,14 +97,14 @@ class Forecast(models.Model):
         return matched
 
 
-class Season(models.Model):
+class Season(Timestamps):
     name = models.CharField(max_length=15, null=False, blank=False)
 
     def __str__(self):
         return self.name
 
 
-class Fixture(models.Model):
+class Fixture(Timestamps):
     forecast = models.ForeignKey(Forecast, on_delete=models.CASCADE, related_name='fixtures')
     home = models.ForeignKey(
         Team, 
@@ -181,7 +182,7 @@ class Fixture(models.Model):
             return self.guest_logo.url
 
 
-class Prediction(models.Model):
+class Prediction(Timestamps):
     user = models.ForeignKey(
         Profile, 
         on_delete=models.CASCADE, 
@@ -198,7 +199,6 @@ class Prediction(models.Model):
     )
     # {fixture_id: [1, 0], }
     results = models.JSONField(blank=False, null=False, default=dict)
-    created_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         # One gameweek forecast per user

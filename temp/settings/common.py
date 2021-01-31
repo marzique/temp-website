@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'blog',
     'users',
     'forecasts',
+    'core'
 ]
 
 # Middlewares

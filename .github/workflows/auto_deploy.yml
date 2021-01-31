@@ -36,6 +36,8 @@ jobs:
     - name: Create .env file
       run: |
         touch .env
+        pwd
+        ls -la
         echo DEBUG=True >> .env
         echo SECRET_KEY=testkeydontcare >> .env
         echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env

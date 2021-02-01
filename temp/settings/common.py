@@ -7,11 +7,7 @@ import logging
 import environ  
 
 
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
-environ.Env.read_env()
+
 
 
 # ##### PATH CONFIGURATION ################################
@@ -21,6 +17,14 @@ DJANGO_ROOT = dirname(dirname(abspath(__file__)))
 
 # fetch the project_root
 PROJECT_ROOT = dirname(DJANGO_ROOT)
+
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+# .env file in project root
+environ.Env.read_env(os.path.join(PROJECT_ROOT, '.env'))
 
 # the name of the whole site
 SITE_NAME = basename(DJANGO_ROOT)

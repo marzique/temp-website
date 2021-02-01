@@ -23,8 +23,10 @@ env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
 )
+
+ENV_FILE_PATH = dirname(PROJECT_ROOT)
 # .env file in project root
-environ.Env.read_env(os.path.join(PROJECT_ROOT, '.env'))
+environ.Env.read_env(os.path.join(ENV_FILE_PATH, '.env'))
 
 # the name of the whole site
 SITE_NAME = basename(DJANGO_ROOT)

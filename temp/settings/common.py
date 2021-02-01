@@ -7,9 +7,6 @@ import logging
 import environ  
 
 
-
-
-
 # ##### PATH CONFIGURATION ################################
 
 # fetch Django's project directory

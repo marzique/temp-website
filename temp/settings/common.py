@@ -75,7 +75,8 @@ INSTALLED_APPS = [
     'blog',
     'users',
     'forecasts',
-    'core'
+    'core',
+    'telega'
 ]
 
 # Middlewares
@@ -282,3 +283,8 @@ DATABASES = {
 
 # finally grab the SECRET KEY
 SECRET_KEY = env('SECRET_KEY')
+
+
+# TELEGRAM BOT
+TELEGRAM_BOT_TOKEN=env('TELEGRAM_BOT_TOKEN')
+TELEGRAM_CHAT_ID=env('TELEGRAM_CHAT_ID')

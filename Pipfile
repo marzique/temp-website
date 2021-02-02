@@ -22,6 +22,7 @@ django-smuggler = "*"
 nplusone = "*"
 django-environ = "*"
 model-bakery = "*"
+python-telegram-bot = "*"
 
 [requires]
 python_version = "3.8"

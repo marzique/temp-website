@@ -109,6 +109,14 @@ class Season(Timestamps):
     def __str__(self):
         return self.name
 
+    def refresh_profiles(self):
+        for profile in Profile.objects.all():
+            profile.save()
+
+    def save(self, *args, **kwargs):
+        self.refresh_profiles()
+        super().save(*args, **kwargs)
+
 
 class Fixture(Timestamps):
     forecast = models.ForeignKey(Forecast, on_delete=models.CASCADE, related_name='fixtures')

@@ -68,7 +68,7 @@
     </div>
 </section>
 <div class="container .title">
-    <h2>Турнірна таблиця прогнозистів:</h2>
+    <h2>Турнірна таблиця прогнозистів <span>{{ season.name }}</span> </h2>
     <div id="order-switcher">
         <p>Загальна</p>
         <a href="/forecasts/{% if not average %}?average=true{%else%}{% endif %}">

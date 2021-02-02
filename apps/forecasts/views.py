@@ -76,6 +76,7 @@ class ForecastListView(ListView):
         
         context['user_profiles'] = self._get_top_predictors(average=average)
         context['average'] = average
+        context['season'] = Season.objects.filter(archived=False).order_by('created_at').first()
         return context
     
     def _get_top_predictors(self, average=False, total=10):

@@ -1,3 +1,5 @@
+from datetime import datetime, date
+
 from django.db import models
 from django.utils.crypto import get_random_string
 from django.contrib.auth.models import User
@@ -51,6 +53,10 @@ class Player(models.Model):
         if self.captain is False:
             self.captain = None
         super().save(*args, **kwargs)
+
+    def years(self):
+        today = date.today()
+        return today.year - self.date_of_birth.year - ((today.month, today.day) < (self.date_of_birth.month, self.date_of_birth.day)) 
 
     @property
     def full_name(self):

@@ -190,6 +190,10 @@ header.sticky img.logo{
     margin: 40px 0;
 }
 
+.container.title h2 span{
+    color: #c34483;
+}
+
 .container.title h1 span{
     font-size: 24px;
     font-weight: 300;
@@ -481,7 +485,7 @@ footer .socials img{
     position: relative;
 }
 
-#info-tables .fixtures{
+#info-tables .sidebar{
     width: 40%;
     display: flex;
     flex-direction: column;
@@ -492,7 +496,8 @@ footer .socials img{
     width: 60%;
 }
 
-#info-tables .fixtures .match{
+#info-tables .sidebar .match,
+#info-tables .sidebar .birthday{
     height: 300px;
     width: 100%;
     display: flex;
@@ -504,19 +509,57 @@ footer .socials img{
     transition: all .3s ease-in-out;
 }
 
-#info-tables .fixtures .match #countdown{
+#info-tables .sidebar .match #countdown{
     color: #44c379;
 }
 
-#info-tables .fixtures .next-match{
+#info-tables .sidebar .next-match{
     margin-bottom: 20px;
+}
+
+#info-tables .sidebar .birthday{
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-color: #FAFAD2;
+}
+
+.birthday .photo{
+    width: 160px;
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
+
+.birthday .bd-info{
+    text-align: right;
+    line-height: 150%;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 100%;
+    justify-content: space-evenly;
+}   
+
+.bd-info h2{
+    color: #c34483;
+    font-size: 36px;
+    margin: 5px 0;
+    line-height: 150%;
 }
 
 .expandable{
     transition: all .3s ease-in-out;
 }
 
-#info-tables .fixtures .match:hover,
+#info-tables .sidebar .match:hover,
 .expandable:hover{
     transform: scale(1.05);
 }
@@ -529,11 +572,11 @@ footer .socials img{
     font-size: 12px;
 }
 
-#info-tables .fixtures .team{
+#info-tables .sidebar .team{
     text-align: center;
 }
 
-#info-tables .fixtures .team img{
+#info-tables .sidebar .team img{
     width: 100px;
     height: 100px;
     object-fit: contain;
@@ -544,12 +587,12 @@ footer .socials img{
     text-align: center;
 }
 
-#info-tables .fixtures .team{
+#info-tables .sidebar .team{
     min-width: 150px;
     /* height: 40px; */
 }
 
-#info-tables .fixtures .score{
+#info-tables .sidebar .score{
     min-width: 80px;
 }
 
@@ -1970,16 +2013,16 @@ form.btn{
         height: 50px;
     }
 
-    #info-tables .fixtures {
+    #info-tables .sidebar {
         width: 100%;
     }
 
-    #info-tables .fixtures .team {
+    #info-tables .sidebar .team {
         min-width: 32vw;
         height: unset;
     }
 
-    #info-tables .fixtures .team img {
+    #info-tables .sidebar .team img {
         width: 25vw;
         height: 25vw;
         object-fit: contain;

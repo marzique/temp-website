@@ -1,0 +1,17 @@
+{% load static %}
+{% if birthdays %}
+<div class="birthdays">
+    {% for player in birthdays %}
+        <div class="birthday shadow" style="background-image: url({% static 'img/triangles.png' %});">
+            <div class="photo" style="background-image: url('/media/squad/5e70d7b585efb_thumb.jpg');">
+
+            </div>
+            <div class="bd-info">
+                <h1>{{ player.full_name }}</h1>
+                <h2>{{ player.years }} років</h2>
+                <h3>{{ player.date_of_birth|date:"d.m.Y" }}</h3>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}

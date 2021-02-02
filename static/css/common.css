@@ -1368,6 +1368,7 @@ form.btn{
 #forecast .info{
     font-size: 12px;
     color: #c34444;
+    margin-top: 20px;
 }
 
 #forecast.editable #predict,

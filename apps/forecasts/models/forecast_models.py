@@ -29,13 +29,18 @@ class Forecast(Timestamps):
         (CALCULATED, 'Очки зараховані'),
     )
 
-    season = models.ForeignKey('forecasts.Season', on_delete=models.CASCADE)
-    week = models.PositiveIntegerField()
+    season = models.ForeignKey('forecasts.Season', on_delete=models.CASCADE, related_name='forecasts')
+    week = models.CharField(max_length=64)
     status = models.PositiveIntegerField(choices=STATUSES, null=False, blank=False, default=ACTIVE)
     info = models.TextField(blank=True)
 
     class Meta:
         ordering = ['-id']
+
+
+    @property
+    def archived(self):
+        return self.season.archived
 
     @property
     def deadline(self):
@@ -98,7 +103,8 @@ class Forecast(Timestamps):
 
 
 class Season(Timestamps):
-    name = models.CharField(max_length=15, null=False, blank=False)
+    name = models.CharField(max_length=64, null=False, blank=False)
+    archived = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

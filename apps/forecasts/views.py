@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseForbidden
 from django.utils import timezone
 
-from forecasts.models import Forecast, Prediction
+from forecasts.models import Forecast, Prediction, Season
 from users.models import Profile
 
 
@@ -64,7 +64,7 @@ class ForecastDetailView(DetailView):
 
 
 class ForecastListView(ListView):
-    queryset = Forecast.objects.select_related('season').all()
+    queryset = Forecast.objects.select_related('season').filter(season__archived=False)
     template_name = 'forecasts/forecast_list.html'
 
     def get_context_data(self, **kwargs):

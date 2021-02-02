@@ -1,6 +1,6 @@
 
 from django.contrib.auth.models import User
-from main.tests import BaseClassTestCase
+from core.tests import BaseClassTestCase
 
 
 class MainPageTestCase(BaseClassTestCase):

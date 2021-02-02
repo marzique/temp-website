@@ -26,8 +26,10 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
+
     - name: psycopg2 prerequisites
       run: sudo apt-get install libpq-dev postgresql postgresql-contrib
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -73,9 +75,9 @@ jobs:
         host: ${{ secrets.REMOTE_HOST }}
         username: root
         passphrase: ${{ secrets.PASSPHRASE }}
-        privateKey: ${{ secrets.PRIVATE_KEY}}
+        privateKey: ${{ secrets.PRIVATE_KEY }}
 
-    # SUCCESS MESSAGE: DISABLED
+    # SUCCESS MESSAGE
     - name: send success message
       uses: appleboy/telegram-action@master
       if: success()
@@ -83,7 +85,9 @@ jobs:
         to: ${{ secrets.CHAT  }}
         token: ${{ secrets.TOKEN }}
         message: |
-          ✅ author: ${{ github.actor }}, commit: ${{ github.event.head_commit.message }} 
+          ✅ Успешная заливка в прод. 
+          Автор: ${{ github.actor }}, 
+          Коммит: ${{ github.event.head_commit.message }} 
 
     # FAILURE MESSAGE
     - name: send failure message
@@ -93,6 +97,6 @@ jobs:
         to: ${{ secrets.CHAT  }}
         token: ${{ secrets.TOKEN }}
         message: |
-          ❌ Щось наєбнулось 💩 
-          Підор: ${{ github.actor }}
-          Говнокод: ${{ github.event.head_commit.message }}
+          ❌ Что то сломалось ❌
+          Автор: ${{ github.actor }}
+          Говнокод: ${{ github.event.head_commit.message }} 💩💩💩

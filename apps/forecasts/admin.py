@@ -11,14 +11,18 @@ class FixtureInline(admin.TabularInline):
 
 @admin.register(Forecast)
 class ForecastAdmin(admin.ModelAdmin):
-    list_display = ('week', 'season', 'status', 'created_at')
+    list_display = ('week', 'season', 'status', 'created_at', 'archived')
 
     inlines = [FixtureInline, ]
+
+    def archived(self, obj):
+        return obj.season.archived
+    archived.boolean = True  # shows emoji
 
 
 @admin.register(Season)
 class SeasonAdmin(admin.ModelAdmin):
-    list_display = ('name', 'created_at')
+    list_display = ('name', 'created_at', 'archived')
 
 
 @admin.register(Fixture)

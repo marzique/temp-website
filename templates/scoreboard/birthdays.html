@@ -3,7 +3,7 @@
 <div class="birthdays">
     {% for player in birthdays %}
         <div class="birthday shadow" style="background-image: url({% static 'img/triangles.png' %});">
-            <div class="photo" style="background-image: url('/media/squad/5e70d7b585efb_thumb.jpg');">
+            <div class="photo" style="background-image: url({{ player.photo.url }});">
 
             </div>
             <div class="bd-info">

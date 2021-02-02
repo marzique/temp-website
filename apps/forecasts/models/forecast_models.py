@@ -110,6 +110,8 @@ class Season(Timestamps):
         return self.name
 
     def refresh_profiles(self):
+        from users.models import Profile
+        
         for profile in Profile.objects.all():
             profile.save()
 

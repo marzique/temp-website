@@ -252,19 +252,19 @@ AUTHENTICATION_BACKENDS = (
     'users.authentication.EmailOrUsernameModelBackend',
 )
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_USE_TLS = env('EMAIL_USE_TLS')
-EMAIL_HOST = env('EMAIL_HOST')
-EMAIL_PORT = env('EMAIL_PORT')
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
-EMAIL_BACKEND = env('EMAIL_BACKEND')
-SERVER_EMAIL = env('SERVER_EMAIL')
+EMAIL_USE_TLS = env('EMAIL_USE_TLS', default=True)
+EMAIL_HOST = env('EMAIL_HOST', default='smtp.gmail.com')
+EMAIL_PORT = env('EMAIL_PORT', default=587)
+EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='noreply@tempfc.club')
+SERVER_EMAIL = env('SERVER_EMAIL', default='errors@tempfc.club')
 
 
 # ##### DEBUG CONFIGURATION ###############################
-DEBUG = env('DEBUG')
+DEBUG = env('DEBUG', default=False)
 
 # ENV VARIABLES temporary
 HFL_SCOREBOARD_URL = 'https://diamondliga.join.football/tournament/1008633/tables'
@@ -286,5 +286,5 @@ SECRET_KEY = env('SECRET_KEY')
 
 
 # TELEGRAM BOT
-TELEGRAM_BOT_TOKEN=env('TELEGRAM_BOT_TOKEN')
-TELEGRAM_CHAT_ID=env('TELEGRAM_CHAT_ID')
+TELEGRAM_BOT_TOKEN=env('TELEGRAM_BOT_TOKEN', default='')
+TELEGRAM_CHAT_ID=env('TELEGRAM_CHAT_ID', default='')

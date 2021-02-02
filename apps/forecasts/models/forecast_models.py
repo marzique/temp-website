@@ -8,7 +8,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from scoreboard.models import Team
-from users.models import Profile
+# from users.models import Profile
 from forecasts.constants import (
     WIN_OR_DRAW_POINTS, 
     WIN_AND_ONE_SIDE_GOALS_POINTS, 
@@ -190,7 +190,7 @@ class Fixture(Timestamps):
 
 class Prediction(Timestamps):
     user = models.ForeignKey(
-        Profile, 
+        'users.Profile', 
         on_delete=models.CASCADE, 
         blank=False, 
         null=False,

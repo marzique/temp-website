@@ -74,20 +74,23 @@ class ForecastListView(ListView):
 
         context = super().get_context_data(**kwargs)
         
-        context['user_profiles'] = self._get_top_ten_predictors(average=average)
+        context['user_profiles'] = self._get_top_predictors(average=average)
         context['average'] = average
         return context
     
-    def _get_top_ten_predictors(self, average=False):
-        """Return qs with all user profiles with at least 1 prediction"""
+    def _get_top_predictors(self, average=False, total=10):
+        """
+        Return `total` user profiles with at least 1 prediction,
+        from latest not archived `season`.
+        """
 
-        qs = Profile.objects.exclude(predictions__isnull=True).with_predictions().select_related('user')
+        profiles = Profile.objects.exclude(predictions__isnull=True).with_predictions().select_related('user')
 
         # reorder profiles by average points using plain python
         if average:
-            return sorted(qs, key=lambda a: a.average_points, reverse=True)
+            return sorted(profiles, key=lambda a: a.average_points, reverse=True)
 
-        return qs.order_by('-total_points', 'predictions_total')
+        return profiles.order_by('-total_points', 'predictions_total')
     
 
 class PredictView(LoginRequiredMixin, View):

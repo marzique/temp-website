@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from scoreboard.models import Team
+from forecasts.models import Season, Forecast
 from django.db import models
 from django.db.models import Count, Q, Min, Max, F
 from django.db.models.signals import post_save
@@ -14,7 +15,8 @@ class ProfileManager(models.Manager):
 class ProfileQueryset(models.QuerySet):
 
     def with_predictions(self):
-        qs = self.annotate(predictions_total=Count('predictions'))
+        season = Season.objects.filter(archived=False).order_by('created_at').first()
+        qs = self.annotate(predictions_total=Count('predictions', filter=Q(predictions__forecast__season=season)))
         return qs
 
 
@@ -36,11 +38,16 @@ class Profile(models.Model):
         self.total_points = self.calculate_total_points()
         super().save(*args, **kwargs)
 
-    def calculate_total_points(self):
+    def calculate_total_points(self, total=False):
         """Calculate total points earned from all weeks"""
+        seasons = Season.objects.all()
+        if not total:
+            seasons = Season.objects.filter(archived=False)
+        forecast_ids = Forecast.objects.filter(season__in=seasons).values_list('id', flat=True)
         points_total = 0
         for forecast, points in self.forecasts_points.items():
-            points_total += points
+            if int(forecast) in forecast_ids:
+                points_total += points
         return points_total
     
     @property

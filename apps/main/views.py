@@ -17,6 +17,7 @@ from scoreboard.models import Team, Match
 from scoreboard.hfl import HFLScoreBoardParser
 from blog.models import Blog
 from squad.models import Player
+from squad.utils import get_todays_birthday_players
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -31,12 +32,8 @@ class MainPageView(TemplateView):
         context['next_match'] = Match.objects.filter(next=True).first()
         context['prev_match'] = Match.objects.filter(prev=True).first()
         context['last_posts'] = Blog.objects.select_related('category').with_likes().filter(posted__lte=timezone.localtime(timezone.now())).order_by('-posted')[:3]
-        context['birthdays'] = self._get_todays_birthday_players()
+        context['birthdays'] = get_todays_birthday_players()
         return context
-
-    def _get_todays_birthday_players(self):
-        qs = Player.objects.filter(date_of_birth__month=datetime.now().month, date_of_birth__day=datetime.now().day)
-        return qs
 
     @transaction.atomic
     def refresh_scoreboard(self):

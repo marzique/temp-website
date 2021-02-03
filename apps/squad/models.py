@@ -54,6 +54,7 @@ class Player(models.Model):
             self.captain = None
         super().save(*args, **kwargs)
 
+    @property
     def years(self):
         today = date.today()
         return today.year - self.date_of_birth.year - ((today.month, today.day) < (self.date_of_birth.month, self.date_of_birth.day)) 

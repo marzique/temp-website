@@ -73,8 +73,9 @@ jobs:
           python manage.py migrate &&
           python manage.py collectstatic --noinput &&
           sudo systemctl daemon-reload &&
-          systemctl restart celery &&
-          systemctl restart tempfc
+          systemctl restart tempfc &&
+          systemctl restart celery.service &&
+          systemctl restart celerybeat.service
         host: ${{ secrets.REMOTE_HOST }}
         username: root
         passphrase: ${{ secrets.PASSPHRASE }}

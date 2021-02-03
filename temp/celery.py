@@ -35,7 +35,7 @@ app.conf.update(
 
         "notify_birthdays": {
             "task": "squad.tasks.notify_birthdays",
-            "schedule": crontab(hour=15, minute=13),
+            "schedule": crontab(hour=15, minute=20),
             "args": ()
         },
         # "check_carts": {

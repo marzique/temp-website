@@ -23,6 +23,9 @@ nplusone = "*"
 django-environ = "*"
 model-bakery = "*"
 python-telegram-bot = "*"
+django-celery-beat = "*"
+celery = "*"
+redis = "*"
 
 [requires]
 python_version = "3.8"

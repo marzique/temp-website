@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'smuggler',
     'nplusone.ext.django',
+    'django_celery_beat',
 
     # custom apps
     'main',
@@ -288,3 +289,10 @@ SECRET_KEY = env('SECRET_KEY')
 # TELEGRAM BOT
 TELEGRAM_BOT_TOKEN=env('TELEGRAM_BOT_TOKEN', default='')
 TELEGRAM_CHAT_ID=env('TELEGRAM_CHAT_ID', default='')
+
+
+# Celery
+CELERY_BROKER_URL = env('CELERY_BROKER_URL', default='redis://localhost:6379')
+
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'

@@ -15,5 +15,5 @@ def notify_birthdays():
         Від імені команди вітаємо {player.full_name} з днем народження!\
         {player.first_name} святкує {player.years}річчя!"
         photo_urls = [f'https://tempfc.club{player.photo.url}']
-        bot.send_album(photo_urls=photo_urls, text=text)
+        bot.send_album(photo_urls=photo_urls, caption=text)
 

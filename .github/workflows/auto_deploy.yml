@@ -72,6 +72,7 @@ jobs:
           pip install -r requirements.txt &&
           python manage.py migrate &&
           python manage.py collectstatic --noinput &&
+          sudo systemctl daemon-reload &&
           systemctl restart tempfc
         host: ${{ secrets.REMOTE_HOST }}
         username: root

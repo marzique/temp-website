@@ -73,6 +73,7 @@ jobs:
           python manage.py migrate &&
           python manage.py collectstatic --noinput &&
           sudo systemctl daemon-reload &&
+          systemctl restart celery &&
           systemctl restart tempfc
         host: ${{ secrets.REMOTE_HOST }}
         username: root

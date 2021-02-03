@@ -26,7 +26,7 @@ ACCEPT_CONTENT = ['json']
 
 app.conf.update(
 
-    # CELERY_TIMEZONE=settings.TIME_ZONE,
+    CELERY_TIMEZONE=settings.TIME_ZONE,
     CELERY_ALWAYS_EAGER=False,
 
     CELERYBEAT_SCHEDULE={
@@ -35,7 +35,7 @@ app.conf.update(
 
         "notify_birthdays": {
             "task": "squad.tasks.notify_birthdays",
-            "schedule": crontab(hour=15, minute=20),
+            "schedule": crontab(hour=0, minute=1), # -2 to UTC
             "args": ()
         },
         # "check_carts": {

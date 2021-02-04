@@ -4,7 +4,7 @@ from squad.models import Player, Squad
 
 @admin.register(Player)
 class PlayerAdmin(admin.ModelAdmin):
-    list_display = ('number', 'position', 'name', 'captain')
+    list_display = ('number', 'position', 'name', 'captain', 'date_of_birth')
     readonly_fields = ['name_slug']
 
     def name(self, obj):

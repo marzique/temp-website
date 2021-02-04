@@ -36,13 +36,13 @@ app.conf.update(
 
         "notify_birthdays": {
             "task": "squad.tasks.notify_birthdays",
-            "schedule": crontab(hour=0, minute=1), # -2 to UTC
+            "schedule": crontab(hour=0, minute=0), # -2 to UTC
             "args": ()
         },
-        "notify_birthdays": {
-            "task": "squad.tasks.test_timezone_messages",
-            "schedule": crontab(hour=18, minute=0), # -2 to UTC
-            "args": ()
-        },
+        # "test_timezone_messages": {
+        #     "task": "squad.tasks.test_timezone_messages",
+        #     "schedule": crontab(hour=18, minute=0), # -2 to UTC
+        #     "args": ()
+        # },
     },
 )

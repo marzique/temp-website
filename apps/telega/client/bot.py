@@ -19,7 +19,7 @@ class TelegramBot:
                 parse_mode=parse_mode
             )
 
-    def send_album(self, photo_urls, caption=None, chat_id=USER_CHANNEL_ID):
+    def send_album(self, photo_urls, caption=None, chat_id=USER_CHANNEL_ID, parse_mode='HTML'):
         """Send 2-10 photos with caption to channel"""
 
         media_group = [telegram.InputMediaPhoto(url, parse_mode=None) for url in photo_urls]

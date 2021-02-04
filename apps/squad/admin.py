@@ -8,7 +8,7 @@ class PlayerAdmin(admin.ModelAdmin):
     readonly_fields = ['name_slug']
 
     def name(self, obj):
-        return f'{obj.first_name} {obj.last_name}'
+        return obj.full_name
 
 
 @admin.register(Squad)

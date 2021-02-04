@@ -17,3 +17,7 @@ def notify_birthdays():
         photo_urls = [f'https://tempfc.club{player.photo.url}']
         bot.send_album(photo_urls=photo_urls, caption=text)
 
+
+@shared_task
+def test_timezone_messages():
+    bot.send_text('TEST 18:00 Kyiv Time', chat_id=bot.TECH_CHANNEL_ID)

@@ -28,6 +28,7 @@ app.conf.update(
 
     CELERY_TIMEZONE=settings.TIME_ZONE,
     CELERY_ALWAYS_EAGER=False,
+    CELERY_ENABLE_UTC=False,
 
     CELERYBEAT_SCHEDULE={
         # hour=0, minute=0 - once a day
@@ -38,10 +39,10 @@ app.conf.update(
             "schedule": crontab(hour=0, minute=1), # -2 to UTC
             "args": ()
         },
-        # "check_carts": {
-        #     "task": "cards.tasks.check_carts",
-        #     "schedule": crontab(minute=0),
-        #     "args": ()
-        # }
+        "notify_birthdays": {
+            "task": "squad.tasks.test_timezone_messages",
+            "schedule": crontab(hour=18, minute=0), # -2 to UTC
+            "args": ()
+        },
     },
 )

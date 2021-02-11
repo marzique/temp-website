@@ -28,6 +28,9 @@ urlpatterns = [
 
     # CKEditor
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+
+    # Telegram
+    path('telegram/', include('telega.urls')),
     
     # backups
     path('admin/', include('smuggler.urls')),  # before admin url patterns!

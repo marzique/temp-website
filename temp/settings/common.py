@@ -207,7 +207,7 @@ TIME_ZONE = 'Europe/Kiev'
 
 # these persons receive error notification
 ADMINS = (
-    ('Denys', env('EMAIL_HOST_USER')),
+    ('Denys', env('EMAIL_HOST_USER', default='marzique@gmail.com')),
 )
 MANAGERS = ADMINS
 

@@ -54,6 +54,7 @@ jobs:
         echo DEFAULT_FROM_EMAIL=noreply@tempfc.club >> .env
         echo EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend >> .env
         echo SERVER_EMAIL=errors@tempfc.club >> .env
+        echo TELEGRAM_BOT_TOKEN='${{ secrets.TOKEN }}' >> .env
         cat .env
         
     - name: Run migrations for tests

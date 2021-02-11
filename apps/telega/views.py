@@ -11,6 +11,6 @@ class TelegramWebhookView(View):
 
     def post(self, request, *args, **kwargs):
         print(request.POST)
-        bot.send_text(str(request.POST), chat_id='@tempfc_alerts')
+        bot.send_text(str(dict(request.POST)), chat_id='@tempfc_alerts')
         # dispatcher.process_update(update)
         return HttpResponse('test')

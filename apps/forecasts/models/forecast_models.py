@@ -218,7 +218,7 @@ class Prediction(Timestamps):
 
     class Meta:
         # One gameweek forecast per user
-        unique_together = ('user', 'forecast')
+        unique_together = (('user', 'forecast'),)
         ordering = ['-created_at']
 
     def __str__(self):

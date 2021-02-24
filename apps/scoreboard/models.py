@@ -45,6 +45,49 @@ class Team(models.Model):
         return self.name
 
 
+class League(models.Model):
+    name = models.CharField(max_length=64)
+    years = models.CharField(max_length=9, null=False, blank=False)  # e.g. 2020 or 2021/2022
+    active = models.BooleanField(default=True)
+
+    class Meta:
+        # One like per Post/Comment
+        unique_together = (('name', 'years'),)
+
+    def __str__(self):
+        return f'{self.name} {self.years}'
+
+
+class TeamInfo(models.Model):
+    team = models.ForeignKey(
+        Team, 
+        on_delete=models.CASCADE, 
+        blank=False, 
+        null=False,
+        related_name='participates'
+    )
+    league = models.ForeignKey(
+        League,
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True, 
+        related_name='teams'
+    )
+
+    PLACE_CHOICES = zip(range(1, 100), range(1, 100)) # 1-99
+
+    place = models.PositiveIntegerField(choices=PLACE_CHOICES, null=False, blank=False, default=0)
+    games = models.PositiveIntegerField(null=False, blank=False, default=0)
+    wins = models.PositiveIntegerField(null=False, blank=False, default=0)
+    draws = models.PositiveIntegerField(null=False, blank=False, default=0)
+    losses = models.PositiveIntegerField(null=False, blank=False, default=0)
+    goals_scored = models.PositiveIntegerField(null=False, blank=False, default=0)
+    goals_conceded = models.PositiveIntegerField(null=False, blank=False, default=0)
+    points = models.PositiveIntegerField(null=False, blank=False, default=0)
+
+    def __str__(self):
+        return f'{self.team} {self.league} [#{self.place}]'
+
 
 class Match(models.Model):
     home = models.ForeignKey(

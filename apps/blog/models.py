@@ -160,4 +160,4 @@ class Like(models.Model):
 
     class Meta:
         # One like per Post/Comment
-        unique_together = ('author', 'post')
+        unique_together = (('author', 'post'),)

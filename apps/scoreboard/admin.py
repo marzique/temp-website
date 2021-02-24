@@ -5,7 +5,7 @@ from scoreboard.models import Team, Match, TeamInfo, League
 
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ('name', 'place', 'points', 'logo_url')
+    list_display = ('name', 'logo_url')
 
 
 @admin.register(TeamInfo)

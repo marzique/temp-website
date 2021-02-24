@@ -13,8 +13,9 @@ from django.shortcuts import redirect
 
 from aboutconfig.models import Config
 
-from scoreboard.models import Team, Match
+from scoreboard.models import Team, Match, League
 from scoreboard.hfl import HFLScoreBoardParser
+from scoreboard.utils import get_lates_league_context
 from blog.models import Blog
 from squad.models import Player
 from squad.utils import get_todays_birthday_players
@@ -28,7 +29,9 @@ class MainPageView(TemplateView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
 
-        context['scoreboard'] = Team.objects.all()
+        context['scoreboard'] = get_lates_league_context()
+        print(context['scoreboard'][0].place)
+        print(context['scoreboard'][1].place)
         context['next_match'] = Match.objects.filter(next=True).first()
         context['prev_match'] = Match.objects.filter(prev=True).first()
         context['last_posts'] = Blog.objects.select_related('category').with_likes().filter(posted__lte=timezone.localtime(timezone.now())).order_by('-posted')[:3]

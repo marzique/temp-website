@@ -20,19 +20,19 @@
         <p class="points">О</p>
     </div>
     <div class="table">
-        {% for team in scoreboard %}
-        <div class="team {% if team.name.lower == 'темп' %}dymer{% endif %}">
-            <p class="place">{{ team.place }}</p>
+        {% for teaminfo in scoreboard %}
+        <div class="team {% if teaminfo.team.name.lower == 'темп' %}dymer{% endif %}">
+            <p class="place">{{ teaminfo.place }}</p>
             <div class="team-name">
-                <img src="{{ team.logo_url }}" >
-                <p>{{ team.alias }}</p>
+                <img src="{{ teaminfo.team.logo_url }}" >
+                <p>{{ teaminfo.team.alias }}</p>
             </div>
-            <p class="games">{{ team.games }}</p>
-            <p class="wins">{{ team.wins }}</p>
-            <p class="draws">{{ team.draws }}</p>
-            <p class="losses">{{ team.losses }}</p>
-            <p class="goals">{{ team.goals_scored }} - {{ team.goals_conceded }}</p>
-            <p class="points"><b>{{ team.points }}</b></p>
+            <p class="games">{{ teaminfo.games }}</p>
+            <p class="wins">{{ teaminfo.wins }}</p>
+            <p class="draws">{{ teaminfo.draws }}</p>
+            <p class="losses">{{ teaminfo.losses }}</p>
+            <p class="goals">{{ teaminfo.goals_scored }} - {{ teaminfo.team.goals_conceded }}</p>
+            <p class="points"><b>{{ teaminfo.points }}</b></p>
         </div>
         {% endfor %}
     </div>

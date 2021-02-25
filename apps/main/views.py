@@ -30,8 +30,6 @@ class MainPageView(TemplateView):
         user = self.request.user
 
         context['scoreboard'] = get_lates_league_context()
-        print(context['scoreboard'][0].place)
-        print(context['scoreboard'][1].place)
         context['next_match'] = Match.objects.filter(next=True).first()
         context['prev_match'] = Match.objects.filter(prev=True).first()
         context['last_posts'] = Blog.objects.select_related('category').with_likes().filter(posted__lte=timezone.localtime(timezone.now())).order_by('-posted')[:3]

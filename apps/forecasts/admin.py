@@ -4,7 +4,7 @@ from django.utils.html import format_html
 from forecasts.models import Forecast, Season, Fixture, Prediction
 
 
-class FixtureInline(admin.TabularInline):
+class FixtureInline(admin.StackedInline):
     model = Fixture
     min_num = 0
 

@@ -248,7 +248,7 @@ class Prediction(Timestamps):
                     'goals': goals,
                     'date': date
                 }
-                if int(week) == self.results['doubled']:
+                if int(week) == self.results.get('doubled'):
                     data['doubled'] = True
                 fixtures.append(data)
 

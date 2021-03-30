@@ -31,7 +31,7 @@ class ForecastDetailView(DetailView):
             if self._voted(**kwargs):
                 user = self.request.user.profile
                 results = Prediction.objects.select_related('user').get(user=user, forecast__pk=self.kwargs['pk']).results
-                context['doubled'] = results.pop('doubled')
+                context['doubled'] = results.pop('doubled', None)
                 context['results'] = self._results_to_int_keys(results)
         return context
 

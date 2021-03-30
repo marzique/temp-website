@@ -22,33 +22,31 @@ class ForecastDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         # Trigger forecast status change when user requests page after deadline
         if timezone.now() >= self.object.deadline and self.object.status == Forecast.ACTIVE:
             self.object.status = Forecast.STARTED
             self.object.save()
-
         if self.request.user.is_authenticated:
             context['can_vote'] = self._can_vote(**kwargs)
-
             if self._voted(**kwargs):
                 user = self.request.user.profile
                 results = Prediction.objects.select_related('user').get(user=user, forecast__pk=self.kwargs['pk']).results
+                context['doubled'] = results.pop('doubled')
                 context['results'] = self._results_to_int_keys(results)
-            
         return context
 
     def _results_to_int_keys(self, results):
         new_results = {}
         for k, v in results.items():
-            new_results[int(k)] = v
+            if k.isdigit:
+                k = int(k)
+            new_results[k] = v
         return new_results
     
     def _voted(self, **kwargs):
         """
         Check if user already voted this week.
         """
-
         user = self.request.user.profile
         return Prediction.objects.filter(user=user, forecast__pk=self.kwargs['pk']).exists()
 
@@ -56,7 +54,6 @@ class ForecastDetailView(DetailView):
         """
         Didn't vote yet, and this forecast is active.
         """
-
         if not self._voted(**kwargs):
             if self.get_object().status == Forecast.ACTIVE:
                 return True
@@ -113,6 +110,9 @@ class PredictView(LoginRequiredMixin, View):
                 pk = k.replace('fixture', '')
                 scores = request.POST.getlist(k)
                 prediction[pk] = [int(goals) for goals in scores]
+            elif k == 'doubled':
+                pk = request.POST['doubled'].replace('fixture', '')
+                prediction['doubled'] = int(pk)
         return prediction
 
 

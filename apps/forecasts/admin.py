@@ -42,11 +42,12 @@ class PredictionAdmin(admin.ModelAdmin):
         new_results = []
         
         for week, goals in obj.results.items():
-            fixture = Fixture.objects.get(id=week)
-            home = fixture.get_home_name()
-            guest = fixture.get_guest_name()
-            new_results.append(
-                f'{home} {goals[0]}:{goals[1]} {guest}'
-            )
+            if week.isdigit():
+                fixture = Fixture.objects.get(id=week)
+                home = fixture.get_home_name()
+                guest = fixture.get_guest_name()
+                new_results.append(
+                    f'{home} {goals[0]}:{goals[1]} {guest}'
+                )
             
         return format_html('<br>'.join(new_results))

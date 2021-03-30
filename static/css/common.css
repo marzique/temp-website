@@ -46,6 +46,17 @@ body{
     line-height: 100%;
 }
 
+.greyed{
+    opacity: .2;
+    filter: grayscale(100%);
+    user-select: none;
+}
+
+.please-auth{
+    font-size: 20px;
+    font-weight: bold;
+}
+
 
 /* REMOVE ARROWS input type number */
 input::-webkit-outer-spin-button,
@@ -1529,6 +1540,83 @@ form.btn{
     color: #0d2e52;
 }
 
+/* CUSTOM CHECKBOX (X2) */
+.checkwrap {
+    display: block;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    position: absolute;
+    right: 0;
+}
+
+/* Hide the browser's default checkbox */
+.checkwrap input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.radiobtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    color:rgb(41, 38, 38);
+}
+
+/* On mouse-over, add a grey background color */
+.checkwrap:hover input ~ .radiobtn {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkwrap input:checked ~ .radiobtn {
+    background-color: #eecb31;
+    color: #eecb31;
+}
+
+/* Create the radiobtn/indicator (hidden when not checked) */
+.radiobtn:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the radiobtn when checked */
+.checkwrap input:checked ~ .radiobtn:after {
+    display: block;
+}
+
+/* Style the radiobtn/indicator */
+.checkwrap .radiobtn:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+/* /CUSTOM CHECKBOX (X2) */
+
 #forecast .fixture .guest_goals{
     justify-content: flex-start;
 }
@@ -1551,6 +1639,24 @@ form.btn{
     align-items: center;
     border-bottom: 1px solid rgb(239, 239, 239);
     padding: 25px 0 10px;
+    position: relative;
+}
+
+#forecast .fixture.doubled, 
+#predictions .match-prediction.doubled{
+    background-color: #ffd8637a;
+}
+
+#forecast .fixture.doubled::after{
+    content: 'X2';
+    position: absolute;
+    right: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #44c379;
+    top: 50%;
+    transform: translate(0,-50%);
+    line-height: 100%;
 }
 
 #forecast .fixture.finished{

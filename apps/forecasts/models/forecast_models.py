@@ -37,7 +37,6 @@ class Forecast(Timestamps):
     class Meta:
         ordering = ['-id']
 
-
     @property
     def archived(self):
         return self.season.archived
@@ -62,11 +61,16 @@ class Forecast(Timestamps):
         for prediction in self.predictions.all():
             week_points = 0
             profile = prediction.user
-            for fixture_id, predicted_score in prediction.results.items():
+            results = prediction.results
+            doubled = results.pop('doubled', None)
+            for fixture_id, predicted_score in results.items():
                 fixture = Fixture.objects.get(id=fixture_id)
                 # allow partially finished Forecasts calculations
                 if fixture.finished:
                     points = self.calculate_fixture_prediction(fixture, predicted_score)
+                    # x2
+                    if str(doubled) == fixture_id:
+                        points *= 2
                     week_points += points
             profile.create_or_update_points(self.id, week_points)
 
@@ -233,16 +237,21 @@ class Prediction(Timestamps):
         fixtures = []
         
         for week, goals in self.results.items():
-            fixture = Fixture.objects.get(id=week)
-            home_logo = fixture.get_home_logo_url()
-            guest_logo = fixture.get_guest_logo_url()
-            date = fixture.date
-            fixtures.append({
+            if week.isdigit():
+                fixture = Fixture.objects.get(id=week)
+                home_logo = fixture.get_home_logo_url()
+                guest_logo = fixture.get_guest_logo_url()
+                date = fixture.date
+                data = {
                     'home_logo': home_logo,
                     'guest_logo': guest_logo,
                     'goals': goals,
                     'date': date
-            })
+                }
+                if int(week) == self.results['doubled']:
+                    data['doubled'] = True
+                fixtures.append(data)
+
 
         sorted_fixtures = sorted(fixtures, key=lambda k: k['date']) 
         return sorted_fixtures

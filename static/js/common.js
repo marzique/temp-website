@@ -103,4 +103,12 @@ $(function() {
         $('#reply-name').removeClass('visible');
         $('#comments .comment').removeClass('blurall active-to-reply');
     }
+
+    // highlight doubled match in predictions
+    if ($('#forecast').length){
+        $('.checkwrap input[type=radio]').change(function() {
+            $('.fixture').removeClass('doubled');
+            $(this).closest('.fixture').addClass('doubled');
+        });
+    }
 });

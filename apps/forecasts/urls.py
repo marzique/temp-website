@@ -4,7 +4,8 @@ from forecasts.views import (
     ForecastListView, 
     PredictView, 
     UpdatePointsView,
-    ResetPredictionView
+    ResetPredictionView,
+    RefreshCurrentSeasonPoints
 )
 
 urlpatterns = [
@@ -13,4 +14,5 @@ urlpatterns = [
     path('<int:pk>/predict/', PredictView.as_view(), name='predict'),
     path('<int:pk>/update_points/', UpdatePointsView.as_view(), name='update-points'),
     path('<int:pk>/reset/', ResetPredictionView.as_view(), name='reset-prediction'),
+    path('refresh_points/', RefreshCurrentSeasonPoints.as_view(), name='refresh-points')
 ]

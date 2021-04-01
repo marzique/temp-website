@@ -42,7 +42,7 @@ class Profile(models.Model):
         """Calculate total points earned from all weeks"""
         seasons = Season.objects.all()
         if not total:
-            seasons = Season.objects.filter(archived=False)
+            seasons = seasons.filter(archived=False)
         forecast_ids = Forecast.objects.filter(season__in=seasons).values_list('id', flat=True)
         points_total = 0
         for forecast, points in self.forecasts_points.items():

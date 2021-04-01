@@ -6,6 +6,7 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseForbidden
 from django.utils import timezone
+from django.db import transaction
 
 from forecasts.models import Forecast, Prediction, Season
 from users.models import Profile
@@ -141,3 +142,14 @@ class ResetPredictionView(View):
         prediction.delete()
 
         return redirect('forecast-detail', pk=forecast_id)
+
+class RefreshCurrentSeasonPoints(View):
+    """
+    Recalculates points of every profile.
+    """
+    @transaction.atomic
+    def get(self, request, *args, **kwargs):
+        profiles = Profile.objects.all()
+        for profile in profiles:
+            profile.save()
+        return redirect('forecast-list')

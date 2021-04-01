@@ -268,7 +268,7 @@ SERVER_EMAIL = env('SERVER_EMAIL', default='errors@tempfc.club')
 DEBUG = env('DEBUG', default=False)
 
 # ENV VARIABLES temporary
-HFL_SCOREBOARD_URL = 'https://diamondliga.join.football/tournament/1008633/tables'
+HFL_SCOREBOARD_URL = 'https://diamondliga.join.football/tournament/1015193/tables'
 
 DATABASES = {
     'default': {

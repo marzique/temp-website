@@ -52,9 +52,10 @@ class HFLScoreBoardParser:
                     results.append('D')
 
             teams.append({
+                'logo_url': logo_url, # TEAM
+                'name': name,         # TEAM
+                # TEAM INFO
                 'place': int(place),
-                'logo_url': logo_url,
-                'name': name,
                 'games': int(games),
                 'wins': int(wins),
                 'draws': int(draws),

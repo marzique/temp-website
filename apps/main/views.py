@@ -13,7 +13,7 @@ from django.shortcuts import redirect
 
 from aboutconfig.models import Config
 
-from scoreboard.models import Team, Match, League
+from scoreboard.models import Team, Match, League, TeamInfo
 from scoreboard.hfl import HFLScoreBoardParser
 from scoreboard.utils import get_lates_league_context
 from blog.models import Blog
@@ -39,14 +39,25 @@ class MainPageView(TemplateView):
     @transaction.atomic
     def refresh_scoreboard(self):
         teams = HFLScoreBoardParser().get_scoreboard()
+        league = League.objects.filter(active=True).first()
         for data in teams:
-            team = Team.objects.filter(name=data.get('name').lower())
-            if team.exists():
-                data.pop('name')
-                data.pop('logo_url')    
-                team.update(**data)
+            teams = Team.objects.filter(name=data.get('name').lower())
+            name = data.pop('name')
+            logo_url = data.pop('logo_url')
+            # create team if not created yet
+            if not teams.exists():
+                team = Team.objects.create(name=name, logo_url=logo_url)
             else:
-                team = Team.objects.create(**data)
+                team = teams.first()
+
+            infos = TeamInfo.objects.filter(team=team, league=league)
+            # create teaminfo for current active league if not created yet
+            if not infos.exists():
+                data['league'] = league
+                data['team'] = team
+                info = TeamInfo.objects.create(**data)
+            else:
+                infos.update(**data)
         self._update_scoreboard_timestamp()
         
     

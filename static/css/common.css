@@ -89,6 +89,7 @@ header .container{
 
 header a{
     color: whitesmoke;
+    font-weight: bold;
 }
 
 header .wrapper{

@@ -3,6 +3,8 @@
 {% block title %}{{object.first_name}} {{object.last_name}}{% endblock %}
 
 {% block content %}
-        {{posted.first_name}} {{object.last_name}}
+    <div class="container">
+        {{object.first_name}} {{object.last_name}}
         <img src="{{object.photo.url}}">
+    </div>
 {% endblock %}

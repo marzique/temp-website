@@ -265,6 +265,11 @@ footer .part.mid{
     width: 50%;
 }
 
+footer .part.mid p{
+    font-size: 14px;
+    line-height: 120%;
+}
+
 footer .part .logo{
     height: 128px;
     z-index: 20;
@@ -938,7 +943,11 @@ form.btn{
     margin-bottom: 27px;
     position: relative;
     overflow: hidden;
+    transition: all .3s ease-in-out;
+}
 
+.player-container .card:hover{
+    transform: scale(1.05);
 }
 
 .player-container .card.legend{

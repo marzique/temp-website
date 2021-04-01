@@ -3,8 +3,13 @@
 {% block title %}{{object.first_name}} {{object.last_name}}{% endblock %}
 
 {% block content %}
+    <div class="container title">
+        <h1>{{object.full_name}}  #{{object.number}}</h1>
+    </div>
     <div class="container">
-        {{object.first_name}} {{object.last_name}}
-        <img src="{{object.photo.url}}">
+        <img src="{{object.photo.url}}"><br>
+        Вік: {{object.years}} років ({{object.date_of_birth}}) <br>
+        Амплуа: {{object.get_position_display}}<br>
+        
     </div>
 {% endblock %}

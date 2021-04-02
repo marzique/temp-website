@@ -1027,6 +1027,24 @@ form.btn{
     padding: 30px;
 }
 
+.btn-fb-login{
+    width: 100px;
+    margin: 10px auto;
+    background-color: #4267B2;
+    outline: none;
+    border: none;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+.login-or{
+    margin: 5px auto;
+}
+
+.btn-fb-login a{
+    color: white;
+}
+
 .login .helptext{
     display: none;
 }

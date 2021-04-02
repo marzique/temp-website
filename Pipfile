@@ -26,6 +26,7 @@ python-telegram-bot = "*"
 django-celery-beat = "*"
 celery = "*"
 redis = "*"
+social-auth-app-django = "*"
 
 [requires]
 python_version = "3.9"

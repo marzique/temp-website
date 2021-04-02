@@ -11,6 +11,11 @@
                 {{ form.as_p }}
                 <button type="submit">Увійти</button>
             </form>
+            <p class="login-or">АБО</p>
+            <button class="btn-fb-login">
+                <a href="{% url 'social:begin' 'facebook' %}">Увійти з Facebook
+                </a>
+            </button>
         </div>
     </div>
   

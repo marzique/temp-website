@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'smuggler',
     'nplusone.ext.django',
     'django_celery_beat',
+    'social_django',
 
     # custom apps
     'main',
@@ -244,13 +245,12 @@ CKEDITOR_CONFIGS = {
 
 CKEDITOR_BROWSE_SHOW_DIRS = True
 
-
 ###################################
-
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'users.authentication.EmailOrUsernameModelBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
 )
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -263,6 +263,19 @@ EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='noreply@tempfc.club')
 SERVER_EMAIL = env('SERVER_EMAIL', default='errors@tempfc.club')
 
+# fb
+SOCIAL_AUTH_FACEBOOK_KEY = env('SOCIAL_AUTH_FACEBOOK_KEY', default='')
+SOCIAL_AUTH_FACEBOOK_SECRET = env('SOCIAL_AUTH_FACEBOOK_SECRET', default='')
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email'] # add this
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {       # add this
+  'fields': 'id, name, email, picture.type(large), link'
+}
+SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [                 # add this
+    ('name', 'name'),
+    ('email', 'email'),
+    ('picture', 'picture'),
+    ('link', 'profile_url'),
+]
 
 # ##### DEBUG CONFIGURATION ###############################
 DEBUG = env('DEBUG', default=False)

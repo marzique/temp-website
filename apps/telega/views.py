@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 
-from telega.client import dispatcher, bot
+# TODO: uncomment 
+# from telega.client import dispatcher, bot
 
 
 @method_decorator(csrf_exempt, name='dispatch')

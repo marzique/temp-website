@@ -77,7 +77,7 @@ INSTALLED_APPS = [
     'users',
     'forecasts',
     'core',
-    'telega'
+    # 'telega' # off for now
 ]
 
 # Middlewares

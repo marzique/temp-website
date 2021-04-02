@@ -2,7 +2,7 @@ from django.db import transaction
 from django.urls import reverse
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.views import View
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LoginView
@@ -102,3 +102,12 @@ class EditUserProfileView(LoginRequiredMixin, View):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+class DeleteUserView(LoginRequiredMixin, View):
+    """View to register a new user."""
+
+    def post(self, request, *args, **kwargs):
+        user = self.request.user
+        user.delete()
+        return HttpResponseRedirect(reverse('register'))

@@ -7,7 +7,8 @@ from users.views import (
     CustomPasswordResetView,
     CustomPasswordResetDoneView,
     CustomPasswordResetConfirmView,
-    CustomPasswordResetCompleteView
+    CustomPasswordResetCompleteView,
+    DeleteUserView
 )
 
 
@@ -19,6 +20,7 @@ urlpatterns = [
     path('password_reset_done/', CustomPasswordResetDoneView.as_view(), name='password_reset_done'),
     path('password_reset_confirm/<uidb64>/<token>/', CustomPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('password_reset_complete/', CustomPasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('delete-user/', DeleteUserView.as_view(), name='delete-user'),
     # social auth
     path('social-auth/', include('social_django.urls', namespace="social")),
 ]

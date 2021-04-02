@@ -39,15 +39,16 @@
                 <div class="tabs">
                     <p class="tab chosen">Профіль</p>
                     <p class="tab">Прогнози</p>
-                    <p class="tab tba">TBA</p>
+                    <p class="tab">Безпека</p>
                     <p class="tab tba">TBA</p>
                 </div>
+                <!-- tab1 -->
                 <div class="wrapper chosen">
                     <p class="date_joined"><i class="fas fa-calendar-check"></i> На сайті з: {{ user.date_joined|date:"d.m.Y" }}</p>
                     <p class="comments_total"><i class="fas fa-comment-alt"></i> Коментарів: {{ user.comments.count }}</p>
                     <p class="date_joined"><i class="fas fa-hourglass-half"></i> Останній вхід: {{ user.last_login|date:"d.m.Y G:i" }}</p>
-
                 </div>
+                <!-- tab2 -->
                 <div class="wrapper">
                     <div class="summary">
                         <p class="place">Місце: <span>{{ place }}</span></p>
@@ -68,6 +69,18 @@
                         {% endfor %}
                     </div>
                 </div>
+                <div class="wrapper">
+                    Натискаючи кнопку "Видалити профіль" усі данні вашого облікового запису будуть видалені назавжди.
+                    <form action="{% url 'delete-user' %}" method="post" id="delete-user">
+                        {% csrf_token %}
+                        <label for="checkbox">
+                            <input type="checkbox" name="confirm" required>
+                            Я розумію наслідки натискання кнопки.
+                        </label>
+                        <button type="submit" class="square-btn btn bad">Видалити профіль</button>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>

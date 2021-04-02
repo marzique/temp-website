@@ -786,6 +786,10 @@ form.btn{
     transition: all .3s ease-in-out;
 }
 
+.btn.bad{
+    background-color: #c36844;
+}
+
 .btn input,
 .skew-btn{
     background-color: transparent;
@@ -1837,6 +1841,21 @@ form.btn{
     align-items: center;
 }
 
+#account #delete-user{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    align-items: center;
+}
+
+#account #delete-user label{
+    margin: 10px 0;
+}
+
+#account #delete-user button{
+    width: 200px;
+}
+
 #account .user-profile #edit-profile,
 #account .user-profile #enable-edit{
     margin-top: 20px;
@@ -1951,7 +1970,7 @@ form.btn{
     margin: 20px 0;
 }
 
-#account input{
+#account .user-profile input{
     height: 50px;
     text-align: center;
     border: none;
@@ -1983,7 +2002,7 @@ form.btn{
     width: 150px;
 }
 
-#account input:not(.username){
+#account .user-profile input:not(.username){
     margin-bottom: 10px;
     padding: 0 20px;
 }

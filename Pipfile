@@ -29,7 +29,7 @@ redis = "*"
 social-auth-app-django = "*"
 
 [requires]
-python_version = "3.9"
+python_version = "3"
 
 [scripts]
 migrate = "python manage.py migrate"

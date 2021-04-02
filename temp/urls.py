@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
+from users.views import PrivacyPolicyView
 
 
 urlpatterns = [
@@ -25,6 +26,9 @@ urlpatterns = [
     # Authentication
     path('auth/', include('users.urls')),
     path('account/', include('users.account_urls')),
+
+    # privacy policy
+    path('privacy/', PrivacyPolicyView.as_view(), name='privacy'),
 
     # CKEditor
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),

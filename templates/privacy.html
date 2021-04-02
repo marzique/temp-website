@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Політика конфіденційності{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container title">
+        <h1>Політика конфіденційності</h1>
+    </div>
+    <div class="container">
+        {{policy.text|safe}}
+        <br><br>
+    </div>
+</section>
+{% endblock %}

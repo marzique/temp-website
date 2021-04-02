@@ -2,13 +2,15 @@ from django.db import transaction
 from django.urls import reverse
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.views import View
+from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LoginView
-from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+
+from core.models import PrivacyPolicy
 
 
 from users.forms import (
@@ -53,6 +55,14 @@ class CustomPasswordResetCompleteView(auth_views.PasswordResetCompleteView):
     pass
 
 
+# privacy
+class PrivacyPolicyView(TemplateView):
+    template_name='privacy.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['policy'] = PrivacyPolicy.objects.filter(active=True).last()
+        return context
 
 ### ACCOUNT VIEWS
 class AccountView(LoginRequiredMixin, TemplateView):
@@ -105,7 +115,7 @@ class EditUserProfileView(LoginRequiredMixin, View):
 
 
 class DeleteUserView(LoginRequiredMixin, View):
-    """View to register a new user."""
+    """View to delete user profile from website."""
 
     def post(self, request, *args, **kwargs):
         user = self.request.user

@@ -11,11 +11,13 @@
                 {{ form.as_p }}
                 <button type="submit">Створити</button>
             </form>
+            {% if user.is_staff %}
             <p class="login-or">АБО</p>
             <button class="btn-fb-login">
                 <a href="{% url 'social:begin' 'facebook' %}">Реєстрація з Facebook
                 </a>
             </button>
+            {% endif %}
         </div>
     </div>
   

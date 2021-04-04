@@ -20,21 +20,25 @@ class Team(models.Model):
 
     @property
     def alias(self):
-        """Return team name alias:
-        1) abbreviation - if more than 2 words OR
-        2) strip everything except name inside quotes
         """
+        Return team name alias:
+        1) strip everything except name inside quotes
+        2) remove fc start
+        3) abbreviation - if more than 2 words OR
+        """
+        name = self.name
         
-        words = self.name.split()
-        
-        if '"' in self.name:
+        if '"' in name:
             quoted = re.compile('"[^"]*"')
-            return quoted.findall(self.name)[0][1:-1]
-        elif len(words) > 2:
-            if self.name.lower().startswith(('fc', 'фк')):
-                return self.name[2:]
-            return ''.join([word[0] for word in words])
-        return self.name
+            name = quoted.findall(name)[0][1:-1]
+        if name.lower().startswith(('fc', 'фк')):
+            name = name[2:]
+        if name.lower().endswith('club'):
+            name = name[:-4]
+        words = name.split()
+        if len(words) >= 3:
+            name = ''.join([word[0] for word in words])
+        return name
 
 
 class League(models.Model):

@@ -40,20 +40,24 @@ class Profile(models.Model):
 
     def calculate_total_points(self, total=False):
         """Calculate total points earned from all weeks"""
-        seasons = Season.objects.all()
-        if not total:
-            seasons = seasons.filter(archived=False)
-        forecast_ids = Forecast.objects.filter(season__in=seasons).values_list('id', flat=True)
         points_total = 0
         for forecast, points in self.forecasts_points.items():
-            if int(forecast) in forecast_ids:
+            if int(forecast) in self.forecast_ids:
                 points_total += points
         return points_total
     
     @property
+    def forecast_ids(self, total=False):
+        seasons = Season.objects.all()
+        if not total:
+            seasons = seasons.filter(archived=False)
+        return Forecast.objects.filter(season__in=seasons).values_list('id', flat=True)
+
+    @property
     def average_points(self):
         if self.forecasts_points and self.total_points:
-            return round(self.total_points / len(self.forecasts_points), 2)
+            current_forecast_ids = [i for i in self.forecasts_points if int(i) in self.forecast_ids]
+            return round(self.total_points / len(current_forecast_ids), 2)
         return 0
     
     def create_or_update_points(self, forecast_id, week_points):

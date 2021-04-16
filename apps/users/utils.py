@@ -32,7 +32,7 @@ def transliterate_user(user):
         name = social.extra_data.get('name')
         if not social.extra_data.get('email') and name:
             try:
-                user.username = translit(name, reversed=True)
+                user.username = translit(name, reversed=True).replace(" ", "")
                 user.save()
                 return True
             except LanguageDetectionError:

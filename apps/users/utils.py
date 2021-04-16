@@ -1,5 +1,6 @@
 import requests
 from transliterate import translit
+from transliterate.exceptions import LanguageDetectionError
 
 from tempfile import NamedTemporaryFile
 
@@ -27,9 +28,13 @@ def transliterate_user(user):
     """
     social = user.social_auth.first()
     if social:
+        
         name = social.extra_data.get('name')
         if not social.extra_data.get('email') and name:
-            user.username = translit(name, reversed=True)
-            user.save()
-            return True
+            try:
+                user.username = translit(name, reversed=True)
+                user.save()
+                return True
+            except LanguageDetectionError:
+                pass
     return False

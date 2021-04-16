@@ -16,6 +16,14 @@ $(function() {
         }).showToast();
     }
 
+    // mobile menu closer
+    $(document).ready(function(){
+        $('#closer').click(function(){
+            $(this).toggleClass('open');
+            $('#mobile-menu').toggleClass('hidden')
+        });
+    });
+
     // Sticky HEADER
     var sticky = $('header.sticky');
     var fixed = $('header.fixed');

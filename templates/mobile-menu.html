@@ -1,0 +1,33 @@
+{% load static %}
+<div class="part logo">
+    <a href="/">
+        <img src="{% static 'img/temp_logo.png' %}" class="logo">
+    </a>
+</div>
+<div class="part menu">
+    <ul>
+        <li><a href="{% url 'player-list' %}">Гравці</a></li>
+        <li><a href="{% url 'scoreboard' %}">Таблиця</a></li>
+        <li><a href="{% url 'blog-list' %}">Новини</a></li>
+        <li><a href="{% url 'forecast-list' %}">Прогнози</a></li>
+        {% if user.is_staff %}
+            <li><a class="admin" href="/admin">Адмінка</a></li>
+        {% endif %}
+    </ul>
+</div>
+<div class="part auth">
+    {% if user.is_authenticated %}
+        <a href="{% url 'account' %}" class="username {% if user.is_staff %}admin{% endif %}">{{ user }}</a>
+        <a href="{% url 'account' %}" >
+            {% if user.profile.avatar %}
+                <img src="{{ user.profile.avatar.url}}" class="avatar">  
+            {% else %}
+                <img src="{% static 'img/no_avatar.png' %}" class="avatar">
+            {% endif %}
+        </a>
+        <a href="{% url 'logout' %}?next={{request.get_full_path}}" class="logout">вийти</a>
+    {% else %}
+        <a href="{% url 'login' %}">увійти</a>
+        <a href="{% url 'register' %}">реєстрація</a>
+    {% endif %}
+</div>

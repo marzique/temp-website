@@ -191,7 +191,8 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
-                'django.contrib.messages.context_processors.messages'
+                'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request'
             ],
         },
     },
@@ -309,3 +310,6 @@ CELERY_BROKER_URL = env('CELERY_BROKER_URL', default='redis://localhost:6379')
 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
+
+# make primary keys 64 bit
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

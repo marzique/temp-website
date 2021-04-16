@@ -7,16 +7,14 @@
 {% block metatags %}
 <!-- Primary Meta Tags -->
     
-    
     <!-- titles -->
     <meta name="title" content="{{ object.title }} | ФК ТЕМП">
     <meta property="og:title" content="{{ object.title }} | ФК ТЕМП">
     <meta property="twitter:title" content="{{ object.title }} | ФК ТЕМП">
 
     <!-- custom images -->
-    
-    <meta property="og:image" content="{{ object.image.url }}">
-    <meta property="twitter:image" content="{{ object.image.url }}">
+    <meta property="og:image" content="{{ object.image.path }}">
+    <meta property="twitter:image" content="{{ object.image.path }}">
 
     <!-- custom descriptions -->
     <meta name="description" content="{{ object.text|striptags|truncatechars:140 }}">

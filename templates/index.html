@@ -1,6 +1,23 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load blog_extras %}
+{% block metatags %}
+<!-- Primary Meta Tags -->
+    <meta name="title" content="Головна | ФК ТЕМП">
+    <meta name="description" content="Офіційний сайт футбольного клубу Темп Димер.">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.path }}">
+    <meta property="og:title" content="Головна | ФК ТЕМП">
+    <meta property="og:description" content="Офіційний сайт футбольного клубу Темп Димер.">
+    <meta property="og:image" content="{% static 'img/temp-squad.jpg' %}">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ request.path }}">
+    <meta property="twitter:title" content="Головна | ФК ТЕМП">
+    <meta property="twitter:description" content="Офіційний сайт футбольного клубу Темп Димер.">
+    <meta property="twitter:image" content="{% static 'img/temp-squad.jpg' %}">
+{% endblock %}  
 
 {% block title %}Головна{% endblock %}
 

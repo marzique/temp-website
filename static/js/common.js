@@ -18,7 +18,7 @@ $(function() {
 
     // mobile menu closer
     $(document).ready(function(){
-        $('#closer').click(function(){
+        $(document).on('click touch', '#closer', function(){
             $(this).toggleClass('open');
             $('#mobile-menu').toggleClass('hidden')
         });

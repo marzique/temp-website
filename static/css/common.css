@@ -1047,6 +1047,32 @@ form.btn{
     padding: 30px;
 }
 
+.login input{
+    height: 35px;
+    padding: 0 5px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #0d2e52;
+}
+
+.login button:not(.btn-fb-login){
+    background-color: white;
+    outline: none;
+    border: 1px solid #0d2e52;
+    padding: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.login button:not(.btn-fb-login):hover{
+    background-color: #e9e2e2;
+}
+
+.login label{
+    margin-bottom: 5px;
+}
+
 .btn-fb-login{
     width: 100px;
     margin: 10px auto;
@@ -1054,7 +1080,7 @@ form.btn{
     outline: none;
     border: none;
     padding: 10px;
-    border-radius: 2px;
+    border-radius: 5px;
 }
 
 .login-or{
@@ -1084,6 +1110,7 @@ form.btn{
     margin: 10px 0;
     display: flex;
     flex-direction: column;
+    min-width: 200px;
 }
 /* Login Form */
 

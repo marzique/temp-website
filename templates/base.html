@@ -29,6 +29,9 @@
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/f719717483.js" crossorigin="anonymous"></script>
 
+    {% block metatags %}
+    {% endblock %}
+
     <!-- Primary Meta Tags -->
     <meta name="title" content="Головна | ФК ТЕМП">
     <meta name="description" content="Офіційний сайт футбольного клубу Темп Димер.">
@@ -46,9 +49,6 @@
     <meta property="twitter:title" content="Головна | ФК ТЕМП">
     <meta property="twitter:description" content="Офіційний сайт футбольного клубу Темп Димер.">
     <meta property="twitter:image" content="{% static 'img/temp-squad.jpg' %}">
-
-    {% block metatags %}
-    {% endblock %}
 
     {% block head %}
     {% endblock %}

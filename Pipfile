@@ -27,6 +27,7 @@ django-celery-beat = "*"
 celery = "*"
 redis = "*"
 social-auth-app-django = "*"
+transliterate = "*"
 
 [requires]
 python_version = "3"

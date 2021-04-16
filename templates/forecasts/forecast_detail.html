@@ -41,7 +41,7 @@
         </div>
     {% endif %}
     <div class="container {% if not user.is_authenticated %}greyed{% endif %}">
-        {% if user.is_staff %}
+        {% if user.is_superuser %}
             <form action="{% url 'update-points' pk=object.pk %}" method="post">
                 {% csrf_token %}
                 <button type="submit" id="update-points">Оновити бали</button>

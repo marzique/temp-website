@@ -13,5 +13,5 @@ ALLOWED_HOSTS = ['*']
 
 # adjust the minimal login
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'account'
 LOGOUT_REDIRECT_URL = 'login'

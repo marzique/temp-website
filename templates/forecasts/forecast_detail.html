@@ -27,7 +27,11 @@
                 <a href="{% url 'login' %}?next={% url 'forecast-detail' pk=object.pk %}">увійдіть</a>
                 або
                 <a href="{% url 'register' %}?next={% url 'forecast-detail' pk=object.pk %}">зареєструйтесь</a>
-                .
+                .<br>
+                <button class="btn-fb-login">
+                    <a href="{% url 'social:begin' 'facebook' %}?next={{request.get_full_path}}">Увійти з Facebook
+                    </a>
+                </button>
             </div>
         {% endif %}
     </div>

@@ -87,7 +87,7 @@ $(function () {
     // CONFIG
 
     let mainClass = '.countdown';
-    let OffsetLocation = 2; // line 183. Tarnavskyi D.
+    let OffsetLocation = 3; // line 183. Tarnavskyi D.
 
     let runningClass = '.running'; //optinonal
     let endedClass = ".ended"; //optional

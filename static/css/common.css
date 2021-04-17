@@ -1772,7 +1772,7 @@ form.btn{
 }
 
 #predictions .matches{
-    max-height:15em;
+    max-height: 200hv;
     transition: all .3s ease-in-out;
     overflow: hidden;
 }

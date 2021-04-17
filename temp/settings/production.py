@@ -10,6 +10,11 @@ ALLOWED_HOSTS = [
     # banger 2
     '159.89.111.163']
 
+# adjust the minimal login
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'account'
+LOGOUT_REDIRECT_URL = 'login'
+
 # ##### SECURITY CONFIGURATION ############################
 
 # TODO: Make sure, that sensitive information uses https

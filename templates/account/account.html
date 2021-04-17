@@ -40,7 +40,7 @@
                     <p class="tab chosen">Профіль</p>
                     <p class="tab">Прогнози</p>
                     <p class="tab">Безпека</p>
-                    <p class="tab tba">TBA</p>
+                    <p class="tab">Сповіщення</p>
                 </div>
                 <!-- tab1 -->
                 <div class="wrapper chosen">
@@ -69,6 +69,7 @@
                         {% endfor %}
                     </div>
                 </div>
+                <!-- tab3 -->
                 <div class="wrapper">
                     Натискаючи кнопку "Видалити профіль" усі данні вашого облікового запису будуть видалені назавжди.
                     <form action="{% url 'delete-user' %}" method="post" id="delete-user">
@@ -80,7 +81,10 @@
                         <button type="submit" class="square-btn btn bad">Видалити профіль</button>
                     </form>
                 </div>
-
+                <!-- tab4 -->
+                <div class="wrapper">
+                    Тут будуть показані сповіщення від сайту та повідомлення.
+                </div>
             </div>
         </div>
     </div>

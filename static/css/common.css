@@ -1768,6 +1768,17 @@ form.btn{
     margin-bottom: 20px;
     width: 229px;
     position: relative;
+    cursor: pointer;
+}
+
+#predictions .matches{
+    max-height:15em;
+    transition: all .3s ease-in-out;
+    overflow: hidden;
+}
+
+#predictions .matches.hidden{
+    max-height: 0;
 }
 
 #predictions .prediction .author{

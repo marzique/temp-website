@@ -16,6 +16,13 @@ $(function() {
         }).showToast();
     }
 
+    // prediction matches expander
+    if ($('#predictions').length){
+        $(document).on('click touch', '#predictions .prediction', function(){
+            $(this).find('.matches').toggleClass('hidden');
+        });
+    }
+
     // mobile menu closer
     $(document).ready(function(){
         $(document).on('click touch', '#closer', function(){

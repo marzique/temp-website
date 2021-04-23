@@ -2268,7 +2268,10 @@ form.btn{
         height: 130vw;
         flex-direction: column-reverse;
     }
-
+	
+    #post-photo .container-full{
+    	height: 50vw;
+    }
     #post-big .wrapper .title {
         width: 100%;
         padding: 20px;

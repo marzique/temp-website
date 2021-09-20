@@ -1,3 +1,5 @@
+import re
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -17,12 +19,17 @@ class HFLScoreBoardParser:
 
         html = self._get_html()
         soup = BeautifulSoup(html, 'html.parser')
-        table = soup.find(id='tournaments-tables-table-1')
-        rows = table.find_all(class_='table__row')
-        return rows
-    
+        tables = soup.find_all('div', id=re.compile('tournaments-tables-table-'))
+        # use first table with temp in it
+        for table in tables:
+            if 'темп' in table.get_text().lower():
+                rows = table.find_all(class_='table__row')
+                return rows
+
     def get_scoreboard(self):
         rows = self._extract_table()
+        if not rows:  # Couldn't parse table from hfl website
+            return []
 
         teams = []
         for row in rows:
@@ -52,8 +59,9 @@ class HFLScoreBoardParser:
                     results.append('D')
 
             teams.append({
-                'logo_url': logo_url, # TEAM
-                'name': name,         # TEAM
+                # TEAM
+                'logo_url': logo_url,
+                'name': name,
                 # TEAM INFO
                 'place': int(place),
                 'games': int(games),

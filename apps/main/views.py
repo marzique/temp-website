@@ -15,7 +15,7 @@ from aboutconfig.models import Config
 
 from scoreboard.models import Team, Match, League, TeamInfo
 from scoreboard.hfl import HFLScoreBoardParser
-from scoreboard.utils import get_lates_league_context
+from scoreboard.utils import get_latest_league_context
 from blog.models import Blog
 from squad.models import Player
 from squad.utils import get_todays_birthday_players
@@ -27,7 +27,7 @@ class MainPageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['scoreboard'] = get_lates_league_context()
+        context['scoreboard'] = get_latest_league_context()
         context['next_match'] = Match.objects.filter(next=True).first()
         context['prev_match'] = Match.objects.filter(prev=True).first()
         context['last_posts'] = Blog.objects.select_related('category').with_likes().filter(posted__lte=timezone.localtime(timezone.now())).order_by('-posted')[:3]

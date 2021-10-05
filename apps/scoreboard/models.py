@@ -1,5 +1,7 @@
 import re
-from django.db import models
+
+from django.db import models, transaction
+from django.utils import timezone
 
 
 class Team(models.Model):
@@ -43,11 +45,10 @@ class Team(models.Model):
 
 class League(models.Model):
     name = models.CharField(max_length=64)
-    years = models.CharField(max_length=9, null=False, blank=False)  # e.g. 2020 or 2021/2022
+    years = models.CharField(max_length=9, null=False, blank=False)
     active = models.BooleanField(default=True)
 
     class Meta:
-        # One like per Post/Comment
         unique_together = (('name', 'years'),)
 
     def __str__(self):
@@ -70,9 +71,10 @@ class TeamInfo(models.Model):
         related_name='teams'
     )
 
-    PLACE_CHOICES = zip(range(1, 100), range(1, 100)) # 1-99
+    PLACE_CHOICES = zip(range(1, 100), range(1, 100))  # 1-99
 
-    place = models.PositiveIntegerField(choices=PLACE_CHOICES, null=False, blank=False, default=0)
+    place = models.PositiveIntegerField(choices=PLACE_CHOICES, null=False, blank=False,
+                                        default=0)
     games = models.PositiveIntegerField(null=False, blank=False, default=0)
     wins = models.PositiveIntegerField(null=False, blank=False, default=0)
     draws = models.PositiveIntegerField(null=False, blank=False, default=0)
@@ -83,6 +85,31 @@ class TeamInfo(models.Model):
 
     def __str__(self):
         return f'{self.team} {self.league} [#{self.place}]'
+
+
+class MatchManager(models.Manager):
+
+    @transaction.atomic
+    def update_matches(self):
+        self.model.objects.update(next=None, prev=None)
+        future_matches = self.model.objects.filter(date__gte=timezone.localtime(timezone.now()))
+        tba_matches = self.model.objects.filter(date__isnull=True)
+        next_match = None
+        if future_matches.exists():
+            next_match = future_matches.earliest('date')
+        elif tba_matches.exists():
+            next_match = tba_matches.earliest('id')
+
+        prev_matches = self.model.objects.filter(date__lt=timezone.localtime(timezone.now()))
+        prev_match = None
+        if prev_matches.exists():
+            prev_match = prev_matches.latest('date')
+        if next_match:
+            next_match.next = True
+            next_match.save()
+        if prev_match:
+            prev_match.prev = True
+            prev_match.save()
 
 
 class Match(models.Model):
@@ -106,6 +133,8 @@ class Match(models.Model):
     league = models.CharField(max_length=20, default='HFL')
     next = models.BooleanField(default=None, unique=True, null=True)
     prev = models.BooleanField(default=None, unique=True, null=True)
+
+    objects = MatchManager()
 
     def __str__(self):
         return f'{self.home.name} {self.score} {self.guest.name}' 

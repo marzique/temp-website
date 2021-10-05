@@ -28,7 +28,6 @@ def transliterate_user(user):
     """
     social = user.social_auth.first()
     if social:
-        
         name = social.extra_data.get('name')
         if not social.extra_data.get('email') and name:
             try:

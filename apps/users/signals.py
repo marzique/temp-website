@@ -7,7 +7,8 @@ from users.utils import set_user_avatar_from_url, transliterate_user
 
 
 @receiver(post_save, sender=UserSocialAuth)
-def on_booking_delete(sender, instance, **kwargs):
+def on_social_auth(sender, instance, **kwargs):
+    """Transliterates social name to latin and tries to set user profile picture."""
     social = instance
     user = social.user
     picture_url = social.extra_data.get('picture', {}).get('data', {}).get('url')

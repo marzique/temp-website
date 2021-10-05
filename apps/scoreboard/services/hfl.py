@@ -5,13 +5,13 @@ from bs4 import BeautifulSoup
 
 from django.conf import settings
 
+from scoreboard.models import League, Team, TeamInfo
 
-class HFLScoreBoardParser:
-    def __init__(self):
-        self.url = settings.HFL_SCOREBOARD_URL
 
-    def _get_html(self):
-        resp = requests.get(self.url)
+class HFLScoreboardService:
+    @staticmethod
+    def _get_html():
+        resp = requests.get(settings.HFL_SCOREBOARD_URL)
         return resp.text
 
     def _extract_table(self):
@@ -28,7 +28,7 @@ class HFLScoreBoardParser:
 
     def get_scoreboard(self):
         rows = self._extract_table()
-        if not rows:  # Couldn't parse table from hfl website
+        if not rows:  # Couldn't parse table from services website
             return []
 
         teams = []
@@ -74,4 +74,25 @@ class HFLScoreBoardParser:
                 # 'results': results
             })
         return teams
-             
+
+    def refresh_scoreboard(self):
+        teams = self.get_scoreboard()
+        league = League.objects.filter(active=True).first()
+        for data in teams:
+            teams = Team.objects.filter(name=data.get('name').lower())
+            name = data.pop('name')
+            logo_url = data.pop('logo_url')
+            # create team if not created yet
+            if not teams.exists():
+                team = Team.objects.create(name=name, logo_url=logo_url)
+            else:
+                team = teams.first()
+
+            infos = TeamInfo.objects.filter(team=team, league=league)
+            # create teaminfo for current active league if not created yet
+            if not infos.exists():
+                data['league'] = league
+                data['team'] = team
+                info = TeamInfo.objects.create(**data)
+            else:
+                infos.update(**data)

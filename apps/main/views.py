@@ -10,9 +10,9 @@ from aboutconfig.models import Config
 
 from scoreboard.models import Match
 from scoreboard.services import HFLScoreboardService
-from scoreboard.utils import get_latest_league_context, update_teams_medals
+from scoreboard.services import get_latest_league_context, update_teams_medals
 from blog.models import Blog
-from squad.utils import get_todays_birthday_players
+from squad.services import get_today_birthday_players
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -25,7 +25,7 @@ class MainPageView(TemplateView):
         context['next_match'] = Match.objects.filter(next=True).first()
         context['prev_match'] = Match.objects.filter(prev=True).first()
         context['last_posts'] = Blog.objects.select_related('category').with_likes().filter(posted__lte=timezone.localtime(timezone.now())).order_by('-posted')[:3]
-        context['birthdays'] = get_todays_birthday_players()
+        context['birthdays'] = get_today_birthday_players()
         return context
 
     @transaction.atomic

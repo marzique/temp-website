@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 
-from scoreboard.utils import get_latest_league_context
+from scoreboard.services import get_latest_league_context
 
 
 class ScoreboardView(TemplateView):

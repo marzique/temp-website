@@ -3,7 +3,7 @@ from social_django.models import UserSocialAuth
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from users.utils import set_user_avatar_from_url, transliterate_user
+from users.services import set_user_avatar_from_url, transliterate_user
 
 
 @receiver(post_save, sender=UserSocialAuth)

@@ -47,6 +47,7 @@ class League(models.Model):
     name = models.CharField(max_length=64)
     years = models.CharField(max_length=9, null=False, blank=False)
     active = models.BooleanField(default=True)
+    rounds = models.PositiveIntegerField(default=2)
 
     class Meta:
         unique_together = (('name', 'years'),)
@@ -87,7 +88,8 @@ class TeamInfo(models.Model):
     goals_scored = models.PositiveIntegerField(null=False, blank=False, default=0)
     goals_conceded = models.PositiveIntegerField(null=False, blank=False, default=0)
     points = models.PositiveIntegerField(null=False, blank=False, default=0)
-    medal = models.PositiveIntegerField(choices=MEDAL_CHOICES, null=True)
+    medal = models.PositiveIntegerField(choices=MEDAL_CHOICES, null=True, blank=True)
+    abandoned = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.team} [{self.league} #{self.place}]'.upper()

@@ -7,7 +7,7 @@ from tempfile import NamedTemporaryFile
 from django.core.files import File
 
 
-def set_user_avatar_from_url(user, url):
+def set_user_avatar_from_url(user, url) -> bool:
     """
     Saves image from url as profile picture of user.
     """
@@ -18,11 +18,12 @@ def set_user_avatar_from_url(user, url):
     try:
         user.profile.avatar.save(f"fb_avatar_{user.pk}", File(img_temp), save=True)
         return True
-    except:
+    except Exception as e:
+        print(e)
         return False
 
 
-def transliterate_user(user):
+def transliterate_user(user) -> bool:
     """
     Update username if no email from fb, and name is cyrillic.
     """

@@ -3,7 +3,7 @@ from social_django.models import UserSocialAuth
 
 from django.db import migrations
 
-from users.utils import set_user_avatar_from_url, transliterate_user
+from users.services import set_user_avatar_from_url, transliterate_user
 
 
 def update_fb_usernames_and_avatars(apps, schema_editor):

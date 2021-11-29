@@ -26,6 +26,11 @@
             <div class="team-name">
                 <img src="{{ teaminfo.team.logo_url }}" >
                 <p>{{ teaminfo.team.alias }}</p>
+                {% if teaminfo.medal %}
+                    <div class="medal {{ teaminfo.get_medal_display|lower }}">
+                        {{ teaminfo.medal }}
+                    </div>
+                {% endif %}
             </div>
             <p class="games">{{ teaminfo.games }}</p>
             <p class="wins">{{ teaminfo.wins }}</p>

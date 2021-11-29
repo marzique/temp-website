@@ -644,6 +644,37 @@ footer .socials img{
     object-fit: contain;
 }
 
+.scoreboard .team-name p{
+    margin-right: 20px;
+}
+
+.scoreboard .team-name .medal{
+    transform: skewX(15deg);
+    border: 5px solid;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    vertical-align: center;
+    line-height: 100%;
+    color: #000000;
+}
+
+.scoreboard .team-name .medal.gold{
+    border-color: #c9b1373f;
+    background-color: #ffe977;
+}
+
+.scoreboard .team-name .medal.silver{
+    border-color: #c9b1373f;
+    background-color: #d7d7d7;
+}
+
+.scoreboard .team-name .medal.bronze{
+    border-color: #cd7f32;
+    background-color: #cd7f3273;
+}
+
 #info-tables .sides{
     display: flex;
     justify-content: space-around;

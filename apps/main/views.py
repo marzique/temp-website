@@ -10,7 +10,7 @@ from aboutconfig.models import Config
 
 from scoreboard.models import Match
 from scoreboard.services import HFLScoreboardService
-from scoreboard.utils import get_latest_league_context
+from scoreboard.utils import get_latest_league_context, update_teams_medals
 from blog.models import Blog
 from squad.utils import get_todays_birthday_players
 
@@ -31,6 +31,7 @@ class MainPageView(TemplateView):
     @transaction.atomic
     def refresh_scoreboard(self):
         HFLScoreboardService().refresh_scoreboard()
+        update_teams_medals()
         self._update_scoreboard_timestamp()
     
     @staticmethod

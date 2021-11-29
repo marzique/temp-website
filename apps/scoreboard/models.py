@@ -72,9 +72,14 @@ class TeamInfo(models.Model):
     )
 
     PLACE_CHOICES = zip(range(1, 100), range(1, 100))  # 1-99
+    MEDAL_CHOICES = (
+        (1, 'Gold'),
+        (2, 'Silver'),
+        (3, 'Bronze'),
+    )
 
-    place = models.PositiveIntegerField(choices=PLACE_CHOICES, null=False, blank=False,
-                                        default=0)
+    place = models.PositiveIntegerField(choices=PLACE_CHOICES, null=False,
+                                        blank=False, default=0)
     games = models.PositiveIntegerField(null=False, blank=False, default=0)
     wins = models.PositiveIntegerField(null=False, blank=False, default=0)
     draws = models.PositiveIntegerField(null=False, blank=False, default=0)
@@ -82,13 +87,13 @@ class TeamInfo(models.Model):
     goals_scored = models.PositiveIntegerField(null=False, blank=False, default=0)
     goals_conceded = models.PositiveIntegerField(null=False, blank=False, default=0)
     points = models.PositiveIntegerField(null=False, blank=False, default=0)
+    medal = models.PositiveIntegerField(choices=MEDAL_CHOICES, null=True)
 
     def __str__(self):
-        return f'{self.team} {self.league} [#{self.place}]'
+        return f'{self.team} [{self.league} #{self.place}]'.upper()
 
 
 class MatchManager(models.Manager):
-
     @transaction.atomic
     def update_matches(self):
         self.model.objects.update(next=None, prev=None)
@@ -100,7 +105,8 @@ class MatchManager(models.Manager):
         elif tba_matches.exists():
             next_match = tba_matches.earliest('id')
 
-        prev_matches = self.model.objects.filter(date__lt=timezone.localtime(timezone.now()))
+        prev_matches = self.model.objects.filter(
+            date__lt=timezone.localtime(timezone.now()))
         prev_match = None
         if prev_matches.exists():
             prev_match = prev_matches.latest('date')

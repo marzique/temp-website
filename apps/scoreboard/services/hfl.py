@@ -93,6 +93,6 @@ class HFLScoreboardService:
             if not infos.exists():
                 data['league'] = league
                 data['team'] = team
-                info = TeamInfo.objects.create(**data)
+                TeamInfo.objects.create(**data)
             else:
                 infos.update(**data)
